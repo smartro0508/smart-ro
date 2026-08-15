@@ -12,13 +12,16 @@ import {
   Quote,
   HeartHandshake,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Leaf,
+  Heart
 } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="bg-[#f8fafc]">
       <Hero />
+      <TrustBadges />
       <QuickFeatures />
       <OurSolutions />
       <FeaturedProducts />
@@ -32,18 +35,18 @@ export default function Home() {
 }
 
 // ----------------------------------------------------------------------
-// Hero (Kept identical as requested)
+// Hero
 // ----------------------------------------------------------------------
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0F172A]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A1120]">
       {/* ── Looping background video ── */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity grayscale"
         poster="https://images.unsplash.com/photo-1548345680-f5475ea90f46?q=80&w=1920"
       >
         <source
@@ -52,118 +55,102 @@ function Hero() {
         />
       </video>
 
+      {/* ── Corporate Grid Overlay ── */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none mix-blend-overlay" />
+
       {/* ── Content ── */}
       <div className="container-custom relative z-10 grid lg:grid-cols-2 gap-16 items-center pt-28 pb-20 md:pt-36 md:pb-28">
         {/* Left */}
         <div>
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#22D3EE] uppercase tracking-widest border border-[#22D3EE]/30 bg-[#22D3EE]/10 px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] animate-pulse" />
-            Advanced Water Purification Solutions
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest border border-white/20 bg-white/5 px-4 py-2 mb-8 rounded-sm">
+            Corporate Infrastructure
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.05] tracking-tight mb-6">
-            Pure Water.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#22D3EE] to-[#38BDF8]">
-              Better Living.
-            </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            Engineered For <br />
+            <span className="text-[#4ea8de]">Pure Performance.</span>
           </h1>
 
-          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-lg border-l-2 border-[#22D3EE]/40 pl-5">
-            Advanced water purification solutions designed to deliver clean,
-            safe, and refreshing water for homes, businesses, and industries.
+          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-lg border-l-2 border-[#4ea8de] pl-5">
+            Enterprise-grade water purification solutions designed to deliver
+            reliable, compliant, and scalable water treatment for industries and
+            commercial facilities.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-10">
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#0F172A] text-sm font-bold rounded-xl hover:bg-[#22D3EE] hover:text-[#0F172A] transition-colors duration-300 shadow-lg"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[#4ea8de] text-[#0A1120] text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white transition-colors duration-300"
             >
-              Explore Products <ArrowRight className="w-4 h-4" />
+              System Specifications
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/20 text-white text-sm font-bold rounded-xl hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
+              className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/10 transition-colors duration-300"
             >
-              Request a Quote
+              Consult Engineering
             </Link>
           </div>
 
-          <p className="text-xs text-slate-500 font-semibold tracking-widest uppercase">
-            Reliable Technology &nbsp;•&nbsp; Professional Service &nbsp;•&nbsp;
-            Long-Term Support
-          </p>
+          <div className="flex items-center gap-6 text-xs text-slate-400 font-bold tracking-widest uppercase">
+            <span className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#4ea8de]" /> ISO 9001
+            </span>
+            <span className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#4ea8de]" /> 24/7 SLA
+            </span>
+          </div>
         </div>
 
-        {/* Right — Floating glass info card */}
+        {/* Right — Technical Specs Card */}
         <div className="hidden lg:flex items-center justify-center">
           <div className="relative w-full max-w-[420px]">
-            {/* Main glass card */}
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-8 shadow-2xl">
-              <p className="text-xs font-bold text-[#22D3EE] uppercase tracking-widest mb-6">
-                Purification Standard
-              </p>
+            {/* Main structural card */}
+            <div className="bg-[#0A1120]/80 backdrop-blur-md border border-slate-700 p-10 shadow-2xl rounded-sm">
+              <div className="flex items-center justify-between mb-8 border-b border-slate-700 pb-4">
+                <p className="text-xs font-bold text-[#4ea8de] uppercase tracking-widest">
+                  Purification Metrics
+                </p>
+                <ShieldCheck className="w-5 h-5 text-[#4ea8de]" />
+              </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {[
-                  { stage: "01", name: "Sediment Filter", done: true },
-                  { stage: "02", name: "Carbon Block", done: true },
-                  { stage: "03", name: "RO Membrane", done: true },
-                  { stage: "04", name: "UV / UF Stage", done: true },
-                  { stage: "05", name: "Mineral Enhancer", done: true },
-                ].map((s) => (
-                  <div key={s.stage} className="flex items-center gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-[#22D3EE]/20 border border-[#22D3EE]/30 flex items-center justify-center text-[10px] font-black text-[#22D3EE]">
-                      {s.stage}
-                    </div>
-                    <span className="text-white text-sm font-semibold flex-grow">
-                      {s.name}
+                  { label: "Particulate Removal", value: "99.9%" },
+                  { label: "TDS Reduction", value: "Up to 98%" },
+                  { label: "Microbial Eradication", value: "99.99%" },
+                  { label: "Recovery Rate", value: "Optimized" },
+                  { label: "System Uptime", value: "99.9%" },
+                ].map((stat, idx) => (
+                  <div key={idx} className="flex items-center justify-between">
+                    <span className="text-slate-400 text-sm font-semibold">
+                      {stat.label}
                     </span>
-                    <svg
-                      className="w-4 h-4 text-[#22D3EE] shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+                    <span className="text-white text-sm font-bold">
+                      {stat.value}
+                    </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                <div>
-                  <p className="text-3xl font-bold text-white">99.9%</p>
-                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mt-0.5">
-                    Purification Rate
-                  </p>
-                </div>
-                <div className="w-14 h-14 rounded-2xl bg-[#075985] flex items-center justify-center shadow-lg">
-                  <svg
-                    className="w-7 h-7 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.8"
-                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                    />
-                  </svg>
+              <div className="mt-8 pt-6 border-t border-slate-700">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-3xl font-bold text-white">Class A</p>
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">
+                      Industrial Standard
+                    </p>
+                  </div>
+                  <div className="w-12 h-12 border border-[#4ea8de] flex items-center justify-center bg-[#4ea8de]/10 rounded-sm">
+                    <Settings className="w-6 h-6 text-[#4ea8de]" />
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Floating stat chip */}
-            <div className="absolute -top-4 -right-4 bg-[#22D3EE] text-[#0F172A] px-4 py-2 rounded-full text-xs font-black shadow-lg uppercase tracking-wider">
-              ISO Certified
-            </div>
+            
+            {/* Corner Accent */}
+            <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-[#4ea8de]" />
+            <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-[#4ea8de]" />
           </div>
         </div>
       </div>
@@ -175,29 +162,54 @@ function Hero() {
 }
 
 // ----------------------------------------------------------------------
+// TrustBadges
+// ----------------------------------------------------------------------
+function TrustBadges() {
+  const badges = [
+    { icon: Droplet, label: "PURE\nWATER" },
+    { icon: ShieldCheck, label: "ADVANCED\nPURIFICATION" },
+    { icon: Leaf, label: "HEALTHY\nLIVING" },
+    { icon: Heart, label: "TRUSTED\nQUALITY" }
+  ];
+
+  return (
+    <section className="bg-white border-b border-slate-200 relative z-20">
+      <div className="container-custom">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+          {badges.map((badge, i) => (
+            <div key={i} className="flex flex-col items-center justify-center text-center py-10 px-6 group hover:bg-slate-50 transition-colors">
+              <badge.icon className="w-10 h-10 text-[#0f3a61] mb-4 group-hover:scale-105 transition-transform" strokeWidth={1.5} />
+              <span className="text-xs font-bold text-slate-800 whitespace-pre-line tracking-widest uppercase">{badge.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------------------------------------------------------
 // QuickFeatures
 // ----------------------------------------------------------------------
 const quickFeatures = [
-  { icon: Droplet, title: "RO Products", desc: "Wide range of RO systems for home, commercial & industrial use." },
-  { icon: Wrench, title: "RO Installation", desc: "Professional installation and setup by experienced experts." },
-  { icon: Settings, title: "RO Service", desc: "Maintenance, repair and genuine parts replacement." },
-  { icon: ShieldCheck, title: "Water Treatment", desc: "Complete water treatment solutions for all applications." }
+  { icon: Droplet, title: "RO Products", desc: "Comprehensive range of RO systems for residential, commercial & industrial facilities." },
+  { icon: Wrench, title: "RO Installation", desc: "Precision installation and configuration by certified technical experts." },
+  { icon: Settings, title: "RO Service", desc: "Scheduled maintenance, diagnostics, and authentic component replacement." },
+  { icon: ShieldCheck, title: "Water Treatment", desc: "End-to-end water treatment solutions tailored for specialized applications." }
 ];
 
 function QuickFeatures() {
   return (
-    <section className="bg-white py-10 border-b border-slate-100 relative z-20">
+    <section className="bg-slate-50 py-20 border-b border-slate-200">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
           {quickFeatures.map((f, i) => (
-            <div key={i} className="flex items-start gap-4 group">
-              <div className="w-14 h-14 rounded-full bg-[#f0f8ff] flex items-center justify-center shrink-0 group-hover:bg-[#0084FF] transition-colors duration-300">
-                <f.icon className="w-6 h-6 text-[#0084FF] group-hover:text-white transition-colors duration-300" />
+            <div key={i} className="flex flex-col">
+              <div className="w-12 h-12 bg-[#0f3a61] flex items-center justify-center mb-5 rounded-sm">
+                <f.icon className="w-6 h-6 text-white" strokeWidth={1.5} />
               </div>
-              <div>
-                <h3 className="font-bold text-[#0B2038] mb-1">{f.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed max-w-[200px]">{f.desc}</p>
-              </div>
+              <h3 className="font-bold text-slate-900 text-lg mb-2">{f.title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -211,54 +223,59 @@ function QuickFeatures() {
 // ----------------------------------------------------------------------
 const solutions = [
   {
-    name: "Residential RO",
-    items: ["Home RO Purifiers", "Under-Sink RO", "Wall Mounted RO"],
+    name: "Residential Systems",
+    items: ["Domestic RO Purifiers", "Under-Sink Units", "Wall-Mounted Solutions"],
     image: "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=600&q=80"
   },
   {
-    name: "Commercial RO",
-    items: ["Office RO Systems", "Hotel & Restaurant RO", "School / Hospital RO"],
+    name: "Commercial Systems",
+    items: ["Corporate Office RO", "Hospitality Sector", "Educational & Medical"],
     image: "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=600&q=80"
   },
   {
-    name: "Industrial RO",
-    items: ["Commercial RO Plants", "Industrial RO Plants", "High Capacity RO Systems"],
+    name: "Industrial Plants",
+    items: ["Heavy-Duty RO Plants", "Industrial Capacities", "Custom Engineering"],
     image: "https://images.unsplash.com/photo-1606132717013-0941be200427?w=600&q=80"
   },
   {
-    name: "Water Treatment",
-    items: ["UV Systems", "UF Systems", "Water Softeners", "Filtration Systems"],
+    name: "Specialized Treatment",
+    items: ["UV / UF Systems", "Water Softening", "Advanced Filtration"],
     image: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80"
   }
 ];
 
 function OurSolutions() {
   return (
-    <section className="py-20 bg-[#F8FAFC]">
+    <section className="py-24 bg-white">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-2">Our Solutions</p>
-          <h2 className="text-3xl md:text-4xl font-black text-[#0B2038] mb-4">RO Systems For Every Need</h2>
-          <div className="w-12 h-0.5 bg-[#0084FF] mx-auto rounded-full"></div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-slate-200 pb-8">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">Corporate Solutions</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Engineered Water Systems</h2>
+          </div>
+          <p className="text-slate-600 text-sm max-w-md md:text-right">
+            Deploying enterprise-grade water purification infrastructure designed for optimal efficiency and strict compliance standards.
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {solutions.map((sol, i) => (
-            <div key={i} className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-48 bg-slate-200">
-                <Image src={sol.image} alt={sol.name} fill className="object-cover" />
+            <div key={i} className="group bg-white border border-slate-200 flex flex-col hover:border-[#0f3a61] transition-colors duration-300">
+              <div className="relative h-48 overflow-hidden bg-slate-100">
+                <Image src={sol.image} alt={sol.name} fill className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="p-6">
-                <h3 className="font-bold text-[#0B2038] text-lg mb-4">{sol.name}</h3>
-                <ul className="space-y-3 mb-6 min-h-[90px]">
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="font-bold text-slate-900 text-lg mb-4">{sol.name}</h3>
+                <ul className="space-y-3 mb-8 flex-grow">
                   {sol.items.map((item, j) => (
-                    <li key={j} className="text-xs text-slate-600 flex items-center gap-2 before:content-['•'] before:text-[#0084FF] before:font-bold">
+                    <li key={j} className="text-xs text-slate-600 flex items-start gap-2">
+                      <div className="w-1 h-1 bg-[#0f3a61] mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <Link href="/products" className="inline-flex items-center text-xs font-bold text-[#0084FF] hover:text-[#0B2038] transition-colors group">
-                  View Products <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform" />
+                <Link href="/products" className="inline-flex items-center text-xs font-bold text-[#0f3a61] uppercase tracking-wider group-hover:text-blue-700 transition-colors mt-auto">
+                  View Specifications <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </div>
             </div>
@@ -273,43 +290,50 @@ function OurSolutions() {
 // FeaturedProducts
 // ----------------------------------------------------------------------
 const featuredProducts = [
-  { name: "AquaPure Classic", specs: { Capacity: "15 LPH", Technology: "RO + UV + UF", Application: "Home", Warranty: "1 Year" }, image: "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=600&q=80" },
-  { name: "AquaPure Pro", specs: { Capacity: "25 LPH", Technology: "RO + UV + UF + TDS", Application: "Home / Office", Warranty: "1 Year" }, image: "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=600&q=80" },
-  { name: "AquaPure 250 LPH", specs: { Capacity: "250 LPH", Technology: "RO + UV", Application: "Commercial", Material: "SS 304" }, image: "https://images.unsplash.com/photo-1606132717013-0941be200427?w=600&q=80" },
-  { name: "AquaPure 1000 LPH", specs: { Capacity: "1000 LPH", Technology: "RO + UV", Application: "Industrial", Material: "SS 316" }, image: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80" },
+  { name: "AquaPure Standard", specs: { Capacity: "15 LPH", Tech: "RO+UV+UF", Usage: "Residential", Warranty: "12 Months" }, image: "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=600&q=80" },
+  { name: "AquaPure Enterprise", specs: { Capacity: "25 LPH", Tech: "RO+UV+UF+TDS", Usage: "Commercial", Warranty: "12 Months" }, image: "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=600&q=80" },
+  { name: "Industrial Pro 250", specs: { Capacity: "250 LPH", Tech: "RO+UV", Usage: "Industrial", Material: "SS-304" }, image: "https://images.unsplash.com/photo-1606132717013-0941be200427?w=600&q=80" },
+  { name: "Industrial Max 1000", specs: { Capacity: "1000 LPH", Tech: "RO+UV", Usage: "Industrial", Material: "SS-316L" }, image: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80" },
 ];
 
 function FeaturedProducts() {
   return (
-    <section className="py-20 bg-[#F0F6FF]">
+    <section className="py-24 bg-slate-50 border-t border-slate-200">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-2">Our Best Sellers</p>
-          <h2 className="text-3xl md:text-4xl font-black text-[#0B2038] mb-4">Featured RO Products</h2>
-          <div className="w-12 h-0.5 bg-[#0084FF] mx-auto rounded-full"></div>
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">Featured Hardware</h2>
+          <div className="w-16 h-1 bg-[#0f3a61]"></div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredProducts.map((p, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col hover:shadow-lg transition-shadow duration-300">
-              <div className="relative h-48 mb-6 rounded-lg overflow-hidden mix-blend-multiply">
-                <Image src={p.image} alt={p.name} fill className="object-contain" />
+            <div key={i} className="bg-white border border-slate-200 flex flex-col hover:shadow-md transition-shadow duration-300">
+              <div className="relative h-56 p-6 bg-white border-b border-slate-100 flex items-center justify-center">
+                <div className="absolute top-3 left-3 bg-slate-100 px-2 py-1 text-[9px] font-bold tracking-widest text-slate-600 uppercase">
+                  Flagship
+                </div>
+                <div className="relative w-full h-full mix-blend-multiply">
+                  <Image src={p.image} alt={p.name} fill className="object-contain" />
+                </div>
               </div>
-              <h3 className="font-bold text-[#0B2038] text-base md:text-lg mb-4">{p.name}</h3>
-              <ul className="space-y-2 mb-8 flex-grow">
-                {Object.entries(p.specs).map(([key, val], j) => (
-                  <li key={j} className="text-xs text-slate-500 flex items-start gap-1.5 before:content-['•'] before:text-slate-300">
-                    <span className="font-semibold text-slate-700 min-w-[70px]">{key}:</span> {val}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex items-center gap-2 mt-auto">
-                <Link href="/products" className="flex-1 text-center py-2.5 text-xs font-bold text-[#0B2038] border border-slate-200 rounded hover:border-[#0084FF] hover:text-[#0084FF] transition-colors">
-                  View Details
-                </Link>
-                <Link href="/contact" className="flex-1 text-center py-2.5 text-xs font-bold text-white bg-[#0B2038] rounded hover:bg-[#0084FF] transition-colors">
-                  Get Quote
-                </Link>
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="font-bold text-slate-900 text-base mb-4">{p.name}</h3>
+                <div className="space-y-0 mb-6 flex-grow border border-slate-100">
+                  {Object.entries(p.specs).map(([key, val], j) => (
+                    <div key={j} className="flex items-center justify-between p-2 border-b border-slate-100 last:border-0 text-xs">
+                      <span className="font-semibold text-slate-500">{key}</span>
+                      <span className="font-bold text-slate-800">{val}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2 mt-auto">
+                  <Link href="/products" className="flex-1 text-center py-2.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+                    Details
+                  </Link>
+                  <Link href="/contact" className="flex-1 text-center py-2.5 text-xs font-bold text-white bg-[#0f3a61] hover:bg-[#0a2845] transition-colors">
+                    Procure
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -323,108 +347,39 @@ function FeaturedProducts() {
 // AdvancedTechnology
 // ----------------------------------------------------------------------
 const stages = [
-  { num: "01", name: "Sediment Filter", desc: "Removes dust, sand and suspended particles." },
-  { num: "02", name: "Pre Carbon Filter", desc: "Reduces chlorine, odor and organic impurities." },
-  { num: "03", name: "RO Membrane", desc: "Reduces dissolved impurities and unwanted substances." },
-  { num: "04", name: "UV / UF", desc: "Additional purification and microbial protection." },
-  { num: "05", name: "Mineral Cartridge", desc: "Adds essential minerals and improves taste." },
+  { num: "01", name: "Particulate Filtration", desc: "Mechanical removal of suspended solids and macro-particulates." },
+  { num: "02", name: "Activated Carbon Phase", desc: "Adsorption of halogens, volatile organic compounds, and odors." },
+  { num: "03", name: "Reverse Osmosis", desc: "Semi-permeable membrane separation of dissolved solids." },
+  { num: "04", name: "UV / UF Sterilization", desc: "Ultraviolet irradiation for microbiological neutralization." },
+  { num: "05", name: "Mineralization", desc: "Controlled remineralization for optimal pH and taste." },
 ];
 
 function AdvancedTechnology() {
   return (
-    <section className="py-20 bg-white border-b border-slate-100">
+    <section className="py-24 bg-[#0a1120] text-white border-t-4 border-[#0f3a61]">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-black text-[#0B2038] mb-2">Advanced Purification Technology</h2>
-          <p className="text-sm text-slate-500">Multi-stage purification process for 100% safe and pure water</p>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-start justify-between gap-4 relative">
-          {stages.map((s, i) => (
-            <div key={i} className="flex flex-col items-center text-center flex-1 w-full relative z-10 group">
-              <div className="w-16 h-16 bg-white rounded-full border border-slate-200 shadow-sm flex flex-col items-center justify-center mb-4 relative group-hover:border-[#0084FF] group-hover:bg-[#f0f8ff] transition-colors">
-                <ShieldCheck className="w-5 h-5 text-[#0084FF] mb-0.5" />
-                <span className="text-[9px] font-black text-[#0B2038] leading-none">{s.num}</span>
-              </div>
-              <h3 className="text-xs font-bold text-[#0B2038] mb-1.5 px-2">{s.name}</h3>
-              <p className="text-[10px] text-slate-500 leading-relaxed max-w-[130px] mx-auto">{s.desc}</p>
-
-              {/* Arrow to next item (except last) */}
-              {i < stages.length - 1 && (
-                <div className="hidden md:block absolute top-8 -right-[15%] w-8 text-slate-300 transform -translate-y-1/2">
-                  <ArrowRight className="w-4 h-4 mx-auto" />
-                </div>
-              )}
-            </div>
-          ))}
-
-          {/* Glass of water at the end */}
-          <div className="hidden lg:flex flex-col items-center justify-start text-center pl-4 relative z-10 w-24">
-            <div className="absolute top-8 -left-4 w-6 text-slate-300 transform -translate-y-1/2">
-              <ArrowRight className="w-4 h-4 mx-auto" />
-            </div>
-            <div className="w-10 h-14 mt-1 border-b-[2px] border-x-[2px] border-[#0084FF] rounded-b-[4px] relative overflow-hidden bg-blue-50">
-              <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-[#0084FF]/40 to-[#0084FF]/10" />
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-10 border border-[#0084FF]/20 rounded-full rotate-[15deg] bg-white/30" />
-            </div>
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-24">
+          <div className="md:w-1/3">
+            <span className="text-xs font-bold text-[#4ea8de] uppercase tracking-widest mb-3 block">Process Architecture</span>
+            <h2 className="text-3xl font-bold mb-6">Multi-Stage Purification Framework</h2>
+            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              Our proprietary purification architecture utilizes a rigorous multi-stage separation process to guarantee water quality that meets or exceeds international safety standards.
+            </p>
+            <Link href="/about" className="inline-flex items-center text-sm font-bold text-white border-b border-[#4ea8de] pb-1 hover:text-[#4ea8de] transition-colors">
+              Explore Our Methodology <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ----------------------------------------------------------------------
-// WhyChooseUs
-// ----------------------------------------------------------------------
-const statsInfo = [
-  { value: "10+", label: "Years Experience", icon: ShieldCheck },
-  { value: "500+", label: "Systems Installed", icon: Settings },
-  { value: "1000+", label: "Happy Customers", icon: Droplet },
-  { value: "24/7", label: "Service Support", icon: Phone },
-];
-
-const whyFeatures = [
-  { title: "Quality Components", desc: "We use only high quality and genuine RO parts.", icon: ShieldCheck },
-  { title: "Customized Solutions", desc: "RO systems designed as per your water quality and requirement.", icon: Settings },
-  { title: "Expert Technicians", desc: "Skilled and experienced installation & service team.", icon: Wrench },
-  { title: "Fast Service", desc: "Quick response and timely support.", icon: ShieldCheck },
-  { title: "AMC Available", desc: "Affordable AMC plans for hassle-free maintenance.", icon: Droplet },
-  { title: "Customer Satisfaction", desc: "We are committed to pure water and happy customers.", icon: HeartHandshake },
-];
-
-function WhyChooseUs() {
-  return (
-    <section className="py-20 bg-[#F8FAFC]">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-start">
-          {/* Left Stats Block */}
-          <div className="bg-[#061930] rounded-xl p-10 grid grid-cols-2 gap-x-8 gap-y-12 content-center shadow-xl">
-            {statsInfo.map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="flex justify-center mb-3">
-                  <div className="w-8 h-8 rounded border border-white/10 bg-white/5 flex items-center justify-center">
-                    <s.icon className="w-4 h-4 text-[#0084FF]" />
-                  </div>
-                </div>
-                <div className="text-3xl font-black text-white mb-1.5">{s.value}</div>
-                <div className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Right Features Block */}
-          <div className="py-4">
-            <h2 className="text-3xl font-black text-[#0B2038] mb-10">Why Choose Us?</h2>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10">
-              {whyFeatures.map((f, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center text-[#0084FF]">
-                    <f.icon className="w-7 h-7" strokeWidth={1.5} />
+          
+          <div className="md:w-2/3">
+            <div className="space-y-6">
+              {stages.map((s, i) => (
+                <div key={i} className="flex items-start gap-6 border-b border-slate-800 pb-6 last:border-0 last:pb-0">
+                  <div className="w-10 h-10 shrink-0 border border-slate-700 bg-slate-800/50 flex items-center justify-center font-bold text-xs text-[#4ea8de]">
+                    {s.num}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0B2038] mb-1.5">{f.title}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed pr-4">{f.desc}</p>
+                    <h3 className="text-base font-bold text-white mb-1.5">{s.name}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
               ))}
@@ -437,68 +392,128 @@ function WhyChooseUs() {
 }
 
 // ----------------------------------------------------------------------
+// WhyChooseUs
+// ----------------------------------------------------------------------
+const statsInfo = [
+  { value: "10+", label: "Years Operations", icon: ShieldCheck },
+  { value: "500+", label: "Deployments", icon: Settings },
+  { value: "1K+", label: "Corporate Clients", icon: Droplet },
+  { value: "24/7", label: "SLA Support", icon: Phone },
+];
+
+const whyFeatures = [
+  { title: "Industrial-Grade Components", desc: "Sourcing only certified, heavy-duty parts for maximum uptime.", icon: ShieldCheck },
+  { title: "Engineered Configurations", desc: "Systems mapped precisely to source water chemistry and volume metrics.", icon: Settings },
+  { title: "Certified Personnel", desc: "Deployment and maintenance executed by authorized technical staff.", icon: Wrench },
+  { title: "Rapid Response SLAs", desc: "Guaranteed response times to minimize operational disruption.", icon: ShieldCheck },
+  { title: "Comprehensive AMC", desc: "Structured preventative maintenance programs for lifecycle extension.", icon: Droplet },
+  { title: "Compliance Assured", desc: "Water quality aligned with rigorous regulatory and industrial standards.", icon: HeartHandshake },
+];
+
+function WhyChooseUs() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div>
+            <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">Corporate Value</span>
+            <h2 className="text-3xl font-bold text-slate-900 mb-10">Strategic Advantage</h2>
+            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10">
+              {whyFeatures.map((f, i) => (
+                <div key={i} className="flex flex-col gap-3">
+                  <div className="w-10 h-10 border border-slate-200 bg-slate-50 flex items-center justify-center text-[#0f3a61]">
+                    <f.icon className="w-5 h-5" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1.5">{f.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-slate-50 border border-slate-200 p-12 grid grid-cols-2 gap-x-8 gap-y-12">
+            {statsInfo.map((s, i) => (
+              <div key={i} className="text-left border-l-2 border-[#0f3a61] pl-6">
+                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{s.value}</div>
+                <div className="text-xs font-bold uppercase tracking-widest text-slate-500">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ----------------------------------------------------------------------
 // ProfessionalInstallation
 // ----------------------------------------------------------------------
 function ProfessionalInstallation() {
   return (
-    <section className="py-10 bg-[#F8FAFC] pb-24">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-[1.2fr_2fr] gap-8">
-          {/* Left Image */}
-          <div className="relative h-[480px] lg:h-auto rounded-xl overflow-hidden shadow-sm">
-            <Image
-              src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&q=80"
-              alt="Professional Technician"
-              fill
-              className="object-cover"
-            />
+    <section className="bg-slate-50 border-y border-slate-200">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative h-80 lg:h-auto min-h-[500px] border-b lg:border-b-0 lg:border-r border-slate-200">
+          <Image
+            src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1000&q=80"
+            alt="Technical Operations"
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+
+        <div className="p-12 lg:p-20 flex flex-col justify-center">
+          <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">Operations</span>
+          <h2 className="text-3xl font-bold text-slate-900 mb-8">Deployment & Maintenance</h2>
+          
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-3">
+                <Wrench className="w-5 h-5 text-[#0f3a61]" /> System Commissioning
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-y-3 gap-x-6">
+                {[
+                  "Site & telemetry inspection",
+                  "Hardware specification matching",
+                  "Protocol-driven installation",
+                  "TDS calibration & logging",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-4 h-4 text-[#0f3a61] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-3">
+                <Settings className="w-5 h-5 text-[#0f3a61]" /> Lifecycle Management
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-y-3 gap-x-6">
+                {[
+                  "Scheduled preventative care",
+                  "Consumable replacements",
+                  "Pneumatic & electrical diagnostics",
+                  "Enterprise AMC contracts",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-4 h-4 text-[#0f3a61] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-
-          {/* Right Cards */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {/* Card 1 */}
-            <div className="bg-white rounded-xl p-8 border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
-              <h3 className="text-base font-bold text-[#0B2038] mb-6 border-b border-slate-100 pb-4">Professional Installation</h3>
-              <ul className="space-y-4 flex-grow mb-8">
-                {[
-                  "Site inspection & water testing",
-                  "Right system selection",
-                  "Proper installation & setup",
-                  "TDS check & final testing",
-                  "User guide & support"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-[#0084FF] shrink-0 mt-0.5" />
-                    <span className="leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/contact" className="mt-auto block text-center w-full px-6 py-3.5 bg-[#061930] text-white text-xs font-bold rounded hover:bg-[#0084FF] transition-colors">
-                Book Installation
-              </Link>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white rounded-xl p-8 border border-slate-100 flex flex-col hover:shadow-md transition-shadow">
-              <h3 className="text-base font-bold text-[#0B2038] mb-6 border-b border-slate-100 pb-4">RO Service & Maintenance</h3>
-              <ul className="space-y-4 flex-grow mb-8">
-                {[
-                  "RO Service & Cleaning",
-                  "Filter & Membrane Replacement",
-                  "Pump & SMPS Repair",
-                  "Leakage Repair",
-                  "AMC (Annual Maintenance Contract)"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
-                    <CheckCircle2 className="w-4 h-4 text-[#0084FF] shrink-0 mt-0.5" />
-                    <span className="leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/contact" className="mt-auto block text-center w-full px-6 py-3.5 bg-[#061930] text-white text-xs font-bold rounded hover:bg-[#0084FF] transition-colors">
-                Book a Service
-              </Link>
-            </div>
+          
+          <div className="mt-12 flex gap-4">
+            <Link href="/contact" className="px-6 py-3 bg-[#0f3a61] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#0a2845] transition-colors border border-transparent">
+              Initiate Deployment
+            </Link>
+            <Link href="/services" className="px-6 py-3 bg-white text-slate-700 text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-colors border border-slate-300">
+              View SLA Details
+            </Link>
           </div>
         </div>
       </div>
@@ -510,47 +525,33 @@ function ProfessionalInstallation() {
 // Testimonials
 // ----------------------------------------------------------------------
 const reviews = [
-  { name: "Ramesh Patel", location: "Ahmedabad", text: "Excellent product quality and very professional installation. Water quality is much better now." },
-  { name: "Priya Shah", location: "Vadodara", text: "Very good service and timely support. Their AMC plan is very reasonable." },
-  { name: "Amit Mehta", location: "Rajkot", text: "We installed a 1000 LPH RO plant for our industry. Good quality and reliable performance." }
+  { name: "Ramesh Patel", entity: "Patel Manufacturing", text: "Deployed a 1000 LPH unit. The hardware specifications and operational efficiency have exceeded our strict procurement parameters." },
+  { name: "Priya Shah", entity: "Shah & Associates", text: "Their preventative maintenance protocols and SLA adherence represent the highest standard of corporate service we've experienced." },
+  { name: "Amit Mehta", entity: "Mehta Industrial", text: "Robust build quality combined with highly professional commissioning. Our process water metrics are completely stabilized." }
 ]
 
 function Testimonials() {
   return (
-    <section className="py-24 bg-white border-t border-slate-100">
+    <section className="py-24 bg-white">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-black text-[#0B2038] mb-2">What Our Customers Say</h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-slate-200 pb-8">
+          <div>
+            <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">Clientele</span>
+            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Partner Feedback</h2>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r, i) => (
-            <div key={i} className="bg-white border border-slate-100 rounded-xl p-8 shadow-sm relative hover:shadow-md transition-shadow">
-              <Quote className="absolute top-6 left-6 w-8 h-8 text-[#0084FF]/20" />
-              <p className="text-sm text-slate-600 leading-relaxed relative z-10 mb-8 pt-6">"{r.text}"</p>
-              <div className="flex items-center justify-between border-t border-slate-100 pt-6 mt-auto">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative">
-                    <Image src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Avatar" fill className="object-cover" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-[#0B2038]">{r.name}</p>
-                    <p className="text-[10px] text-slate-400">{r.location}</p>
-                  </div>
-                </div>
-                <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map(n => <Star key={n} className="w-3 h-3 text-amber-400 fill-amber-400" />)}
-                </div>
+            <div key={i} className="bg-slate-50 border border-slate-200 p-8 flex flex-col">
+              <Quote className="w-6 h-6 text-slate-300 mb-6" />
+              <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow">"{r.text}"</p>
+              <div className="border-t border-slate-200 pt-6">
+                <p className="text-sm font-bold text-slate-900">{r.name}</p>
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">{r.entity}</p>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Pagination Dots Placeholder */}
-        <div className="flex justify-center gap-1.5 mt-10">
-          <div className="w-2 h-2 rounded-full bg-[#0084FF]"></div>
-          <div className="w-2 h-2 rounded-full bg-slate-200"></div>
-          <div className="w-2 h-2 rounded-full bg-slate-200"></div>
         </div>
       </div>
     </section>
@@ -562,27 +563,23 @@ function Testimonials() {
 // ----------------------------------------------------------------------
 function CTASection() {
   return (
-    <section className="bg-[#061930] py-14 relative overflow-hidden">
-      <div className="container-custom relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+    <section className="bg-[#0f3a61] py-20 border-t border-slate-800">
+      <div className="container-custom flex flex-col lg:flex-row lg:items-center justify-between gap-12">
         <div className="max-w-2xl">
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Looking for the Right RO System?</h2>
-          <p className="text-sm text-slate-400 leading-relaxed">Tell us your requirement. We will help you choose the best<br className="hidden sm:block" />RO solution for your home, business or industry.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Request a Technical Consultation</h2>
+          <p className="text-sm text-blue-100 leading-relaxed opacity-90 max-w-lg">
+            Engage with our engineering team to assess your requirements and propose a tailored, high-efficiency RO infrastructure solution.
+          </p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3.5 bg-[#0084FF] text-white text-xs font-bold rounded-md hover:bg-[#0074e0] transition-colors shadow-lg">
-            Get a Quote <ArrowRight className="w-4 h-4 ml-2" />
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white text-[#0f3a61] text-xs font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors">
+            Submit RFP <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
-          <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3.5 bg-transparent border border-white/20 text-white text-xs font-bold rounded-md hover:border-white/40 hover:bg-white/5 transition-colors">
-            <Phone className="w-4 h-4 mr-2" /> Call Now
-          </Link>
-          <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3.5 bg-transparent border border-white/20 text-white text-xs font-bold rounded-md hover:border-white/40 hover:bg-white/5 transition-colors">
-            <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
+          <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors">
+            Contact Engineering
           </Link>
         </div>
       </div>
-
-      {/* Decorative gradient overlay */}
-      <div className="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-[#0084FF]/10 to-transparent pointer-events-none" />
     </section>
   );
 }
