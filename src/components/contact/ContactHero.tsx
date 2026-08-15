@@ -1,23 +1,19 @@
 export default function ContactHero() {
   return (
-    <section className="pt-32 pb-20 bg-white border-b border-slate-100">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-16 items-end">
-          <div>
-            <span className="inline-block text-xs font-bold text-[#075985] uppercase tracking-widest border border-[#075985]/20 bg-[#075985]/5 px-4 py-1.5 rounded-full mb-6">
-              Contact Us
-            </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-[#0F172A] leading-tight tracking-tight mb-6">
-              Let's Talk About <br />
-              <span className="text-[#075985]">Your Water Needs.</span>
-            </h1>
-          </div>
-          <div className="lg:pb-2">
-            <p className="text-xl text-slate-500 leading-relaxed border-l-4 border-[#075985] pl-6">
-              Have a question about our water purification solutions? Our specialists are ready to help you identify the right system for your home, business, or industrial operations.
-            </p>
-          </div>
-        </div>
+    <section className="relative pt-40 pb-44 bg-[#0F172A] text-white overflow-hidden border-b border-slate-800">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:32px_32px] opacity-30"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+      
+      <div className="container-custom max-w-4xl mx-auto text-center relative z-10">
+        <span className="inline-block text-xs font-bold text-primary uppercase tracking-widest border border-primary/20 bg-primary/10 px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+          Support & Sales
+        </span>
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6">
+          How can we help <br className="hidden md:block"/> you today?
+        </h1>
+        <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-medium">
+          Whether you need a custom industrial configuration or a simple residential installation, our team is here to assist you.
+        </p>
       </div>
     </section>
   );

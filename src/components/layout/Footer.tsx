@@ -20,7 +20,7 @@ export default function Footer() {
               className="flex items-center gap-3 mb-6 group inline-flex"
             >
               <img src="app-logo.png" alt="appLogo" height={100} width={200} />
-            </Link>
+            </Link>l̥
             <p className="text-slate-400 mb-8 leading-relaxed max-w-sm">
               Pioneering advanced RO purification technology engineered to
               deliver safe, clean, and refreshing water for every need, without
@@ -135,21 +135,22 @@ export default function Footer() {
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
                 <span className="mt-2 text-sm leading-relaxed">
-                  123 Purification Ave, Tech Park,
-                  <br /> City, State 12345
+                  Smart RO<br />
+                  9/1, sri nagar, deepam nagar 9th Street,<br />
+                  irugur, 641103
                 </span>
               </li>
               <li className="flex items-center gap-4 text-slate-400 group">
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-medium">+1 (800) 123-4567</span>
+                <span className="text-sm font-medium">6383450508, 9790188321</span>
               </li>
               <li className="flex items-center gap-4 text-slate-400 group">
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-medium">contact@smartro.com</span>
+                <span className="text-sm font-medium">smartro0508@gmail.com</span>
               </li>
             </ul>
           </div>

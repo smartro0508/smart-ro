@@ -13,84 +13,66 @@ import {
   ThumbsUp,
   Headphones,
   ArrowRight,
-  ChevronRight
+  Target,
+  Award,
 } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="bg-white">
+    <div className="bg-slate-50 min-h-screen font-sans">
       <HeroSection />
       <OurStorySection />
       <WhatWeDoSection />
       <OurValuesSection />
       <OurPromiseSection />
       <FinalCTASection />
-    </main>
+    </div>
   );
 }
 
 function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-[#f0f8ff] via-[#e6f4ff] to-white">
-      {/* Decorative background pattern */}
-      <div className="absolute right-0 top-0 w-1/2 h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none" />
+    <section className="relative pt-32 pb-24 bg-[#0F172A] text-white overflow-hidden">
+      {/* Background & Overlays */}
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1548345680-f5475ea90f46?q=80&w=2000')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
-
-          {/* Left Content */}
-          <div>
-            <div className="flex items-center gap-2 text-[10px] font-bold text-[#0084FF] mb-8">
-              <Link href="/" className="hover:underline">Home</Link>
-              <ChevronRight className="w-3 h-3" />
-              <span className="text-[#0B2038]">About Us</span>
-            </div>
-
-            <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-3">About Us</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0B2038] leading-[1.1] mb-6">
-              Committed to <br />Better Water. <br />Committed to You.
-            </h1>
-            <p className="text-sm text-slate-600 leading-relaxed max-w-md mb-10">
-              We provide reliable water purification solutions for homes, businesses and industries with advanced technology, quality products and excellent service.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 lg:gap-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#0084FF]/20 flex items-center justify-center bg-white shrink-0">
-                  <Droplet className="w-5 h-5 text-[#0084FF]" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#0B2038]">Quality Products</h4>
-                  <p className="text-[9px] text-slate-500 leading-tight mt-0.5">High performance <br />and reliable systems</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#0084FF]/20 flex items-center justify-center bg-white shrink-0">
-                  <Users className="w-5 h-5 text-[#0084FF]" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#0B2038]">Expert Team</h4>
-                  <p className="text-[9px] text-slate-500 leading-tight mt-0.5">Experienced professionals <br />at your service</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border border-[#0084FF]/20 flex items-center justify-center bg-white shrink-0">
-                  <ShieldCheck className="w-5 h-5 text-[#0084FF]" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#0B2038]">Customer First</h4>
-                  <p className="text-[9px] text-slate-500 leading-tight mt-0.5">Your satisfaction is <br />our priority</p>
-                </div>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-accent text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+            About Us
           </div>
+          
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight">
+            Committed to <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
+              Better Water.
+            </span>
+            <br className="hidden md:block" /> Committed to You.
+          </h1>
+          
+          <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-12">
+            We provide reliable water purification solutions for homes, businesses, and industries with advanced technology, unparalleled quality, and excellent service.
+          </p>
+        </div>
 
-          {/* Right Image Composite */}
-          <div className="relative h-[400px] lg:h-[500px] w-full mix-blend-multiply">
-            {/* Using a placeholder that looks somewhat like the industrial machine composite in the ref image */}
-            <Image src="https://images.unsplash.com/photo-1606132717013-0941be200427?w=800&q=80" alt="RO Systems" fill className="object-contain" />
-          </div>
-
+        {/* Feature Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
+          {[
+            { icon: Droplet, title: "Quality Products", desc: "High-performance & reliable systems" },
+            { icon: Users, title: "Expert Team", desc: "Experienced professionals at your service" },
+            { icon: ShieldCheck, title: "Customer First", desc: "Your satisfaction is our ultimate priority" },
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:bg-white/10 transition-all duration-300 group">
+              <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <item.icon className="w-6 h-6 text-accent" />
+              </div>
+              <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
+              <p className="text-sm text-slate-400">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -99,67 +81,59 @@ function HeroSection() {
 
 function OurStorySection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 relative z-20">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-          {/* Left Image */}
-          <div className="relative rounded-2xl overflow-hidden shadow-sm h-[400px] lg:h-[500px]">
-            <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Corporate Building" fill className="object-cover" />
-            <div className="absolute inset-0 bg-[#0B2038]/10"></div>
-
-            {/* Floating blue block */}
-            <div className="absolute bottom-8 left-8 bg-[#005bb5] text-white p-6 rounded-xl shadow-xl border border-white/10 w-48">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-4xl font-black">10+</span>
-                <Droplet className="w-6 h-6 text-[#22D3EE]" />
+          {/* Left Image Composite */}
+          <div className="relative">
+            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl h-[500px]">
+              <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80" alt="Corporate Building" fill className="object-cover hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/60 to-transparent opacity-80"></div>
+            </div>
+            
+            {/* Floating Stats Card */}
+            <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 hidden md:block">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-2xl bg-[#0F172A] flex items-center justify-center text-white">
+                  <Award className="w-8 h-8" />
+                </div>
+                <div>
+                  <div className="text-4xl font-black text-[#0F172A]">10+</div>
+                  <div className="text-sm font-bold text-slate-500 uppercase tracking-widest mt-1">Years of<br/>Excellence</div>
+                </div>
               </div>
-              <p className="text-sm font-semibold">Years of <br />Experience</p>
-              <Droplet className="w-8 h-8 text-white/10 absolute bottom-4 right-4" />
             </div>
           </div>
 
           {/* Right Content */}
-          <div>
-            <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-2">Our Story</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0B2038] leading-snug mb-6">
-              More Than Water Purification.<br />
-              A Commitment to Better Living.
+          <div className="lg:pl-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+              Our Story
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] leading-tight mb-6">
+              More Than Water Purification.
             </h2>
-            <div className="space-y-4 text-sm text-slate-600 leading-relaxed mb-10">
+            <div className="space-y-6 text-slate-600 leading-relaxed mb-10 text-lg">
               <p>
-                We are a water purification company dedicated to delivering clean, safe and healthy water through advanced RO technology. From product selection and installation to maintenance and after-sales support, we provide end-to-end solutions tailored to your water needs.
+                We are a dedicated water purification enterprise committed to delivering clean, safe, and healthy water through cutting-edge RO technology. From precise product selection to seamless installation and comprehensive after-sales support, we offer end-to-end solutions tailored to your unique requirements.
               </p>
               <p>
-                Our mission is to make a positive difference in people's lives by delivering reliable systems, transparent service and long-term value.
+                Our mission is to fundamentally improve people's lives by providing robust systems, transparent service, and enduring value that you can trust day in and day out.
               </p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <div className="text-center">
-                <Droplet className="w-6 h-6 text-[#0084FF] mx-auto mb-3" strokeWidth={1.5} />
-                <div className="text-2xl font-black text-[#0B2038]">10+</div>
-                <div className="text-[10px] text-slate-500 mt-1">Years<br />Experience</div>
+            {/* Micro Stats */}
+            <div className="grid grid-cols-2 gap-6 pt-6 border-t border-slate-200">
+              <div className="flex flex-col">
+                <span className="text-4xl font-black text-primary mb-1">25K+</span>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Happy Customers</span>
               </div>
-              <div className="text-center">
-                <Users className="w-6 h-6 text-[#0084FF] mx-auto mb-3" strokeWidth={1.5} />
-                <div className="text-2xl font-black text-[#0B2038]">25K+</div>
-                <div className="text-[10px] text-slate-500 mt-1">Happy<br />Customers</div>
-              </div>
-              <div className="text-center">
-                <Settings className="w-6 h-6 text-[#0084FF] mx-auto mb-3" strokeWidth={1.5} />
-                <div className="text-2xl font-black text-[#0B2038]">50K+</div>
-                <div className="text-[10px] text-slate-500 mt-1">Systems<br />Installed</div>
-              </div>
-              <div className="text-center">
-                <ShieldCheck className="w-6 h-6 text-[#0084FF] mx-auto mb-3" strokeWidth={1.5} />
-                <div className="text-2xl font-black text-[#0B2038]">99.9%</div>
-                <div className="text-[10px] text-slate-500 mt-1">Purification<br />Efficiency</div>
+              <div className="flex flex-col">
+                <span className="text-4xl font-black text-primary mb-1">50K+</span>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Systems Installed</span>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -168,30 +142,35 @@ function OurStorySection() {
 
 function WhatWeDoSection() {
   const items = [
-    { icon: Home, title: "Residential Solutions", desc: "RO systems for homes and apartments with pure and safe water." },
-    { icon: Building2, title: "Commercial Solutions", desc: "Reliable systems for offices, hotels, schools, hospitals and more." },
-    { icon: Factory, title: "Industrial Solutions", desc: "High-capacity RO plants for industrial and large-scale applications." },
-    { icon: Wrench, title: "Installation", desc: "Professional installation and commissioning for optimal performance." },
-    { icon: Settings, title: "Maintenance & Service", desc: "Regular maintenance, filter replacement and technical support." },
-    { icon: ShieldCheck, title: "AMC Solutions", desc: "Affordable AMC plans to keep your system running smoothly." },
+    { icon: Home, title: "Residential Solutions", desc: "Premium RO systems designed to provide pure and safe drinking water for your home." },
+    { icon: Building2, title: "Commercial Solutions", desc: "Robust and reliable systems perfectly suited for offices, hotels, schools, and hospitals." },
+    { icon: Factory, title: "Industrial Solutions", desc: "High-capacity, heavy-duty RO plants engineered for industrial and large-scale applications." },
+    { icon: Wrench, title: "Professional Installation", desc: "Expert installation and meticulous commissioning to ensure optimal performance." },
+    { icon: Settings, title: "Maintenance & Service", desc: "Comprehensive maintenance, timely filter replacement, and dedicated technical support." },
+    { icon: ShieldCheck, title: "Comprehensive AMC", desc: "Affordable and flexible Annual Maintenance Contracts to keep your systems running smoothly." },
   ];
 
   return (
-    <section className="py-24 bg-[#F8FAFC]">
+    <section className="py-24 bg-white border-y border-slate-200">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-2">What We Do</p>
-          <h2 className="text-3xl font-black text-[#0B2038] mb-4">Complete Water Purification Solutions</h2>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4">
+            Expertise
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-6">Complete Water Purification Solutions</h2>
+          <p className="text-slate-600 text-lg">
+            We cover the entire spectrum of water treatment needs with specialized solutions and dedicated support services.
+          </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 mx-auto rounded-full bg-[#f0f8ff] flex items-center justify-center mb-5">
-                <item.icon className="w-6 h-6 text-[#0084FF]" strokeWidth={1.5} />
+            <div key={i} className="group bg-slate-50 p-8 rounded-[2rem] hover:bg-[#0F172A] transition-all duration-500 border border-slate-100 shadow-sm hover:shadow-2xl">
+              <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors shadow-sm">
+                <item.icon className="w-8 h-8 text-primary group-hover:text-accent transition-colors" />
               </div>
-              <h3 className="text-xs font-bold text-[#0B2038] mb-3 px-1">{item.title}</h3>
-              <p className="text-[10px] text-slate-500 leading-relaxed">{item.desc}</p>
+              <h3 className="text-xl font-bold text-[#0F172A] mb-4 group-hover:text-white transition-colors">{item.title}</h3>
+              <p className="text-slate-600 leading-relaxed group-hover:text-slate-400 transition-colors">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -202,38 +181,41 @@ function WhatWeDoSection() {
 
 function OurValuesSection() {
   const values = [
-    { icon: ShieldCheck, title: "Quality", desc: "We never compromise on product quality and safety." },
-    { icon: Users, title: "Integrity", desc: "We believe in honest communication and transparent service." },
-    { icon: Lightbulb, title: "Innovation", desc: "We adopt advanced technology for better water solutions." },
-    { icon: Settings, title: "Reliability", desc: "We deliver consistent performance and dependable support." },
-    { icon: ThumbsUp, title: "Sustainability", desc: "We promote eco-friendly solutions for a better tomorrow." },
+    { icon: ShieldCheck, title: "Quality", desc: "Uncompromising standards in every product we deliver." },
+    { icon: Users, title: "Integrity", desc: "Transparent, honest, and reliable in all our dealings." },
+    { icon: Lightbulb, title: "Innovation", desc: "Continuously adopting advanced technology for better results." },
+    { icon: Target, title: "Reliability", desc: "Consistent performance and dependable support you can count on." },
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-slate-50">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-center">
+          
+          <div className="relative rounded-[2rem] overflow-hidden shadow-2xl h-[450px] lg:h-[600px] order-2 lg:order-1">
+            <Image src="https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=1200&q=80" alt="Pure Water" fill className="object-cover hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/30 to-transparent mix-blend-multiply"></div>
+          </div>
 
-          <div>
-            <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-2">Our Values</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0B2038] mb-4">What We Stand For</h2>
-            <div className="w-10 h-[3px] bg-[#0084FF] mb-12 rounded-full"></div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-6">
+          <div className="order-1 lg:order-2">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4">
+              Core Principles
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#0F172A] mb-10">What We Stand For</h2>
+            
+            <div className="space-y-8">
               {values.map((v, i) => (
-                <div key={i} className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-full bg-[#f0f8ff] flex items-center justify-center mb-4">
-                    <v.icon className="w-5 h-5 text-[#0084FF]" strokeWidth={1.5} />
+                <div key={i} className="flex gap-6 group">
+                  <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-slate-200 flex items-center justify-center shrink-0 group-hover:border-primary group-hover:shadow-md transition-all group-hover:scale-105">
+                    <v.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="text-[11px] font-bold text-[#0B2038] mb-2">{v.title}</h3>
-                  <p className="text-[9px] text-slate-500 leading-relaxed px-1">{v.desc}</p>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#0F172A] mb-2">{v.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{v.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="relative rounded-2xl overflow-hidden shadow-md h-[300px] lg:h-[380px]">
-            <Image src="https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=800&q=80" alt="Girl drinking water" fill className="object-cover" />
           </div>
 
         </div>
@@ -243,30 +225,31 @@ function OurValuesSection() {
 }
 
 function OurPromiseSection() {
-  const items = [
-    { icon: Users, title: "Experienced\nProfessionals", desc: "Skilled team with deep\nproduct knowledge." },
-    { icon: Settings, title: "Quality\nComponents", desc: "We use genuine and\nhigh-quality parts." },
-    { icon: Headphones, title: "Prompt\nSupport", desc: "Quick response for all\nservice requests." },
-    { icon: Wrench, title: "Customized\nSolutions", desc: "Systems designed as per\nyour water requirement." },
-    { icon: ThumbsUp, title: "Customer\nSatisfaction", desc: "We are committed to\nyour satisfaction." },
-  ];
-
   return (
-    <section className="py-20 bg-[#061930] relative overflow-hidden text-center">
-      {/* Decorative side splashes */}
-      <div className="absolute inset-y-0 left-0 w-1/4 bg-[url('https://images.unsplash.com/photo-1508624217470-5ef0f947d8be?q=80&w=2000')] bg-cover opacity-10 mix-blend-screen pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-1/4 bg-[url('https://images.unsplash.com/photo-1508624217470-5ef0f947d8be?q=80&w=2000')] bg-cover bg-right opacity-10 mix-blend-screen pointer-events-none" />
+    <section className="py-24 bg-[#0F172A] relative overflow-hidden">
+      {/* Decorative Overlays */}
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1508624217470-5ef0f947d8be?q=80&w=2000')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/20 rounded-[100%] blur-[120px] pointer-events-none"></div>
 
-      <div className="container-custom relative z-10">
-        <p className="text-[10px] font-bold text-[#0084FF] uppercase tracking-widest mb-3">Our Promise</p>
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-16">Why Customers Trust Us</h2>
+      <div className="container-custom relative z-10 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-accent text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md">
+          Our Promise
+        </div>
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-16">Why Customers Trust Us</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-y-10 divide-x divide-white/10">
-          {items.map((item, i) => (
-            <div key={i} className={`px-4 flex flex-col items-center ${i === 0 ? 'border-l-0' : ''}`}>
-              <item.icon className="w-10 h-10 text-[#0084FF] mb-5" strokeWidth={1.5} />
-              <h3 className="text-xs font-bold text-white mb-3 whitespace-pre-line">{item.title}</h3>
-              <p className="text-[10px] text-slate-400 whitespace-pre-line leading-relaxed">{item.desc}</p>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:divide-x lg:divide-white/10">
+          {[
+            { icon: Users, title: "Experienced\nProfessionals" },
+            { icon: Settings, title: "Quality\nComponents" },
+            { icon: Headphones, title: "Prompt\nSupport" },
+            { icon: Wrench, title: "Customized\nSolutions" },
+            { icon: ThumbsUp, title: "Customer\nSatisfaction" },
+          ].map((item, i) => (
+            <div key={i} className={`flex flex-col items-center px-4 ${i === 0 ? 'lg:border-l-0' : ''} group`}>
+              <div className="w-20 h-20 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-primary/30 group-hover:border-primary/50 transition-all duration-300 group-hover:-translate-y-2">
+                <item.icon className="w-8 h-8 text-accent" />
+              </div>
+              <h3 className="text-sm md:text-base font-bold text-white whitespace-pre-line tracking-wide leading-tight">{item.title}</h3>
             </div>
           ))}
         </div>
@@ -277,24 +260,36 @@ function OurPromiseSection() {
 
 function FinalCTASection() {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-24 bg-slate-50">
       <div className="container-custom">
-        <div className="bg-[#f0f8ff] rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8 p-8 lg:px-16 border border-slate-100 shadow-sm">
+        <div className="relative bg-gradient-to-br from-[#0F172A] to-[#1E293B] rounded-[3rem] overflow-hidden shadow-2xl p-10 md:p-16 lg:p-20 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12 border border-slate-800">
+          
+          <div className="absolute right-0 top-0 w-1/2 h-full bg-[url('https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=800&q=80')] opacity-10 mix-blend-overlay pointer-events-none"></div>
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-primary/40 rounded-full blur-[100px]"></div>
 
-          <div className="flex items-center gap-8 text-center md:text-left">
-            <div className="relative w-24 h-28 hidden md:block shrink-0 rounded-lg overflow-hidden mix-blend-multiply bg-transparent">
-              <Image src="https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=200&q=80" alt="Glass of water" fill className="object-cover" />
-            </div>
-            <div>
-              <h2 className="text-xl md:text-2xl font-black text-[#0B2038] mb-3">Let's Build a Better Water Experience Together</h2>
-              <p className="text-xs text-slate-600">Whether you need a solution for your home, business or industry,<br className="hidden lg:block" /> we are here to help you.</p>
+          <div className="relative z-10 max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Ready for a Better Water Experience?
+            </h2>
+            <p className="text-lg text-slate-300 leading-relaxed mb-10">
+              Whether you need a solution for your home, business, or industry, our experts are here to help you design the perfect purification system.
+            </p>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-primary-dark transition-all shadow-lg hover:shadow-primary/25">
+                Contact Us Today <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+              <Link href="/products" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-full hover:bg-white/20 transition-all backdrop-blur-md">
+                Browse Products
+              </Link>
             </div>
           </div>
 
-          <Link href="/contact" className="shrink-0 inline-flex items-center justify-center px-8 py-3.5 bg-[#0B2038] text-white text-xs font-bold rounded hover:bg-[#0084FF] transition-colors shadow-sm">
-            Contact Us <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
-
+          <div className="relative z-10 hidden lg:block shrink-0">
+            <div className="w-48 h-48 rounded-full border-4 border-white/10 flex items-center justify-center bg-white/5 backdrop-blur-sm shadow-2xl">
+              <Droplet className="w-20 h-20 text-accent animate-pulse drop-shadow-[0_0_15px_rgba(34,211,238,0.4)]" />
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>
