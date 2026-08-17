@@ -16,13 +16,32 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      fullName: formData.get("fullName"),
+      phoneNumber: formData.get("phone"),
+      email: formData.get("email"),
+      subject: formData.get("requirement"),
+      message: formData.get("message"),
+    };
+
+    try {
+      await fetch("http://localhost:5000/api/v1/contact-us/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
       setIsSuccess(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Failed to submit contact form:", err);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSuccess) {
@@ -45,6 +64,7 @@ export default function ContactForm() {
         <div>
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Full Name</label>
           <input
+            name="fullName"
             required
             type="text"
             placeholder="John Doe"
@@ -54,6 +74,7 @@ export default function ContactForm() {
         <div>
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Phone</label>
           <input
+            name="phone"
             required
             type="tel"
             placeholder="e.g. 6383450508"
@@ -65,6 +86,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Email Address</label>
         <input
+          name="email"
           required
           type="email"
           placeholder="your@email.com"
@@ -75,6 +97,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">How can we help?</label>
         <select
+          name="requirement"
           required
           className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all appearance-none pr-10 text-sm shadow-sm"
         >
@@ -88,6 +111,7 @@ export default function ContactForm() {
       <div>
         <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Message</label>
         <textarea
+          name="message"
           required
           rows={4}
           placeholder="Describe your water purification needs..."

@@ -17,15 +17,19 @@ import {
   Award,
   CheckCircle2
 } from "lucide-react";
+import { TestimonialFormSection } from "@/components/about/TestimonialFormSection";
 
 export default function AboutPage() {
   return (
     <div className="bg-slate-50 min-h-screen font-sans">
       <HeroSection />
       <OurStorySection />
+      <MissionVisionSection />
       <WhatWeDoSection />
       <OurValuesSection />
       <OurPromiseSection />
+      <TestimonialsSection />
+      <TestimonialFormSection />
       <FinalCTASection />
     </div>
   );
@@ -114,6 +118,42 @@ function OurStorySection() {
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">SLA Compliance</span>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MissionVisionSection() {
+  return (
+    <section className="py-24 bg-slate-50 border-b border-slate-200">
+      <div className="container-custom">
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white p-10 lg:p-12 border border-slate-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group hover:border-[#06999b] transition-colors">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <Target className="w-32 h-32 text-slate-900" />
+            </div>
+            <div className="w-14 h-14 bg-[#06999b]/10 rounded-xl flex items-center justify-center mb-8 relative z-10 border border-[#06999b]/20">
+              <Target className="w-7 h-7 text-[#06999b]" />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 relative z-10">Our Mission</h3>
+            <p className="text-slate-600 leading-relaxed relative z-10">
+              To provide robust, cutting-edge RO water purification systems that ensure absolute water safety, operational reliability, and unmatched compliance for communities, businesses, and industrial facilities across the region.
+            </p>
+          </div>
+
+          <div className="bg-white p-10 lg:p-12 border border-slate-200 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group hover:border-[#06999b] transition-colors">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <Lightbulb className="w-32 h-32 text-slate-900" />
+            </div>
+            <div className="w-14 h-14 bg-[#06999b]/10 rounded-xl flex items-center justify-center mb-8 relative z-10 border border-[#06999b]/20">
+              <Lightbulb className="w-7 h-7 text-[#06999b]" />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 relative z-10">Our Vision</h3>
+            <p className="text-slate-600 leading-relaxed relative z-10">
+              To be the premier standard in water treatment technology, pioneering scalable and sustainable purification architectures that completely eliminate waterborne risks and foster healthier, more efficient environments.
+            </p>
           </div>
         </div>
       </div>
@@ -225,6 +265,71 @@ function OurPromiseSection() {
     </section>
   );
 }
+
+import { Quote } from "lucide-react";
+
+async function getActiveTestimonials() {
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/testimonials/get-active", {
+      method: "POST",
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
+
+async function TestimonialsSection() {
+  const reviews = await getActiveTestimonials();
+  if (reviews.length === 0) return null;
+
+  return (
+    <section className="py-24 bg-white border-b border-slate-200">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <span className="text-xs font-bold text-[#06999b] uppercase tracking-widest mb-3 block">
+            Client Feedback
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+            What Our Partners Say
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {reviews.map((r: any, i: number) => (
+            <div
+              key={r.id || i}
+              className="bg-slate-50 border border-slate-200 p-8 flex flex-col rounded-xl"
+            >
+              <Quote className="w-6 h-6 text-[#06999b] mb-6 opacity-40" />
+              <div className="flex text-[#06999b] mb-4">
+                {[...Array(r.rating || 5)].map((_, idx) => (
+                  <svg key={idx} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow italic">
+                "{r.message}"
+              </p>
+              <div className="border-t border-slate-200 pt-6">
+                <p className="text-sm font-bold text-slate-900">{r.fullName}</p>
+                {r.company && (
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
+                    {r.company}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 
 function FinalCTASection() {
   return (

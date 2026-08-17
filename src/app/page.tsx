@@ -429,95 +429,82 @@ function OurSolutions() {
 // ----------------------------------------------------------------------
 // FeaturedProducts
 // ----------------------------------------------------------------------
-const featuredProducts = [
-  {
-    name: "AquaPure Standard",
-    specs: {
-      Capacity: "15 LPH",
-      Tech: "RO+UV+UF",
-      Usage: "Residential",
-      Warranty: "12 Months",
-    },
-    image:
-      "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=600&q=80",
-  },
-  {
-    name: "AquaPure Enterprise",
-    specs: {
-      Capacity: "25 LPH",
-      Tech: "RO+UV+UF+TDS",
-      Usage: "Commercial",
-      Warranty: "12 Months",
-    },
-    image:
-      "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=600&q=80",
-  },
-  {
-    name: "Industrial Pro 250",
-    specs: {
-      Capacity: "250 LPH",
-      Tech: "RO+UV",
-      Usage: "Industrial",
-      Material: "SS-304",
-    },
-    image:
-      "https://images.unsplash.com/photo-1606132717013-0941be200427?w=600&q=80",
-  },
-  {
-    name: "Industrial Max 1000",
-    specs: {
-      Capacity: "1000 LPH",
-      Tech: "RO+UV",
-      Usage: "Industrial",
-      Material: "SS-316L",
-    },
-    image:
-      "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80",
-  },
-];
+async function getFeaturedProducts() {
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/products/get-all", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching featured products:", error);
+    return [];
+  }
+}
 
-function FeaturedProducts() {
+async function FeaturedProducts() {
+  const allProducts = await getFeaturedProducts();
+  // Filter for featured products, or just take all if none are featured
+  let products = allProducts.filter((p: any) => p.isFeatured);
+  if (products.length === 0) {
+    products = allProducts;
+  }
+  
+  const hasMore = products.length > 6;
+  const displayedProducts = products.slice(0, 6);
+
   return (
     <section className="py-24 bg-slate-50 border-t border-slate-200">
       <div className="container-custom">
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Featured Hardware
-          </h2>
-          <div className="w-16 h-1 bg-[#0f3a61]"></div>
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              Featured Hardware
+            </h2>
+            <div className="w-16 h-1 bg-[#0f3a61]"></div>
+          </div>
+          {hasMore && (
+            <Link
+              href="/products"
+              className="text-[#06999b] font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:text-[#057a7c] transition-colors"
+            >
+              View All <ArrowRight className="w-4 h-4" />
+            </Link>
+          )}
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProducts.map((p, i) => (
+          {displayedProducts.map((p: any, i: number) => (
             <Link
-              href="/products"
-              key={i}
+              href={`/products/${p.id}`}
+              key={p.id || i}
               className="group bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-5 md:p-6 flex flex-col hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all"
             >
               {/* Image & Badges */}
-              <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 border border-slate-50">
-                <div className="absolute top-4 left-4 bg-[#06999b] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+              <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 border border-slate-50 overflow-hidden">
+                <div className="absolute z-10 top-4 left-4 bg-[#06999b] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
                   Flagship
                 </div>
-                <button className="absolute top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:shadow-md transition-all border border-slate-100 pointer-events-none">
+                <button className="absolute z-10 top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:shadow-md transition-all border border-slate-100 pointer-events-none">
                   <Heart className="w-4 h-4" />
                 </button>
                 <div className="relative w-full h-full">
-                  <Image
-                    src={p.image}
+                  <img
+                    src={p.mainImage ? `http://localhost:5000/uploads/images/${p.mainImage}` : "/placeholder.png"}
                     alt={p.name}
-                    fill
-                    className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
 
               {/* Content */}
               <div className="flex flex-col flex-grow px-2">
-                <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-[#06999b] transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-[#06999b] transition-colors line-clamp-1">
                   {p.name}
                 </h3>
-                <p className="text-sm text-slate-500 mb-4">Industrial Water Purifier</p>
+                <p className="text-sm text-slate-500 mb-4 line-clamp-1 min-h-[20px]">{p.shortDescription || "Industrial Water Purifier"}</p>
                 
                 {/* Rating */}
                 <div className="flex items-center gap-2 mb-4">
@@ -526,41 +513,17 @@ function FeaturedProducts() {
                       <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     ))}
                   </div>
-                  <span className="text-sm text-slate-500 font-medium">4.8 (94)</span>
+                  <span className="text-sm text-slate-500 font-medium">4.8 (Verified)</span>
                 </div>
 
                 {/* Price */}
                 <div className="text-[22px] font-bold text-slate-900 mb-6">
-                  {i === 0 ? "₹18,999" : i === 1 ? "₹24,999" : i === 2 ? "₹85,000" : "₹1,45,000"}
+                  ₹{Number(p.price).toLocaleString('en-IN')}
+                  {p.originalPrice && (
+                    <span className="text-sm text-slate-400 line-through ml-2">₹{Number(p.originalPrice).toLocaleString('en-IN')}</span>
+                  )}
                 </div>
 
-                {/* Specs Box */}
-                <div className="grid grid-cols-4 gap-2 mb-8 mt-auto">
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <span className="text-[#06999b] font-bold text-[10px]">{p.specs.Capacity.split(' ')[0]}</span>
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">{p.specs.Capacity.split(' ')[1]}<br/>Capacity</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <span className="text-[#06999b] font-bold text-[10px]">UV</span>
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">UV<br/>Protection</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <ClipboardList className="w-4 h-4 text-[#06999b]" />
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">{p.specs.Usage}<br/>Usage</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <Droplets className="w-4 h-4 text-[#06999b]" />
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">High<br/>Recovery</span>
-                    </div>
-                  </div>
 
                 <button className="w-full py-3 bg-[#06999b] hover:bg-[#057a7c] text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-sm pointer-events-none">
                   View Details
@@ -762,11 +725,10 @@ function ProfessionalInstallation() {
     <section className="bg-slate-50 border-y border-slate-200">
       <div className="grid lg:grid-cols-2">
         <div className="relative h-80 lg:h-auto min-h-[500px] border-b lg:border-b-0 lg:border-r border-slate-200">
-          <Image
-            src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1000&q=80"
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIHWzOUItqZ9aqLnQVnVTBdXAdPixHi2qIFRSNyYWzEw&s=10"
             alt="Technical Operations"
-            fill
-            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover transition-all duration-700"
           />
         </div>
 
@@ -849,25 +811,24 @@ function ProfessionalInstallation() {
 // ----------------------------------------------------------------------
 // Testimonials
 // ----------------------------------------------------------------------
-const reviews = [
-  {
-    name: "Ramesh Patel",
-    entity: "Patel Manufacturing",
-    text: "Deployed a 1000 LPH unit. The hardware specifications and operational efficiency have exceeded our strict procurement parameters.",
-  },
-  {
-    name: "Priya Shah",
-    entity: "Shah & Associates",
-    text: "Their preventative maintenance protocols and SLA adherence represent the highest standard of corporate service we've experienced.",
-  },
-  {
-    name: "Amit Mehta",
-    entity: "Mehta Industrial",
-    text: "Robust build quality combined with highly professional commissioning. Our process water metrics are completely stabilized.",
-  },
-];
+async function getActiveTestimonials() {
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/testimonials/get-active", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
 
-function Testimonials() {
+async function Testimonials() {
+  const reviews = await getActiveTestimonials();
+
   return (
     <section className="py-24 bg-white">
       <div className="container-custom">
@@ -882,25 +843,38 @@ function Testimonials() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
-            <div
-              key={i}
-              className="bg-slate-50 border border-slate-200 p-8 flex flex-col"
-            >
-              <Quote className="w-6 h-6 text-slate-300 mb-6" />
+        {reviews.length === 0 ? (
+          <div className="text-center text-slate-500 py-10 bg-slate-50 border border-slate-100 rounded-xl">
+            No testimonials available at the moment.
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.slice(0, 3).map((r: any, i: number) => (
+              <div
+                key={r.id || i}
+                className="bg-slate-50 border border-slate-200 p-8 flex flex-col"
+              >
+                <Quote className="w-6 h-6 text-[#06999b] mb-6 opacity-40" />
+                <div className="flex text-[#06999b] mb-4">
+                  {[...Array(Number(r.rating) || 5)].map((_, idx) => (
+                    <svg key={idx} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  ))}
+                </div>
               <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow">
-                "{r.text}"
+                "{r.message}"
               </p>
               <div className="border-t border-slate-200 pt-6">
-                <p className="text-sm font-bold text-slate-900">{r.name}</p>
-                <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
-                  {r.entity}
-                </p>
+                <p className="text-sm font-bold text-slate-900">{r.fullName}</p>
+                {r.company && (
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
+                    {r.company}
+                  </p>
+                )}
               </div>
             </div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

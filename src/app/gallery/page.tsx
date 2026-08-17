@@ -2,17 +2,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1606132717013-0941be200427?w=800&q=80", alt: "Home RO System Installation", span: "md:col-span-2 md:row-span-2", category: "Residential" },
-  { src: "https://images.unsplash.com/photo-1585820935515-385012351ab6?w=800&q=80", alt: "Commercial Plant", span: "md:col-span-1 md:row-span-1", category: "Commercial" },
-  { src: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=800&q=80", alt: "Water Softener", span: "md:col-span-1 md:row-span-1", category: "Industrial" },
-  { src: "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=800&q=80", alt: "Industrial Setup", span: "md:col-span-2 md:row-span-1", category: "Industrial" },
-  { src: "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=800&q=80", alt: "Factory Layout", span: "md:col-span-1 md:row-span-2", category: "Commercial" },
-  { src: "https://images.unsplash.com/photo-1606132717013-0941be200427?w=800&q=80", alt: "Premium Filter", span: "md:col-span-1 md:row-span-1", category: "Residential" },
-  { src: "https://images.unsplash.com/photo-1585820935515-385012351ab6?w=800&q=80", alt: "Quality Check", span: "md:col-span-1 md:row-span-1", category: "Quality Assurance" },
-];
+async function getGalleryImages() {
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/gallery/get-all", {
+      method: "POST",
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching gallery images:", error);
+    return [];
+  }
+}
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const images = await getGalleryImages();
+  
+  // Array of spans and categories to make the grid look dynamic
+  const spans = [
+    "md:col-span-2 md:row-span-2",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-2 md:row-span-1",
+    "md:col-span-1 md:row-span-2",
+    "md:col-span-1 md:row-span-1",
+    "md:col-span-1 md:row-span-1",
+  ];
+  const categories = ["Residential", "Commercial", "Industrial", "Quality Assurance"];
+
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-700">
       {/* ── CORPORATE HERO SECTION ── */}
@@ -35,29 +53,23 @@ export default function GalleryPage() {
       <section className="py-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[250px] md:auto-rows-[300px]">
-            {galleryImages.map((image, i) => (
-              <div 
-                key={i} 
-                className={`relative rounded-xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 ${image.span}`}
-              >
-                <Image 
-                  src={image.src} 
-                  alt={image.alt} 
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/90 via-[#0F172A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                    {image.category}
-                  </div>
-                  <h3 className="text-white font-semibold text-lg leading-tight">
-                    {image.alt}
-                  </h3>
+            {images.map((image: any, i: number) => {
+              const span = spans[i % spans.length];
+              const category = categories[i % categories.length];
+              return (
+                <div 
+                  key={image.id || i} 
+                  className={`relative rounded-xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 ${span}`}
+                >
+                  <img 
+                    src={`http://localhost:5000/uploads/images/${image.image}`} 
+                    alt={`Gallery Image ${i + 1}`} 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -8,9 +8,24 @@ import {
   ShoppingCart,
   ArrowRight,
 } from "lucide-react";
-import { products } from "@/data/mockData";
+async function getProducts() {
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/products/get-all", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+}
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts();
+
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-700">
       <section className="relative pt-32 pb-24 bg-white border-b border-slate-200">
@@ -32,37 +47,38 @@ export default function ProductsPage() {
       <section className="py-16">
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-            {products.map((product) => (
+            {products.map((product: any) => (
               <Link
                 href={`/products/${product.id}`}
                 key={product.id}
                 className="group bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-5 md:p-6 flex flex-col hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] transition-all"
               >
                 {/* Image & Badges */}
-                <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 border border-slate-50">
-                  <div className="absolute top-4 left-4 bg-[#06999b] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
-                    New
-                  </div>
-                  <button className="absolute top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:shadow-md transition-all border border-slate-100">
+                <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 border border-slate-50 overflow-hidden">
+                  {product.isFeatured && (
+                    <div className="absolute z-10 top-4 left-4 bg-[#06999b] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                      Featured
+                    </div>
+                  )}
+                  <button className="absolute z-10 top-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:shadow-md transition-all border border-slate-100">
                     <Heart className="w-4 h-4" />
                   </button>
                   <div className="relative w-full h-full">
-                    <Image
-                      src={product.image}
+                    <img
+                      src={product.mainImage ? `http://localhost:5000/uploads/images/${product.mainImage}` : "/placeholder.png"}
                       alt={product.name}
-                      fill
-                      className="object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col flex-grow px-2">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-[#06999b] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-[#06999b] transition-colors line-clamp-1">
                     {product.name}
                   </h3>
-                  <p className="text-sm text-slate-500 mb-4">
-                    RO Water Purifier
+                  <p className="text-sm text-slate-500 mb-4 line-clamp-2 min-h-[40px]">
+                    {product.shortDescription || "RO Water Purifier"}
                   </p>
 
                   {/* Rating */}
@@ -79,62 +95,18 @@ export default function ProductsPage() {
                       ))}
                     </div>
                     <span className="text-sm text-slate-500 font-medium">
-                      4.6 (128)
+                      4.8 (Verified)
                     </span>
                   </div>
 
                   {/* Price */}
                   <div className="text-[22px] font-bold text-slate-900 mb-6">
-                    ₹18,999
+                    ₹{Number(product.price).toLocaleString('en-IN')}
+                    {product.originalPrice && (
+                      <span className="text-sm text-slate-400 line-through ml-2">₹{Number(product.originalPrice).toLocaleString('en-IN')}</span>
+                    )}
                   </div>
 
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-4 gap-2 mb-8 mt-auto">
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <span className="text-[#06999b] font-bold text-sm">
-                          7
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">
-                        7 Stage
-                        <br />
-                        Purification
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <span className="text-[#06999b] font-bold text-[10px]">
-                          UV
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">
-                        UV
-                        <br />
-                        Protection
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <ClipboardList className="w-4 h-4 text-[#06999b]" />
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">
-                        Large
-                        <br />
-                        Storage
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center mb-2">
-                        <Droplets className="w-4 h-4 text-[#06999b]" />
-                      </div>
-                      <span className="text-[10px] text-slate-600 text-center leading-tight font-medium">
-                        High Water
-                        <br />
-                        Recovery
-                      </span>
-                    </div>
-                  </div>
 
                   {/* Button */}
                   <button className="w-full py-3 bg-[#06999b] hover:bg-[#057a7c] text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors shadow-sm pointer-events-none">

@@ -1,173 +1,285 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/data/mockData";
-import { Droplet, Settings2, ShieldCheck, CheckCircle2, Target, FileText, Maximize2, Check, ShoppingCart, Truck, RefreshCcw, ClipboardList, Droplets, Phone } from "lucide-react";
+import {
+  FileText,
+  Check,
+  Phone,
+  Star,
+} from "lucide-react";
+import { ProductImageGallery } from "@/components/products/ProductImageGallery";
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
-    id: product.id,
-  }));
+  return [];
 }
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const resolvedParams = await params;
-  const product = products.find((p) => p.id === resolvedParams.id);
+
+  let product = null;
+  try {
+    const res = await fetch(
+      `http://localhost:5000/api/v1/products/get/${resolvedParams.id}`,
+      {
+        method: "POST",
+        cache: "no-store",
+      },
+    );
+    const json = await res.json();
+    product = json.data;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+  }
 
   if (!product) {
     notFound();
   }
 
+  const images = product.images
+    ? typeof product.images === "string"
+      ? JSON.parse(product.images)
+      : product.images
+    : [];
+  const allImages = [product.mainImage, ...images].filter(Boolean);
+
+  let features = [];
+  try {
+    features = product.features
+      ? typeof product.features === "string"
+        ? JSON.parse(product.features)
+        : product.features
+      : [];
+  } catch (e) {
+    features =
+      typeof product.features === "string" ? product.features.split(",") : [];
+  }
+  if (!Array.isArray(features)) {
+    features = features ? [features] : [];
+  }
+
+  let specifications = [];
+  try {
+    specifications = product.specifications
+      ? typeof product.specifications === "string"
+        ? JSON.parse(product.specifications)
+        : product.specifications
+      : [];
+  } catch (e) {
+    specifications =
+      typeof product.specifications === "string"
+        ? product.specifications.split(",")
+        : [];
+  }
+  if (!Array.isArray(specifications)) {
+    specifications = specifications
+      ? Object.entries(specifications).map(([k, v]) => ({ name: k, value: v }))
+      : [];
+  }
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-900 pt-24">
       <div className="container-custom py-10">
         <div className="bg-white rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            
             {/* Left Column: Images */}
-            <div className="flex gap-4">
-              {/* Thumbnails */}
-              <div className="flex flex-col gap-4 w-20 shrink-0">
-                {[1,2,3,4].map((i) => (
-                  <div key={i} className={`w-full aspect-square rounded-xl border-2 flex items-center justify-center p-2 cursor-pointer ${i === 1 ? 'border-[#06999b]' : 'border-slate-100 hover:border-slate-300'}`}>
-                    <div className="relative w-full h-full">
-                      <Image src={product.image} alt="thumb" fill className="object-contain mix-blend-multiply" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Main Image */}
-              <div className="relative flex-grow bg-slate-50/50 rounded-2xl border border-slate-100 flex items-center justify-center p-8">
-                <div className="absolute top-4 left-4 bg-[#06999b] text-white text-[10px] font-bold px-4 py-1.5 rounded-full">
-                  New
-                </div>
-                <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors border border-slate-100">
-                  <Maximize2 className="w-4 h-4" />
-                </button>
-                <div className="relative w-full aspect-[4/5]">
-                  <Image src={product.image} alt={product.name} fill className="object-contain mix-blend-multiply" />
-                </div>
-              </div>
+            <div className="lg:w-full">
+              <ProductImageGallery
+                images={allImages}
+                productName={product.name}
+                isFeatured={product.isFeatured}
+              />
             </div>
 
             {/* Right Column: Details */}
             <div className="flex flex-col">
               {/* Breadcrumbs */}
-              <div className="flex items-center text-[10px] md:text-xs text-slate-400 font-medium mb-4">
-                <Link href="/" className="hover:text-[#06999b] transition-colors">Home</Link>
-                <span className="mx-2">{'>'}</span>
-                <Link href="/products" className="hover:text-[#06999b] transition-colors">RO Purifiers</Link>
-                <span className="mx-2">{'>'}</span>
-                <span className="text-slate-600">{product.name}</span>
+              <div className="flex items-center text-[10px] md:text-xs text-slate-400 font-bold mb-6 uppercase tracking-widest">
+                <Link
+                  href="/"
+                  className="hover:text-[#06999b] transition-colors"
+                >
+                  Home
+                </Link>
+                <span className="mx-3 text-slate-300">/</span>
+                <Link
+                  href="/products"
+                  className="hover:text-[#06999b] transition-colors"
+                >
+                  RO Purifiers
+                </Link>
+                <span className="mx-3 text-slate-300">/</span>
+                <span className="text-[#06999b] line-clamp-1">
+                  {product.name}
+                </span>
               </div>
 
-              <h1 className="text-3xl font-bold text-slate-900 mb-1">{product.name}</h1>
-              <p className="text-sm text-slate-500 mb-4">RO Water Purifier</p>
+              <div className="mb-5">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
+                  {product.name}
+                </h1>
+                <p className="text-base md:text-lg text-slate-500 font-medium leading-relaxed">
+                  {product.shortDescription || "Advanced RO Water Purifier"}
+                </p>
+              </div>
 
               {/* Rating */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex text-[#06999b]">
-                  {[1,2,3,4,5].map(star => (
-                    <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  ))}
+              <div className="flex items-center gap-3 mb-8 pb-8 border-b border-slate-100">
+                <div className="bg-amber-100 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                  <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                  <span className="text-sm font-bold text-amber-800">4.8</span>
                 </div>
-                <span className="text-sm text-slate-500 font-medium">4.6 (128 Reviews)</span>
+                <span className="text-sm text-slate-400 font-medium tracking-wide">
+                  120+ Verified Reviews
+                </span>
               </div>
 
-              {/* Price */}
-              <div className="mb-6">
-                <div className="text-4xl font-bold text-slate-900 mb-1">₹18,999</div>
-                <div className="text-xs text-slate-400">Inclusive of all taxes</div>
+              {/* Price Card */}
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-3xl p-6 md:p-8 border border-slate-100 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#06999b]/5 rounded-bl-full -z-0" />
+                <div className="relative z-10">
+                  <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                    Special Price
+                  </div>
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <span className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+                      ₹{Number(product.price).toLocaleString("en-IN")}
+                    </span>
+                    {product.originalPrice && (
+                      <span className="text-xl text-slate-400 line-through font-bold decoration-slate-300 decoration-2">
+                        ₹{Number(product.originalPrice).toLocaleString("en-IN")}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-slate-500 font-medium tracking-wide">
+                    Inclusive of all taxes
+                  </div>
+                </div>
+                {product.originalPrice && (
+                  <div className="relative z-10 bg-[#06999b]/10 text-[#06999b] border border-[#06999b]/20 px-5 py-3 rounded-2xl text-sm font-black shadow-sm whitespace-nowrap self-start sm:self-center">
+                    Save ₹
+                    {(
+                      Number(product.originalPrice) - Number(product.price)
+                    ).toLocaleString("en-IN")}
+                    !
+                  </div>
+                )}
               </div>
 
-              <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                Advanced 7 stage purification with UV protection and smart LED display for pure and healthy water.
-              </p>
+              <div className="text-sm text-slate-600 leading-relaxed mb-8 prose prose-slate">
+                {product.description}
+              </div>
 
-              {/* Bullet points */}
-              <ul className="space-y-3 mb-8">
-                {[
-                  "7 Stage Advanced Purification",
-                  "UV Protection for Extra Safety",
-                  "12L Large Storage Capacity",
-                  "High Water Recovery",
-                  "Smart LED Display",
-                  "Real-time Alerts"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-sm text-slate-700">
-                    <Check className="w-4 h-4 text-[#06999b] shrink-0 stroke-[3]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {/* Bullet points (Features Grid) */}
+              {features.length > 0 && (
+                <div className="mb-10">
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                    Key Highlights
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {features.map((item: string, idx: number) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-3 bg-white border border-slate-100 p-3 md:p-4 rounded-2xl shadow-sm hover:border-[#06999b]/30 transition-colors"
+                      >
+                        <div className="bg-[#06999b]/10 rounded-full p-1.5 shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 text-[#06999b] stroke-[3]" />
+                        </div>
+                        <span className="text-sm text-slate-700 font-semibold leading-tight">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Actions */}
-              <div className="flex flex-col gap-3 mb-8">
-                <a href="tel:+916383450508" className="w-full py-4 bg-[#06999b] hover:bg-[#057a7c] text-white rounded-lg font-bold flex items-center justify-center gap-3 transition-colors shadow-md shadow-[#06999b]/20 text-base">
-                  <Phone className="w-5 h-5" />
-                  Call Now: +91 63834 50508
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <a
+                  href="tel:+916383450508"
+                  className="flex-1 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#06999b] py-4 md:py-5 text-white font-bold text-lg shadow-[0_8px_25px_rgba(6,153,155,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(6,153,155,0.4)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+                  <Phone className="w-6 h-6 relative z-10" />
+                  <span className="relative z-10">
+                    Call Now: +91 63834 50508
+                  </span>
                 </a>
-                <Link href="/contact" className="w-full border-2 border-[#06999b] text-[#06999b] hover:bg-[#06999b]/5 rounded-lg py-3 font-semibold flex items-center justify-center gap-2 transition-colors">
-                  <FileText className="w-4 h-4" />
-                  Request Custom Quote
+                <Link
+                  href="/contact"
+                  className="sm:w-auto px-8 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl border-2 border-[#06999b] bg-white py-4 md:py-5 text-[#06999b] font-bold text-base transition-all hover:bg-[#06999b] hover:text-white"
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>Request Quote</span>
                 </Link>
               </div>
 
               {/* Trust Badges */}
-              <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-slate-600 text-[11px] md:text-xs font-medium">
-                  <Truck className="w-4 h-4" /> Free Delivery
-                </div>
-                <div className="flex items-center gap-2 text-slate-600 text-[11px] md:text-xs font-medium">
-                  <ShieldCheck className="w-4 h-4" /> 1 Year Warranty
-                </div>
-                <div className="flex items-center gap-2 text-slate-600 text-[11px] md:text-xs font-medium">
-                  <RefreshCcw className="w-4 h-4" /> 7 Days Return
-                </div>
-              </div>
+              <span className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-widest">
+                Warranty :  {product.warranty || "1 Year Warranty"}
+              </span>
             </div>
           </div>
-          
-          {/* Bottom Features row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-100">
-            <div className="border border-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 hover:border-slate-200 transition-colors bg-slate-50/30">
-              <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center shrink-0">
-                <span className="text-[#06999b] font-bold text-sm">7</span>
+
+          {/* Technical Specifications */}
+          {specifications && specifications.length > 0 && (
+            <div className="mt-20 pt-16 border-t border-slate-200">
+              <div className="max-w-3xl mx-auto text-center mb-10">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">
+                  Technical Specifications
+                </h2>
+                <p className="text-slate-500 font-medium">
+                  Detailed technical information and capabilities of the{" "}
+                  {product.name}
+                </p>
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 mb-1">7 Stage Purification</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">Advanced 7 stage RO purification for 100% pure water.</p>
+              <div className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] max-w-4xl mx-auto">
+                <table className="w-full text-sm md:text-base text-left">
+                  <tbody className="divide-y divide-slate-100">
+                    {specifications.map((spec: any, idx: number) => {
+                      let title = spec;
+                      let desc = "";
+
+                      if (Array.isArray(spec)) {
+                        title = spec[0];
+                        desc = spec[1] || "";
+                      } else if (typeof spec === "object" && spec !== null) {
+                        if (spec.key !== undefined) {
+                          title = spec.key;
+                          desc = spec.value || "";
+                        } else if (spec.name !== undefined) {
+                          title = spec.name;
+                          desc = spec.value || "";
+                        } else if (spec.title !== undefined) {
+                          title = spec.title;
+                          desc = spec.description || spec.value || "";
+                        } else {
+                          title = Object.keys(spec)[0] || "Feature";
+                          desc = (Object.values(spec)[0] as string) || "";
+                        }
+                      }
+
+                      return (
+                        <tr
+                          key={idx}
+                          className="hover:bg-slate-50 transition-colors even:bg-slate-50/50 group"
+                        >
+                          <th className="px-6 md:px-10 py-5 md:py-6 font-bold text-slate-900 w-2/5 md:w-1/3 align-top group-hover:text-[#06999b] transition-colors">
+                            {String(title)}
+                          </th>
+                          <td className="px-6 md:px-10 py-5 md:py-6 text-slate-600 leading-relaxed font-medium">
+                            {String(desc)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div className="border border-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 hover:border-slate-200 transition-colors bg-slate-50/30">
-              <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center shrink-0">
-                <span className="text-[#06999b] font-bold text-sm">UV</span>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 mb-1">UV Protection</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">UV technology kills bacteria and viruses effectively.</p>
-              </div>
-            </div>
-            <div className="border border-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 hover:border-slate-200 transition-colors bg-slate-50/30">
-              <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center shrink-0">
-                <ClipboardList className="w-4 h-4 text-[#06999b]" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 mb-1">12L Large Storage</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">Large storage tank ensures continuous supply of pure water.</p>
-              </div>
-            </div>
-            <div className="border border-slate-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start gap-4 hover:border-slate-200 transition-colors bg-slate-50/30">
-              <div className="w-10 h-10 rounded-full bg-[#06999b]/10 flex items-center justify-center shrink-0">
-                <Droplets className="w-4 h-4 text-[#06999b]" />
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-slate-900 mb-1">High Water Recovery</h4>
-                <p className="text-[11px] text-slate-500 leading-relaxed">Saves more water with high recovery technology.</p>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
