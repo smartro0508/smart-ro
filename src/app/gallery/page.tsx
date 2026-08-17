@@ -71,7 +71,7 @@ export default function GalleryPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center px-8 py-3.5 bg-primary text-white font-bold rounded-lg hover:bg-white hover:text-[#0F172A] transition-colors duration-200 text-base shadow-sm"
+            className="inline-flex items-center px-8 py-3.5 bg-[#06999b] text-white font-bold rounded-lg hover:bg-[#057a7c] transition-colors duration-200 text-base shadow-sm"
           >
             Schedule a Consultation
             <ArrowRight className="w-5 h-5 ml-2" />

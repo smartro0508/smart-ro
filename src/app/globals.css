@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #075985;
-  --color-primary-dark: #0C4A6E;
+  --color-primary: #06999b;
+  --color-primary-dark: #057a7c;
   --color-secondary: #06B6D4;
   --color-accent: #22D3EE;
 
@@ -90,9 +90,9 @@ body {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium transition-colors hover:bg-primary-dark;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-medium transition-colors hover:bg-[#057a7c];
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-surface-soft text-primary font-medium border border-primary/20 transition-colors hover:bg-primary/10;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-surface-soft text-primary font-medium border border-primary/20 transition-colors bg-[#06999b] text-white hover:bg-[#057a7c] border-none;
 }

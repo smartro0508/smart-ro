@@ -92,7 +92,7 @@ export default function Navbar() {
             <div className="hidden md:flex shrink-0">
               <Link 
                 href="/contact" 
-                className="group relative inline-flex items-center justify-center px-7 py-2.5 text-sm font-bold text-white bg-[#0F172A] rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(15,23,42,0.3)]"
+                className="group relative inline-flex items-center justify-center px-7 py-2.5 text-sm font-bold text-white bg-[#06999b] hover:bg-[#057a7c] rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(6,153,155,0.3)]"
               >
                 <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-white"></span>
                 <span className="relative">Get a Quote</span>
@@ -136,7 +136,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex justify-center w-full py-4 text-base font-bold text-white bg-gradient-to-r from-primary to-secondary rounded-xl shadow-lg"
+                className="flex justify-center w-full py-4 text-base font-bold text-white bg-[#06999b] hover:bg-[#057a7c] transition-colors rounded-xl shadow-lg"
               >
                 Get a Quote
               </Link>

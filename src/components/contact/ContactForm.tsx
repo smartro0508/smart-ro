@@ -31,7 +31,7 @@ export default function ContactForm() {
         <div className="w-20 h-20 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mb-6 shadow-sm">
           <CheckCircle2 className="w-10 h-10 text-primary" />
         </div>
-        <h4 className="text-2xl font-bold text-[#0F172A] mb-3">Enquiry Submitted</h4>
+        <h4 className="text-2xl font-bold text-[#0f3a61] mb-3">Enquiry Submitted</h4>
         <p className="text-slate-500 max-w-sm mx-auto leading-relaxed">
           Thank you for reaching out. Our team will contact you shortly to discuss your requirements.
         </p>
@@ -48,7 +48,7 @@ export default function ContactForm() {
             required
             type="text"
             placeholder="John Doe"
-            className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#0F172A] transition-all text-sm shadow-sm"
+            className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
           />
         </div>
         <div>
@@ -57,7 +57,7 @@ export default function ContactForm() {
             required
             type="tel"
             placeholder="e.g. 6383450508"
-            className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#0F172A] transition-all text-sm shadow-sm"
+            className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
           />
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function ContactForm() {
           required
           type="email"
           placeholder="your@email.com"
-          className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#0F172A] transition-all text-sm shadow-sm"
+          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
         />
       </div>
 
@@ -76,7 +76,7 @@ export default function ContactForm() {
         <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">How can we help?</label>
         <select
           required
-          className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 focus:border-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#0F172A] transition-all appearance-none pr-10 text-sm shadow-sm"
+          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all appearance-none pr-10 text-sm shadow-sm"
         >
           <option value="">Select a requirement</option>
           {requirements.map((r) => (
@@ -91,14 +91,14 @@ export default function ContactForm() {
           required
           rows={4}
           placeholder="Describe your water purification needs..."
-          className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#0F172A] transition-all resize-none text-sm shadow-sm"
+          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all resize-none text-sm shadow-sm"
         />
       </div>
 
       <button
         disabled={isSubmitting}
         type="submit"
-        className="w-full py-4 bg-[#0F172A] text-white font-bold rounded-xl hover:bg-primary transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60 text-sm shadow-md"
+        className="w-full py-4 bg-[#06999b] text-white font-bold rounded-sm hover:bg-[#057a7c] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60 text-sm shadow-md"
       >
         {isSubmitting ? "Sending..." : (
           <>Send Message <Send className="w-4 h-4" /></>

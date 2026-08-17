@@ -79,10 +79,10 @@ export default function ServicesPage() {
             Our NOC and field engineering teams are available to address critical operational issues, schedule maintenance, or discuss SLA terms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+18001234567" className="inline-flex items-center justify-center px-8 py-4 bg-[#4ea8de] text-[#0A1120] text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white transition-colors">
+            <a href="tel:+18001234567" className="inline-flex items-center justify-center px-8 py-4 bg-[#06999b] text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#057a7c] transition-colors">
               Call Support: +1 800-123-4567
             </a>
-            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/10 transition-colors">
+            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/20 transition-colors">
               Initiate Service Ticket
             </Link>
           </div>

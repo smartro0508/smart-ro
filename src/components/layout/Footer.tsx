@@ -162,10 +162,10 @@ export default function Footer() {
             © {new Date().getFullYear()} Smart RO. All Rights Reserved.
           </p>
           <div className="flex gap-8 text-sm font-medium text-slate-500">
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-white transition-colors">
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
           </div>

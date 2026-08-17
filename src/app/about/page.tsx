@@ -237,10 +237,10 @@ function FinalCTASection() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center gap-4">
-          <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#4ea8de] text-[#0A1120] text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white transition-colors">
+          <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#06999b] text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#057a7c] transition-colors">
             Submit RFP <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
-          <Link href="/products" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-white/30 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/10 transition-colors">
+          <Link href="/products" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/20 transition-colors">
             View Specifications
           </Link>
         </div>
