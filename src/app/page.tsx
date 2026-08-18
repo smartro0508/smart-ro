@@ -322,45 +322,33 @@ function QuickFeatures() {
 }
 
 // ----------------------------------------------------------------------
-// OurSolutions
+// ROServicesHome
 // ----------------------------------------------------------------------
-const solutions = [
+const roServicesHome = [
   {
-    name: "Residential Systems",
-    items: [
-      "Domestic RO Purifiers",
-      "Under-Sink Units",
-      "Wall-Mounted Solutions",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1574492695509-5e72cc2dc122?w=600&q=80",
+    title: "RO Installation",
+    description: "Professional installation of RO water purifiers with proper connections and complete system testing.",
+    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&q=80",
+    link: "/services"
   },
   {
-    name: "Commercial Systems",
-    items: [
-      "Corporate Office RO",
-      "Hospitality Sector",
-      "Educational & Medical",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1550508518-a63e9f3b55c2?w=600&q=80",
+    title: "RO Repair & Service",
+    description: "Reliable repair and servicing for all common RO water purifier problems, helping restore your machine's performance.",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80",
+    link: "/services"
   },
   {
-    name: "Industrial Plants",
-    items: [
-      "Heavy-Duty RO Plants",
-      "Industrial Capacities",
-      "Custom Engineering",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1606132717013-0941be200427?w=600&q=80",
+    title: "Filter Replacement",
+    description: "Timely filter replacement to maintain water quality and ensure your RO purifier continues to work efficiently.",
+    image: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80",
+    link: "/services"
   },
   {
-    name: "Specialized Treatment",
-    items: ["UV / UF Systems", "Water Softening", "Advanced Filtration"],
-    image:
-      "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80",
-  },
+    title: "RO Membrane Replacement",
+    description: "Professional RO membrane replacement to improve purification performance and maintain proper water quality.",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&q=80",
+    link: "/services"
+  }
 ];
 
 function OurSolutions() {
@@ -370,56 +358,56 @@ function OurSolutions() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 border-b border-slate-200 pb-8">
           <div className="max-w-2xl">
             <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">
-              Corporate Solutions
+              Professional Care
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-              Engineered Water Systems
+              RO Services & Maintenance
             </h2>
           </div>
           <p className="text-slate-600 text-sm max-w-md md:text-right">
-            Deploying enterprise-grade water purification infrastructure
-            designed for optimal efficiency and strict compliance standards.
+            Comprehensive support and lifecycle management to ensure your purification infrastructure operates at peak performance.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {solutions.map((sol, i) => (
-            <div
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {roServicesHome.map((srv, i) => (
+            <Link
+              href={srv.link}
               key={i}
-              className="group bg-white border border-slate-200 flex flex-col hover:border-[#0f3a61] transition-colors duration-300"
+              className="group bg-white border border-slate-200 flex flex-col hover:border-[#0f3a61] transition-colors duration-300 shadow-sm hover:shadow-md rounded-sm overflow-hidden"
             >
-              <div className="relative h-48 overflow-hidden bg-slate-100">
-                <Image
-                  src={sol.image}
-                  alt={sol.name}
-                  fill
-                  className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              <div className="relative h-40 overflow-hidden bg-slate-100">
+                <img
+                  src={srv.image}
+                  alt={srv.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="font-bold text-slate-900 text-lg mb-4">
-                  {sol.name}
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="font-bold text-slate-900 text-base mb-3 group-hover:text-[#06999b] transition-colors line-clamp-1">
+                  {srv.title}
                 </h3>
-                <ul className="space-y-3 mb-8 flex-grow">
-                  {sol.items.map((item, j) => (
-                    <li
-                      key={j}
-                      className="text-xs text-slate-600 flex items-start gap-2"
-                    >
-                      <div className="w-1 h-1 bg-[#0f3a61] mt-1.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center text-xs font-bold text-[#0f3a61] uppercase tracking-wider group-hover:text-blue-700 transition-colors mt-auto"
-                >
-                  View Specifications <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow line-clamp-3">
+                  {srv.description}
+                </p>
+                <div className="inline-flex items-center text-xs font-bold text-[#0f3a61] uppercase tracking-wider group-hover:text-blue-700 transition-colors mt-auto">
+                  View Details <ArrowRight className="w-4 h-4 ml-2" />
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
+          
+          {/* View All Card */}
+          <Link
+            href="/services"
+            className="group bg-[#0A1120] border border-[#0A1120] flex flex-col items-center justify-center p-6 hover:bg-[#0f3a61] transition-colors duration-300 shadow-sm hover:shadow-md rounded-sm text-center min-h-[250px]"
+          >
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <ArrowRight className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="font-bold text-white text-lg mb-2">View All<br/>Services</h3>
+            <p className="text-slate-400 text-[11px] leading-relaxed mt-2">Explore our complete range of 10+ RO maintenance & repair solutions.</p>
+          </Link>
         </div>
       </div>
     </section>
@@ -431,7 +419,7 @@ function OurSolutions() {
 // ----------------------------------------------------------------------
 async function getFeaturedProducts() {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/products/get-all", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/products/get-all`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
@@ -451,7 +439,7 @@ async function FeaturedProducts() {
   if (products.length === 0) {
     products = allProducts;
   }
-  
+
   const hasMore = products.length > 6;
   const displayedProducts = products.slice(0, 6);
 
@@ -492,7 +480,7 @@ async function FeaturedProducts() {
                 </button>
                 <div className="relative w-full h-full">
                   <img
-                    src={p.mainImage ? `http://localhost:5000/uploads/images/${p.mainImage}` : "/placeholder.png"}
+                    src={p.mainImage ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${p.mainImage}` : "/placeholder.png"}
                     alt={p.name}
                     className="absolute inset-0 w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
@@ -505,12 +493,12 @@ async function FeaturedProducts() {
                   {p.name}
                 </h3>
                 <p className="text-sm text-slate-500 mb-4 line-clamp-1 min-h-[20px]">{p.shortDescription || "Industrial Water Purifier"}</p>
-                
+
                 {/* Rating */}
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex text-[#06999b]">
-                    {[1,2,3,4,5].map(star => (
-                      <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    {[1, 2, 3, 4, 5].map(star => (
+                      <svg key={star} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                     ))}
                   </div>
                   <span className="text-sm text-slate-500 font-medium">4.8 (Verified)</span>
@@ -813,7 +801,7 @@ function ProfessionalInstallation() {
 // ----------------------------------------------------------------------
 async function getActiveTestimonials() {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/testimonials/get-active", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/testimonials/get-active`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
@@ -857,23 +845,23 @@ async function Testimonials() {
                 <Quote className="w-6 h-6 text-[#06999b] mb-6 opacity-40" />
                 <div className="flex text-[#06999b] mb-4">
                   {[...Array(Number(r.rating) || 5)].map((_, idx) => (
-                    <svg key={idx} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg key={idx} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                   ))}
                 </div>
-              <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow">
-                "{r.message}"
-              </p>
-              <div className="border-t border-slate-200 pt-6">
-                <p className="text-sm font-bold text-slate-900">{r.fullName}</p>
-                {r.company && (
-                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
-                    {r.company}
-                  </p>
-                )}
+                <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow">
+                  "{r.message}"
+                </p>
+                <div className="border-t border-slate-200 pt-6">
+                  <p className="text-sm font-bold text-slate-900">{r.fullName}</p>
+                  {r.company && (
+                    <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
+                      {r.company}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         )}
       </div>
     </section>

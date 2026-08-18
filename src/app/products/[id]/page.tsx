@@ -22,7 +22,7 @@ export default async function ProductDetailPage({
   let product = null;
   try {
     const res = await fetch(
-      `http://localhost:5000/api/v1/products/get/${resolvedParams.id}`,
+      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/products/get/${resolvedParams.id}`,
       {
         method: "POST",
         cache: "no-store",

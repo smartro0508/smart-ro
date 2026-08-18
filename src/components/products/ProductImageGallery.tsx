@@ -10,7 +10,7 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
 
   const allImages = images.filter(Boolean);
   const activeImage = allImages[activeIndex] || "/placeholder.png";
-  const activeImageSrc = activeImage !== "/placeholder.png" ? `http://localhost:5000/uploads/images/${activeImage}` : activeImage;
+  const activeImageSrc = activeImage !== "/placeholder.png" ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${activeImage}` : activeImage;
 
   const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.5, 3));
   const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.5, 0.5));
@@ -29,7 +29,7 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
               >
                 <div className="relative w-full h-full">
                   <img
-                    src={`http://localhost:5000/uploads/images/${img}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${img}`}
                     alt={`thumb ${i}`}
                     className="absolute inset-0 w-full h-full object-cover rounded-md"
                   />

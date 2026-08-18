@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 async function getGalleryImages() {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/gallery/get-all", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/gallery/get-all`, {
       method: "POST",
       cache: "no-store",
     });
@@ -62,7 +62,7 @@ export default async function GalleryPage() {
                   className={`relative rounded-xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 ${span}`}
                 >
                   <img 
-                    src={`http://localhost:5000/uploads/images/${image.image}`} 
+                    src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${image.image}`} 
                     alt={`Gallery Image ${i + 1}`} 
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />

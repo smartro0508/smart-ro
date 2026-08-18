@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 async function getProducts() {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/products/get-all", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/products/get-all`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
@@ -65,7 +65,7 @@ export default async function ProductsPage() {
                   </button>
                   <div className="relative w-full h-full">
                     <img
-                      src={product.mainImage ? `http://localhost:5000/uploads/images/${product.mainImage}` : "/placeholder.png"}
+                      src={product.mainImage ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${product.mainImage}` : "/placeholder.png"}
                       alt={product.name}
                       className="absolute inset-0 w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                     />

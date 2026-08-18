@@ -270,7 +270,7 @@ import { Quote } from "lucide-react";
 
 async function getActiveTestimonials() {
   try {
-    const res = await fetch("http://localhost:5000/api/v1/testimonials/get-active", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/testimonials/get-active`, {
       method: "POST",
       cache: "no-store",
     });
