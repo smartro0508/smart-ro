@@ -1,10 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { API_BASE_URL } from "@/config";
+import { constructMetadata } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Installation Gallery | Smart RO Projects",
+  description: "View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.",
+  canonicalUrl: "/gallery",
+});
+
+export const dynamic = 'force-dynamic';
 
 async function getGalleryImages() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/gallery/get-all`, {
+    const res = await fetch(`${API_BASE_URL}/api/v1/gallery/get-all`, {
       method: "POST",
       cache: "no-store",
     });
@@ -62,7 +73,7 @@ export default async function GalleryPage() {
                   className={`relative rounded-xl overflow-hidden group border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 ${span}`}
                 >
                   <img 
-                    src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${image.image}`} 
+                    src={`${API_BASE_URL}/uploads/images/${image.image}`} 
                     alt={`Gallery Image ${i + 1}`} 
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />

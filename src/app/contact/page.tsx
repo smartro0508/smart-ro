@@ -2,6 +2,14 @@ import ContactHero from "@/components/contact/ContactHero";
 import ContactInfo from "@/components/contact/ContactInfo";
 import ContactForm from "@/components/contact/ContactForm";
 import LocationSection from "@/components/contact/LocationSection";
+import { constructMetadata } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Contact Smart RO | Expert Water Purification Consultants",
+  description: "Get in touch with Smart RO's water purification experts for tailored solutions, commercial plant installations, and repair services.",
+  canonicalUrl: "/contact",
+});
 
 export default function ContactPage() {
   return (

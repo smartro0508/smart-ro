@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
+import { API_BASE_URL } from "@/config";
 
 const requirements = [
   "Residential RO System",
@@ -30,7 +31,7 @@ export default function ContactForm() {
     };
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/contact-us/create`, {
+      await fetch(`${API_BASE_URL}/api/v1/contact-us/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

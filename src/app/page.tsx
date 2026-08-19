@@ -18,10 +18,44 @@ import {
   ClipboardList,
   Droplets,
 } from "lucide-react";
+import { API_BASE_URL } from "@/config";
+import { constructMetadata, SEO_CONFIG } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  canonicalUrl: "/",
+});
+
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SEO_CONFIG.siteName,
+    url: SEO_CONFIG.siteUrl,
+    logo: `${SEO_CONFIG.siteUrl}/app-logo.png`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: SEO_CONFIG.contact.phone,
+      contactType: "customer service",
+      areaServed: "IN",
+      availableLanguage: "en",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chennai",
+      addressRegion: "Tamil Nadu",
+      addressCountry: "IN",
+    }
+  };
+
   return (
     <main className="bg-[#f8fafc]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <TrustBadges />
       <QuickFeatures />
@@ -419,7 +453,7 @@ function OurSolutions() {
 // ----------------------------------------------------------------------
 async function getFeaturedProducts() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/products/get-all`, {
+    const res = await fetch(`${API_BASE_URL}/api/v1/products/get-all`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",
@@ -480,7 +514,7 @@ async function FeaturedProducts() {
                 </button>
                 <div className="relative w-full h-full">
                   <img
-                    src={p.mainImage ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${p.mainImage}` : "/placeholder.png"}
+                    src={p.mainImage ? `${API_BASE_URL}/uploads/images/${p.mainImage}` : "/placeholder.png"}
                     alt={p.name}
                     className="absolute inset-0 w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
@@ -801,7 +835,7 @@ function ProfessionalInstallation() {
 // ----------------------------------------------------------------------
 async function getActiveTestimonials() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/testimonials/get-active`, {
+    const res = await fetch(`${API_BASE_URL}/api/v1/testimonials/get-active`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       cache: "no-store",

@@ -18,6 +18,17 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { TestimonialFormSection } from "@/components/about/TestimonialFormSection";
+import { API_BASE_URL } from "@/config";
+import { constructMetadata } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  title: "About Smart RO | Our Mission & Vision",
+  description: "Learn about Smart RO's commitment to industrial excellence and delivering robust water purification infrastructure.",
+  canonicalUrl: "/about",
+});
+
+export const dynamic = 'force-dynamic';
 
 export default function AboutPage() {
   return (
@@ -270,7 +281,7 @@ import { Quote } from "lucide-react";
 
 async function getActiveTestimonials() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/testimonials/get-active`, {
+    const res = await fetch(`${API_BASE_URL}/api/v1/testimonials/get-active`, {
       method: "POST",
       cache: "no-store",
     });

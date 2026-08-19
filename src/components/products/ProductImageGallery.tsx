@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Maximize2, X, ZoomIn, ZoomOut } from "lucide-react";
+import { API_BASE_URL } from "@/config";
 
 export function ProductImageGallery({ images, productName, isFeatured }: { images: string[], productName: string, isFeatured: boolean }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -10,7 +11,7 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
 
   const allImages = images.filter(Boolean);
   const activeImage = allImages[activeIndex] || "/placeholder.png";
-  const activeImageSrc = activeImage !== "/placeholder.png" ? `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${activeImage}` : activeImage;
+  const activeImageSrc = activeImage !== "/placeholder.png" ? `${API_BASE_URL}/uploads/images/${activeImage}` : activeImage;
 
   const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.5, 3));
   const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.5, 0.5));
@@ -29,7 +30,7 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
               >
                 <div className="relative w-full h-full">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/uploads/images/${img}`}
+                    src={`${API_BASE_URL}/uploads/images/${img}`}
                     alt={`thumb ${i}`}
                     className="absolute inset-0 w-full h-full object-cover rounded-md"
                   />
@@ -46,14 +47,14 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
               Featured
             </div>
           )}
-          <button 
+          <button
             onClick={() => setIsModalOpen(true)}
             className="absolute z-10 top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors border border-slate-100 opacity-0 group-hover:opacity-100"
           >
             <Maximize2 className="w-4 h-4" />
           </button>
-          
-          <div 
+
+          <div
             className="relative w-full aspect-[4/5] cursor-zoom-in"
             onClick={() => setIsModalOpen(true)}
           >
@@ -80,7 +81,7 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
               <X className="w-6 h-6" />
             </button>
           </div>
-          
+
           <div className="relative w-full h-full flex items-center justify-center overflow-auto p-12">
             <img
               src={activeImageSrc}

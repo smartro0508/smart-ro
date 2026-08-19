@@ -7,9 +7,30 @@ import {
   Star,
 } from "lucide-react";
 import { ProductImageGallery } from "@/components/products/ProductImageGallery";
+import { API_BASE_URL } from "@/config";
+import { constructMetadata, SEO_CONFIG } from "@/seo.config";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   return [];
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/v1/products/get/${resolvedParams.id}`, { method: "POST" });
+    const json = await res.json();
+    const product = json.data;
+    if (product) {
+      return constructMetadata({
+        title: `${product.name} | Smart RO`,
+        description: product.shortDescription || product.description,
+        canonicalUrl: `/products/${resolvedParams.id}`,
+        image: product.mainImage ? `${API_BASE_URL}/uploads/images/${product.mainImage}` : undefined,
+      });
+    }
+  } catch (e) {}
+  return constructMetadata({ title: "Product Not Found" });
 }
 
 export default async function ProductDetailPage({
@@ -22,7 +43,7 @@ export default async function ProductDetailPage({
   let product = null;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/v1/products/get/${resolvedParams.id}`,
+      `${API_BASE_URL}/api/v1/products/get/${resolvedParams.id}`,
       {
         method: "POST",
         cache: "no-store",
@@ -78,8 +99,36 @@ export default async function ProductDetailPage({
       ? Object.entries(specifications).map(([k, v]) => ({ name: k, value: v }))
       : [];
   }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: allImages.map(img => `${API_BASE_URL}/uploads/images/${img}`),
+    description: product.shortDescription || product.description,
+    brand: {
+      "@type": "Brand",
+      name: "Smart RO"
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${SEO_CONFIG.siteUrl}/products/${resolvedParams.id}`,
+      priceCurrency: "INR",
+      price: product.price,
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: "Smart RO"
+      }
+    }
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-900 pt-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container-custom py-10">
         <div className="bg-white rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
