@@ -69,7 +69,7 @@ export default function ContactForm() {
             required
             type="text"
             placeholder="John Doe"
-            className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
+            className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
           />
         </div>
         <div>
@@ -79,7 +79,7 @@ export default function ContactForm() {
             required
             type="tel"
             placeholder="e.g. 6383450508"
-            className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
+            className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
           />
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function ContactForm() {
           required
           type="email"
           placeholder="your@email.com"
-          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all text-sm shadow-sm"
+          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
         />
       </div>
 
@@ -100,7 +100,7 @@ export default function ContactForm() {
         <select
           name="requirement"
           required
-          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all appearance-none pr-10 text-sm shadow-sm"
+          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all appearance-none pr-10 text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
         >
           <option value="">Select a requirement</option>
           {requirements.map((r) => (
@@ -116,17 +116,21 @@ export default function ContactForm() {
           required
           rows={4}
           placeholder="Describe your water purification needs..."
-          className="w-full px-4 py-3.5 rounded-sm border border-slate-200 bg-white text-slate-800 placeholder:text-slate-400 focus:border-[#0f3a61] focus:outline-none focus:ring-1 focus:ring-[#0f3a61] transition-all resize-none text-sm shadow-sm"
+          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all resize-none text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
         />
       </div>
 
       <button
         disabled={isSubmitting}
         type="submit"
-        className="w-full py-4 bg-[#06999b] text-white font-bold rounded-sm hover:bg-[#057a7c] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60 text-sm shadow-md"
+        className="group relative w-full py-4 bg-[#06999b] text-white font-bold rounded-xl hover:bg-[#057a7c] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-60 text-sm overflow-hidden shadow-[0_8px_20px_-6px_rgba(6,153,155,0.4)] hover:shadow-[0_12px_25px_-6px_rgba(6,153,155,0.5)] hover:-translate-y-0.5"
       >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
         {isSubmitting ? "Sending..." : (
-          <>Send Message <Send className="w-4 h-4" /></>
+          <>
+            <span className="relative z-10">Send Message</span>
+            <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </>
         )}
       </button>
     </form>

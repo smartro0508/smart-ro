@@ -355,37 +355,25 @@ function QuickFeatures() {
   );
 }
 
-// ----------------------------------------------------------------------
-// ROServicesHome
-// ----------------------------------------------------------------------
-const roServicesHome = [
-  {
-    title: "RO Installation",
-    description: "Professional installation of RO water purifiers with proper connections and complete system testing.",
-    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&q=80",
-    link: "/services"
-  },
-  {
-    title: "RO Repair & Service",
-    description: "Reliable repair and servicing for all common RO water purifier problems, helping restore your machine's performance.",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80",
-    link: "/services"
-  },
-  {
-    title: "Filter Replacement",
-    description: "Timely filter replacement to maintain water quality and ensure your RO purifier continues to work efficiently.",
-    image: "https://images.unsplash.com/photo-1548345680-f5475ea90f46?w=600&q=80",
-    link: "/services"
-  },
-  {
-    title: "RO Membrane Replacement",
-    description: "Professional RO membrane replacement to improve purification performance and maintain proper water quality.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&q=80",
-    link: "/services"
+async function getServices() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/v1/services/get-all`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+    });
+    const json = await res.json();
+    return json.data || [];
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return [];
   }
-];
+}
 
-function OurSolutions() {
+async function OurSolutions() {
+  const allServices = await getServices();
+  const displayedServices = allServices.slice(0, 4);
+
   return (
     <section className="py-24 bg-white">
       <div className="container-custom">
@@ -404,22 +392,22 @@ function OurSolutions() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {roServicesHome.map((srv, i) => (
+          {displayedServices.map((srv: any, i: number) => (
             <Link
-              href={srv.link}
+              href={`/services`}
               key={i}
               className="group bg-white border border-slate-200 flex flex-col hover:border-[#0f3a61] transition-colors duration-300 shadow-sm hover:shadow-md rounded-sm overflow-hidden"
             >
               <div className="relative h-40 overflow-hidden bg-slate-100">
                 <img
-                  src={srv.image}
-                  alt={srv.title}
+                  src={srv.image ? `${API_BASE_URL}/uploads/images/${srv.image}` : "/placeholder.png"}
+                  alt={srv.servicename}
                   className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
               <div className="p-5 flex flex-col flex-grow">
                 <h3 className="font-bold text-slate-900 text-base mb-3 group-hover:text-[#06999b] transition-colors line-clamp-1">
-                  {srv.title}
+                  {srv.servicename}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow line-clamp-3">
                   {srv.description}

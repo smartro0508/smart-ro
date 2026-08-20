@@ -20,7 +20,8 @@ export default function Footer() {
               className="flex items-center gap-3 mb-6 group inline-flex"
             >
               <img src="app-logo.png" alt="appLogo" height={100} width={200} />
-            </Link>l̥
+            </Link>
+            l̥
             <p className="text-slate-400 mb-8 leading-relaxed max-w-sm">
               Pioneering advanced RO purification technology engineered to
               deliver safe, clean, and refreshing water for every need, without
@@ -28,17 +29,18 @@ export default function Footer() {
             </p>
             {/* Minimal Social Links */}
             <div className="flex gap-4">
-              {["https://cdn-icons-png.flaticon.com/128/145/145802.png", "https://cdn-icons-png.flaticon.com/128/3955/3955024.png"].map(
-                (social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="text-slate-500 hover:text-white transition-colors text-sm font-semibold"
-                  >
-                    <img src={social} alt="Social Icon" className="w-10 h-10" />
-                  </a>
-                ),
-              )}
+              {[
+                "https://cdn-icons-png.flaticon.com/128/145/145802.png",
+                "https://cdn-icons-png.flaticon.com/128/3955/3955024.png",
+              ].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="text-slate-500 hover:text-white transition-colors text-sm font-semibold"
+                >
+                  <img src={social} alt="Social Icon" className="w-10 h-10" />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -86,39 +88,23 @@ export default function Footer() {
           {/* Links 2 */}
           <div className="lg:col-span-2">
             <h4 className="font-bold text-lg mb-6 text-white uppercase tracking-wider text-sm">
-              Solutions
+              Policies
             </h4>
             <ul className="space-y-4">
               <li>
                 <Link
-                  href="/products"
+                  href="/privacy-policy"
                   className="text-slate-400 hover:text-primary transition-colors inline-block transform hover:translate-x-1 duration-200"
                 >
-                  Home RO Systems
+                  Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products"
+                  href="/terms-of-service"
                   className="text-slate-400 hover:text-primary transition-colors inline-block transform hover:translate-x-1 duration-200"
                 >
-                  Commercial RO
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="text-slate-400 hover:text-primary transition-colors inline-block transform hover:translate-x-1 duration-200"
-                >
-                  Industrial Plants
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="text-slate-400 hover:text-primary transition-colors inline-block transform hover:translate-x-1 duration-200"
-                >
-                  Water Softeners
+                  Terms of Service
                 </Link>
               </li>
             </ul>
@@ -135,8 +121,10 @@ export default function Footer() {
                   <MapPin className="w-4 h-4 text-primary" />
                 </div>
                 <span className="mt-2 text-sm leading-relaxed">
-                  Smart RO<br />
-                  9/1, sri nagar, deepam nagar 9th Street,<br />
+                  Smart RO
+                  <br />
+                  9/1, sri nagar, deepam nagar 9th Street,
+                  <br />
                   irugur, 641103
                 </span>
               </li>
@@ -144,31 +132,27 @@ export default function Footer() {
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-medium">6383450508, 9790188321</span>
+                <span className="text-sm font-medium">
+                  6383450508, 9790188321
+                </span>
               </li>
               <li className="flex items-center gap-4 text-slate-400 group">
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-sm font-medium">smartro0508@gmail.com</span>
+                <span className="text-sm font-medium">
+                  smartro0508@gmail.com
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-500 text-sm font-medium">
+        <div className="border-t border-white/10 pt-8 flex justify-center items-center">
+          <p className="text-slate-500 text-sm font-medium text-center">
             © {new Date().getFullYear()} Smart RO. All Rights Reserved.
           </p>
-          <div className="flex gap-8 text-sm font-medium text-slate-500">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

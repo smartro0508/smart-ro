@@ -31,7 +31,7 @@ export default function ContactInfo() {
         </div>
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Office</p>
-          <p className="text-base font-bold text-[#0f3a61] leading-tight">Harish Arora</p>
+          <p className="text-base font-bold text-[#0f3a61] leading-tight">Smart RO</p>
           <p className="text-sm text-slate-500 mt-1">9/1, Sri Nagar, Deepam Nagar<br/>9th Street, Irugur, 641103</p>
         </div>
       </div>
