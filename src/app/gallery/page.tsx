@@ -44,19 +44,26 @@ export default async function GalleryPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-700">
-      {/* ── CORPORATE HERO SECTION ── */}
-      <section className="relative pt-32 pb-24 bg-white border-b border-slate-200">
-        <div className="container-custom max-w-4xl mx-auto text-center">
-          <div className="inline-block px-3 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 text-xs font-bold tracking-wider uppercase mb-6">
-            Project Gallery
+      {/* ── CORPORATE HERO CARD ── */}
+      <section className="relative pt-32 pb-12 bg-slate-50">
+        <div className="container-custom">
+          <div className="relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#06999b]/5 to-transparent pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#0f3a61]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 right-20 -translate-y-1/2 w-48 h-48 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none hidden md:block" />
+            
+            <div className="relative z-10 p-10 md:p-16 lg:p-20">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-[#0f3a61]/5 text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-6 border border-[#0f3a61]/10">Project Gallery</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+                Installations & <br className="hidden md:block" />
+                Operational Facilities
+              </h1>
+              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl border-l-4 border-[#06999b] pl-6 font-medium">
+                View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.
+              </p>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F172A] mb-6 tracking-tight">
-            Installations & <br className="hidden md:block" />
-            Operational Facilities
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.
-          </p>
         </div>
       </section>
 

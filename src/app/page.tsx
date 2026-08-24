@@ -396,24 +396,47 @@ async function OurSolutions() {
             <Link
               href={`/services`}
               key={i}
-              className="group bg-white border border-slate-200 flex flex-col hover:border-[#0f3a61] transition-colors duration-300 shadow-sm hover:shadow-md rounded-sm overflow-hidden"
+              className="group bg-white flex flex-col rounded-2xl overflow-hidden border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(6,153,155,0.12)] hover:border-[#06999b]/30 transition-all duration-300 relative"
             >
-              <div className="relative h-40 overflow-hidden bg-slate-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#06999b]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+              <div className="relative h-44 overflow-hidden bg-slate-100 border-b border-slate-100">
                 <img
                   src={srv.image ? `${API_BASE_URL}/uploads/images/${srv.image}` : "/placeholder.png"}
                   alt={srv.servicename}
-                  className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <h3 className="font-bold text-slate-900 text-base mb-3 group-hover:text-[#06999b] transition-colors line-clamp-1">
+              <div className="p-6 flex flex-col flex-grow relative z-20 bg-white">
+                <h3 className="font-bold text-slate-900 text-lg mb-3 group-hover:text-[#0f3a61] transition-colors line-clamp-1">
                   {srv.servicename}
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4 flex-grow line-clamp-3">
+                {(Number(srv.servicecost) > 0 || Number(srv.serviceproductcost) > 0) && (
+                  <div className="flex flex-col gap-2 mb-4 bg-slate-50/70 p-3 rounded-xl border border-slate-100/80">
+                    {Number(srv.servicecost) > 0 && (
+                      <div className="flex justify-between items-center text-xs">
+                        <span className="text-slate-500 font-medium">Service Fee:</span>
+                        <span className="font-bold text-slate-800">₹{Number(srv.servicecost).toLocaleString('en-IN')}</span>
+                      </div>
+                    )}
+                    {Number(srv.serviceproductcost) > 0 && (
+                      <div className="flex justify-between items-center text-xs">
+                        <span className="text-slate-500 font-medium">Product/Parts:</span>
+                        <span className="font-bold text-slate-800">₹{Number(srv.serviceproductcost).toLocaleString('en-IN')}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+                <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-grow line-clamp-3">
                   {srv.description}
                 </p>
-                <div className="inline-flex items-center text-xs font-bold text-[#0f3a61] uppercase tracking-wider group-hover:text-blue-700 transition-colors mt-auto">
-                  View Details <ArrowRight className="w-4 h-4 ml-2" />
+                
+                <div className="pt-4 border-t border-slate-100 mt-auto flex items-center justify-between group-hover:border-slate-200 transition-colors">
+                  <span className="text-xs font-bold text-[#06999b] uppercase tracking-wider transition-colors">
+                    View Details
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#0f3a61] transition-all duration-300 group-hover:translate-x-1">
+                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                  </div>
                 </div>
               </div>
             </Link>
@@ -422,13 +445,19 @@ async function OurSolutions() {
           {/* View All Card */}
           <Link
             href="/services"
-            className="group bg-[#0A1120] border border-[#0A1120] flex flex-col items-center justify-center p-6 hover:bg-[#0f3a61] transition-colors duration-300 shadow-sm hover:shadow-md rounded-sm text-center min-h-[250px]"
+            className="group bg-[#0A1120] relative rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgb(15,58,97,0.3)] transition-all duration-300 flex flex-col items-center justify-center p-8 text-center min-h-[250px]"
           >
-            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <ArrowRight className="w-6 h-6 text-white" />
+            {/* Decorative background in dark card */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#06999b]/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#06999b]/30 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0f3a61]/50 transition-colors duration-500" />
+            
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#06999b] group-hover:border-[#06999b] transition-all duration-300 shadow-lg">
+                <ArrowRight className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-bold text-white text-xl mb-3">View All<br/>Services</h3>
+              <p className="text-slate-400 text-xs leading-relaxed max-w-[150px]">Explore our complete range of RO maintenance solutions.</p>
             </div>
-            <h3 className="font-bold text-white text-lg mb-2">View All<br/>Services</h3>
-            <p className="text-slate-400 text-[11px] leading-relaxed mt-2">Explore our complete range of 10+ RO maintenance & repair solutions.</p>
           </Link>
         </div>
       </div>

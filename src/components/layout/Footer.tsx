@@ -21,7 +21,6 @@ export default function Footer() {
             >
               <img src="app-logo.png" alt="appLogo" height={100} width={200} />
             </Link>
-            l̥
             <p className="text-slate-400 mb-8 leading-relaxed max-w-sm">
               Pioneering advanced RO purification technology engineered to
               deliver safe, clean, and refreshing water for every need, without
