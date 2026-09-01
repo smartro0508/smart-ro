@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
               <p className="text-sm text-slate-500 mt-1">Last Updated: {new Date().toLocaleDateString()}</p>
             </div>
           </div>
-          
+
           <div className="space-y-8 text-slate-600 leading-relaxed text-sm">
             <div>
               <h3 className="text-xl font-bold text-[#0f3a61] mb-3">1. Agreement to Terms</h3>
@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
                 These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and Smart RO ("we," "us" or "our"), concerning your access to and use of our website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto.
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-xl font-bold text-[#0f3a61] mb-3">2. Intellectual Property Rights</h3>
               <p>
@@ -76,7 +76,7 @@ export default function TermsOfServicePage() {
                 <p className="font-bold text-slate-800 text-base mb-2">Smart RO</p>
                 <p>9/1, sri nagar, deepam nagar 9th Street,</p>
                 <p>irugur, 641103</p>
-                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9790188321</p>
+                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9384370508</p>
                 <p><strong className="text-slate-800">Email:</strong> smartro0508@gmail.com</p>
               </div>
             </div>

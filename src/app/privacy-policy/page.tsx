@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-sm text-slate-500 mt-1">Last Updated: {new Date().toLocaleDateString()}</p>
             </div>
           </div>
-          
+
           <div className="space-y-8 text-slate-600 leading-relaxed text-sm">
             <div>
               <h3 className="text-xl font-bold text-[#0f3a61] mb-3">1. Introduction</h3>
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
                 Smart RO ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-xl font-bold text-[#0f3a61] mb-3">2. Information We Collect</h3>
               <p className="mb-3">
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
                 <p className="font-bold text-slate-800 text-base mb-2">Smart RO</p>
                 <p>9/1, sri nagar, deepam nagar 9th Street,</p>
                 <p>irugur, 641103</p>
-                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9790188321</p>
+                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9384370508</p>
                 <p><strong className="text-slate-800">Email:</strong> smartro0508@gmail.com</p>
               </div>
             </div>

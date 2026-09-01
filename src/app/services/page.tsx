@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { 
-  Wrench, 
-  Settings, 
-  Droplet, 
-  Layers, 
-  Sparkles, 
-  Activity, 
-  PenTool, 
-  Shield, 
-  Briefcase, 
+import {
+  Wrench,
+  Settings,
+  Droplet,
+  Layers,
+  Sparkles,
+  Activity,
+  PenTool,
+  Shield,
+  Briefcase,
   Home,
   X,
   CheckCircle2
@@ -45,27 +45,27 @@ export default function ServicesPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans">
-      <section className="relative pt-32 pb-12 bg-slate-50">
+      <section className="relative pt-24 pb-8 bg-slate-50">
         <div className="container-custom">
-          <div className="relative bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
+          <div className="relative bg-white rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#06999b]/5 to-transparent pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#0f3a61]/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute top-1/2 right-20 -translate-y-1/2 w-48 h-48 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none hidden md:block" />
-            
-            <div className="relative z-10 p-10 md:p-16 lg:p-20">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-[#0f3a61]/5 text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-6 border border-[#0f3a61]/10">Technical Support</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+
+            <div className="relative z-10 p-6 md:p-10 lg:p-12">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-[#0f3a61]/5 text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-4 border border-[#0f3a61]/10">Technical Support</span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4 tracking-tight">
                 Operations & Maintenance
               </h1>
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl border-l-4 border-[#06999b] pl-6 font-medium">
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl border-l-4 border-[#06999b] pl-5 font-medium">
                 Enterprise-grade support and lifecycle management to ensure your purification infrastructure operates at maximum reliability and compliance.
               </p>
             </div>
           </div>
         </div>
       </section>
-      
+
       <section className="py-24">
         <div className="container-custom">
           {loading ? (
@@ -81,20 +81,20 @@ export default function ServicesPage() {
               {servicesList.map((service, i) => {
                 const Icon = ICONS[i % ICONS.length];
                 return (
-                  <div 
-                    key={service.id || i} 
+                  <div
+                    key={service.id || i}
                     onClick={() => setSelectedService({ ...service, Icon })}
                     className="bg-white p-8 border border-slate-100 hover:border-[#06999b]/30 rounded-2xl flex flex-col cursor-pointer group shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(6,153,155,0.12)] transition-all duration-300 relative overflow-hidden"
                   >
                     {/* Hover Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#06999b]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                    
+
                     <div className="relative z-10 flex flex-col h-full">
                       <div className="w-14 h-14 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 group-hover:bg-[#06999b] group-hover:border-[#06999b] transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:-translate-y-1">
                         <Icon className="w-6 h-6 text-[#0f3a61] group-hover:text-white transition-colors duration-300" />
                       </div>
                       <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#0f3a61] transition-colors">{service.servicename}</h3>
-                      
+
                       {(Number(service.servicecost) > 0 || Number(service.serviceproductcost) > 0) && (
                         <div className="flex flex-col gap-2 mb-5 bg-slate-50/70 p-4 rounded-xl border border-slate-100/80">
                           {Number(service.servicecost) > 0 && (
@@ -111,17 +111,17 @@ export default function ServicesPage() {
                           )}
                         </div>
                       )}
-                      
+
                       <p className="text-sm text-slate-500 leading-relaxed mb-8 flex-grow line-clamp-3">
                         {service.description}
                       </p>
-                      
+
                       <div className="pt-5 border-t border-slate-100 mt-auto flex items-center justify-between group-hover:border-slate-200 transition-colors">
                         <span className="text-xs font-bold text-[#06999b] uppercase tracking-wider transition-colors flex items-center gap-2">
                           View Details
                         </span>
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#0f3a61] transition-all duration-300 group-hover:translate-x-1">
-                           <span className="text-slate-400 group-hover:text-white transition-colors">→</span>
+                          <span className="text-slate-400 group-hover:text-white transition-colors">→</span>
                         </div>
                       </div>
                     </div>
@@ -158,11 +158,11 @@ export default function ServicesPage() {
       {selectedService && (
         <div className="fixed inset-0 z-50 flex justify-end">
           {/* Backdrop */}
-          <div 
+          <div
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
             onClick={() => setSelectedService(null)}
           />
-          
+
           {/* Sidebar */}
           <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
             <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-white">
@@ -172,21 +172,21 @@ export default function ServicesPage() {
                 </div>
                 {selectedService.servicename}
               </h2>
-              <button 
+              <button
                 onClick={() => setSelectedService(null)}
                 className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <div className="p-8 overflow-y-auto flex-grow custom-scrollbar">
               {selectedService.image && (
                 <div className="w-full h-56 relative mb-8 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
                   <img src={`${API_BASE_URL}/uploads/images/${selectedService.image}`} alt={selectedService.servicename} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               )}
-              
+
               {(Number(selectedService.servicecost) > 0 || Number(selectedService.serviceproductcost) > 0) && (
                 <div className="mb-8 bg-gradient-to-br from-slate-50 to-white p-5 border border-slate-200 rounded-2xl shadow-sm">
                   <h3 className="text-xs font-bold text-[#06999b] uppercase tracking-widest mb-4 block">Pricing Information</h3>
@@ -219,7 +219,7 @@ export default function ServicesPage() {
                   {selectedService.description}
                 </p>
               </div>
-              
+
               {selectedService.keypoints && (
                 <div>
                   <h3 className="text-xs font-bold text-[#06999b] uppercase tracking-widest mb-4 block">Included in Protocol</h3>
@@ -246,9 +246,9 @@ export default function ServicesPage() {
                 </div>
               )}
             </div>
-            
+
             <div className="p-6 border-t border-slate-100 bg-white shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
-              <Link 
+              <Link
                 href="/contact"
                 onClick={() => setSelectedService(null)}
                 className="w-full flex items-center justify-center px-6 py-4 bg-[#0f3a61] text-white text-sm font-bold uppercase tracking-wider rounded-xl hover:bg-[#0a2845] transition-colors shadow-md hover:shadow-lg"

@@ -9,7 +9,7 @@ export default function ContactInfo() {
         </div>
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Call Us</p>
-          <a href="tel:+916383450508" className="text-base font-bold text-[#0f3a61] hover:text-primary transition-colors block leading-tight">6383450508, 9790188321</a>
+          <a href="tel:+916383450508" className="text-base font-bold text-[#0f3a61] hover:text-primary transition-colors block leading-tight">6383450508, 9384370508</a>
           <p className="text-sm text-slate-500 mt-1">Mon–Sat, 9AM–6PM</p>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function ContactInfo() {
         <div>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Office</p>
           <p className="text-base font-bold text-[#0f3a61] leading-tight">Smart RO</p>
-          <p className="text-sm text-slate-500 mt-1">9/1, Sri Nagar, Deepam Nagar<br/>9th Street, Irugur, 641103</p>
+          <p className="text-sm text-slate-500 mt-1">9/1, Sri Nagar, Deepam Nagar<br />9th Street, Irugur, 641103</p>
         </div>
       </div>
     </div>

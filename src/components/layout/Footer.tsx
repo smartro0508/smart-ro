@@ -29,15 +29,17 @@ export default function Footer() {
             {/* Minimal Social Links */}
             <div className="flex gap-4">
               {[
-                "https://cdn-icons-png.flaticon.com/128/145/145802.png",
-                "https://cdn-icons-png.flaticon.com/128/3955/3955024.png",
+                { icon: "https://cdn-icons-png.flaticon.com/128/145/145802.png", url: "https://www.facebook.com/profile.php?id=100090036542933", alt: "Facebook" },
+                { icon: "https://cdn-icons-png.flaticon.com/128/3955/3955024.png", url: "https://www.instagram.com/smartro321/", alt: "Instagram" },
               ].map((social) => (
                 <a
-                  key={social}
-                  href="#"
-                  className="text-slate-500 hover:text-white transition-colors text-sm font-semibold"
+                  key={social.url}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-white transition-all hover:scale-110"
                 >
-                  <img src={social} alt="Social Icon" className="w-10 h-10" />
+                  <img src={social.icon} alt={social.alt} className="w-10 h-10" />
                 </a>
               ))}
             </div>
@@ -132,7 +134,7 @@ export default function Footer() {
                   <Phone className="w-4 h-4 text-primary" />
                 </div>
                 <span className="text-sm font-medium">
-                  6383450508, 9790188321
+                  6383450508, 9384370508
                 </span>
               </li>
               <li className="flex items-center gap-4 text-slate-400 group">

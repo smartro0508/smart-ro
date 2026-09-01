@@ -58,10 +58,10 @@ export default function Home() {
       />
       <Hero />
       <TrustBadges />
-      <QuickFeatures />
+      <FeaturedProducts />
       <OurSolutions />
       <SmartROAdSection />
-      <FeaturedProducts />
+      <QuickFeatures />
       <AdvancedTechnology />
       <WhyChooseUs />
       <ProfessionalInstallation />
@@ -77,20 +77,14 @@ export default function Home() {
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A1120]">
-      {/* ── Looping background video ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity grayscale"
-        poster="https://images.unsplash.com/photo-1548345680-f5475ea90f46?q=80&w=1920"
-      >
-        <source
-          src="https://assets.mixkit.co/videos/51952/51952-720.mp4"
-          type="video/mp4"
-        />
-      </video>
+      {/* ── Background Image ── */}
+      <Image
+        src="/ro-electronics-banner.jpeg"
+        alt="Industrial RO Electronics"
+        fill
+        className="object-cover opacity-40 mix-blend-luminosity"
+        priority
+      />
 
       {/* ── Corporate Grid Overlay ── */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none mix-blend-overlay" />
@@ -193,7 +187,7 @@ function Hero() {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 to-transparent z-20 pointer-events-none" />
     </section>
   );
 }
@@ -277,28 +271,35 @@ function SmartROAdSection() {
 // ----------------------------------------------------------------------
 function TrustBadges() {
   const badges = [
-    { icon: Droplet, label: "PURE\nWATER" },
-    { icon: ShieldCheck, label: "ADVANCED\nPURIFICATION" },
-    { icon: Leaf, label: "HEALTHY\nLIVING" },
-    { icon: Heart, label: "TRUSTED\nQUALITY" },
+    { icon: Droplet, label: "Pure Water", sub: "100% Safe" },
+    { icon: ShieldCheck, label: "Advanced", sub: "Purification" },
+    { icon: Leaf, label: "Eco-Friendly", sub: "Operations" },
+    { icon: Heart, label: "Trusted", sub: "By Thousands" },
   ];
 
   return (
-    <section className="bg-white border-b border-slate-200 relative z-20">
+    <section className="relative z-30 -mt-20 px-4 md:px-0">
       <div className="container-custom">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+        <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white p-2 md:p-4 grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100">
           {badges.map((badge, i) => (
             <div
               key={i}
-              className="flex flex-col items-center justify-center text-center py-10 px-6 group hover:bg-slate-50 transition-colors"
+              className="flex flex-col md:flex-row items-center gap-4 py-6 px-4 md:px-8 group hover:bg-slate-50/80 transition-all duration-300 rounded-2xl md:rounded-none first:rounded-l-2xl last:rounded-r-2xl"
             >
-              <badge.icon
-                className="w-10 h-10 text-[#0f3a61] mb-4 group-hover:scale-105 transition-transform"
-                strokeWidth={1.5}
-              />
-              <span className="text-xs font-bold text-slate-800 whitespace-pre-line tracking-widest uppercase">
-                {badge.label}
-              </span>
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#06999b]/10 to-[#0f3a61]/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:from-[#06999b] group-hover:to-[#0f3a61] transition-all duration-500 shadow-inner">
+                <badge.icon
+                  className="w-6 h-6 text-[#06999b] group-hover:text-white transition-colors duration-500"
+                  strokeWidth={2}
+                />
+              </div>
+              <div className="text-center md:text-left flex flex-col">
+                <span className="text-sm font-black text-slate-900 leading-tight group-hover:text-[#06999b] transition-colors">
+                  {badge.label}
+                </span>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">
+                  {badge.sub}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -315,38 +316,72 @@ const quickFeatures = [
     icon: Droplet,
     title: "RO Products",
     desc: "Comprehensive range of RO systems for residential, commercial & industrial facilities.",
+    color: "from-blue-500 to-cyan-400"
   },
   {
     icon: Wrench,
     title: "RO Installation",
     desc: "Precision installation and configuration by certified technical experts.",
+    color: "from-emerald-500 to-teal-400"
   },
   {
     icon: Settings,
     title: "RO Service",
     desc: "Scheduled maintenance, diagnostics, and authentic component replacement.",
+    color: "from-indigo-500 to-blue-400"
   },
   {
     icon: ShieldCheck,
     title: "Water Treatment",
     desc: "End-to-end water treatment solutions tailored for specialized applications.",
+    color: "from-cyan-500 to-teal-400"
   },
 ];
 
 function QuickFeatures() {
   return (
-    <section className="bg-slate-50 py-20 border-b border-slate-200">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+    <section className="bg-[#f8fafc] py-24 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] -right-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-[#06999b]/5 to-[#4ea8de]/5 blur-3xl mix-blend-multiply" />
+        <div className="absolute bottom-[10%] -left-[5%] w-[40%] h-[40%] rounded-full bg-gradient-to-tr from-[#0f3a61]/5 to-[#06999b]/5 blur-3xl mix-blend-multiply" />
+      </div>
+
+      <div className="container-custom relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-bold text-[#06999b] uppercase tracking-widest mb-3 block">
+            Our Core Competencies
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+            Comprehensive Purification Solutions
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
           {quickFeatures.map((f, i) => (
-            <div key={i} className="flex flex-col">
-              <div className="w-12 h-12 bg-[#0f3a61] flex items-center justify-center mb-5 rounded-sm">
-                <f.icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+            <div
+              key={i}
+              className="group relative bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(6,153,155,0.12)] border border-slate-100 transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col"
+            >
+              {/* Hover Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${f.color} flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3`}>
+                  <f.icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                </div>
+                <h3 className="font-bold text-slate-900 text-xl mb-3 group-hover:text-[#0f3a61] transition-colors duration-300">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed group-hover:text-slate-600 transition-colors duration-300">
+                  {f.desc}
+                </p>
+
+                {/* Decorative line */}
+                <div className="mt-auto pt-6 w-full flex items-center">
+                  <div className="h-[3px] w-8 bg-slate-200 rounded-full group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-[#06999b] group-hover:to-[#4ea8de] transition-all duration-700 ease-out" />
+                </div>
               </div>
-              <h3 className="font-bold text-slate-900 text-lg mb-2">
-                {f.title}
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -391,7 +426,7 @@ async function OurSolutions() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {displayedServices.map((srv: any, i: number) => (
             <Link
               href={`/services`}
@@ -429,19 +464,19 @@ async function OurSolutions() {
                 <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-grow line-clamp-3">
                   {srv.description}
                 </p>
-                
+
                 <div className="pt-4 border-t border-slate-100 mt-auto flex items-center justify-between group-hover:border-slate-200 transition-colors">
                   <span className="text-xs font-bold text-[#06999b] uppercase tracking-wider transition-colors">
                     View Details
                   </span>
                   <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#0f3a61] transition-all duration-300 group-hover:translate-x-1">
-                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
                   </div>
                 </div>
               </div>
             </Link>
           ))}
-          
+
           {/* View All Card */}
           <Link
             href="/services"
@@ -450,12 +485,12 @@ async function OurSolutions() {
             {/* Decorative background in dark card */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#06999b]/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#06999b]/30 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0f3a61]/50 transition-colors duration-500" />
-            
+
             <div className="relative z-10 flex flex-col items-center">
               <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#06999b] group-hover:border-[#06999b] transition-all duration-300 shadow-lg">
                 <ArrowRight className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-bold text-white text-xl mb-3">View All<br/>Services</h3>
+              <h3 className="font-bold text-white text-xl mb-3">View All<br />Services</h3>
               <p className="text-slate-400 text-xs leading-relaxed max-w-[150px]">Explore our complete range of RO maintenance solutions.</p>
             </div>
           </Link>
@@ -491,8 +526,7 @@ async function FeaturedProducts() {
     products = allProducts;
   }
 
-  const hasMore = products.length > 6;
-  const displayedProducts = products.slice(0, 6);
+  const displayedProducts = products.slice(0, 5);
 
   return (
     <section className="py-24 bg-slate-50 border-t border-slate-200">
@@ -504,14 +538,6 @@ async function FeaturedProducts() {
             </h2>
             <div className="w-16 h-1 bg-[#0f3a61]"></div>
           </div>
-          {hasMore && (
-            <Link
-              href="/products"
-              className="text-[#06999b] font-bold text-sm uppercase tracking-wider flex items-center gap-2 hover:text-[#057a7c] transition-colors"
-            >
-              View All <ArrowRight className="w-4 h-4" />
-            </Link>
-          )}
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -571,6 +597,24 @@ async function FeaturedProducts() {
               </div>
             </Link>
           ))}
+
+          {/* View More Card */}
+          <Link
+            href="/products"
+            className="group bg-[#0A1120] relative rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(15,58,97,0.3)] transition-all duration-300 flex flex-col items-center justify-center p-8 text-center min-h-[350px]"
+          >
+            {/* Decorative background in dark card */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#06999b]/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#06999b]/30 rounded-full blur-3xl pointer-events-none group-hover:bg-[#0f3a61]/50 transition-colors duration-500" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#06999b] group-hover:border-[#06999b] transition-all duration-300 shadow-lg">
+                <ArrowRight className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="font-bold text-white text-2xl mb-4">View All<br />Products</h3>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-[180px]">Explore our complete range of premium RO water purifiers.</p>
+            </div>
+          </Link>
         </div>
       </div>
     </section>
@@ -706,49 +750,70 @@ const whyFeatures = [
 
 function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white border-y border-slate-200">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          {/* Left Column: Features */}
           <div>
-            <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-3 block">
-              Corporate Value
-            </span>
-            <h2 className="text-3xl font-bold text-slate-900 mb-10">
-              Strategic Advantage
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-8 bg-[#0f3a61]"></div>
+              <span className="text-xs font-bold text-[#0f3a61] uppercase tracking-widest">
+                Corporate Value
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-10 tracking-tight leading-tight">
+              Strategic Advantage in Every Drop
             </h2>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10">
+
+            <div className="grid sm:grid-cols-2 gap-8">
               {whyFeatures.map((f, i) => (
-                <div key={i} className="flex flex-col gap-3">
-                  <div className="w-10 h-10 border border-slate-200 bg-slate-50 flex items-center justify-center text-[#0f3a61]">
+                <div key={i} className="flex flex-col border-t border-slate-100 pt-6">
+                  <div className="w-10 h-10 rounded bg-[#0f3a61]/5 border border-[#0f3a61]/10 flex items-center justify-center text-[#0f3a61] mb-4">
                     <f.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-1.5">
-                      {f.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {f.desc}
-                    </p>
-                  </div>
+                  <h3 className="text-sm font-bold text-slate-900 mb-2">
+                    {f.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                    {f.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-slate-50 border border-slate-200 p-12 grid grid-cols-2 gap-x-8 gap-y-12">
-            {statsInfo.map((s, i) => (
-              <div
-                key={i}
-                className="text-left border-l-2 border-[#0f3a61] pl-6"
-              >
-                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
-                  {s.value}
-                </div>
-                <div className="text-xs font-bold uppercase tracking-widest text-slate-500">
-                  {s.label}
-                </div>
+          {/* Right Column: Corporate Stats */}
+          <div className="relative h-full flex flex-col justify-center mt-10 lg:mt-0">
+            {/* Corporate geometric background accent */}
+            <div className="absolute top-0 right-0 w-3/4 h-full bg-slate-50 border border-slate-200 -z-10 translate-x-4 translate-y-4"></div>
+
+            <div className="bg-[#0f3a61] p-10 md:p-14 shadow-xl relative overflow-hidden">
+              {/* Subtle grid pattern */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+              <div className="relative z-10 grid grid-cols-2 gap-x-8 gap-y-12">
+                {statsInfo.map((s, i) => (
+                  <div
+                    key={i}
+                    className="text-left border-l-2 border-[#06999b] pl-6"
+                  >
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+                      {s.value}
+                    </div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-blue-200">
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              {/* Corporate seal/accent */}
+              <div className="mt-16 pt-8 border-t border-white/10 flex items-center justify-between">
+                <span className="text-xs font-medium text-slate-300">ISO 9001:2015 Certified Operations</span>
+                <ShieldCheck className="w-6 h-6 text-[#06999b]" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -924,30 +989,41 @@ async function Testimonials() {
 // ----------------------------------------------------------------------
 function CTASection() {
   return (
-    <section className="bg-[#0f3a61] py-20 border-t border-slate-800">
-      <div className="container-custom flex flex-col lg:flex-row lg:items-center justify-between gap-12">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Request a Technical Consultation
-          </h2>
-          <p className="text-sm text-blue-100 leading-relaxed opacity-90 max-w-lg">
-            Engage with our engineering team to assess your requirements and
-            propose a tailored, high-efficiency RO infrastructure solution.
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <Link
-            href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#06999b] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#057a7c] transition-colors"
-          >
-            Submit RFP <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
-          <Link
-            href="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#06999b] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#057a7c] transition-colors border-none"
-          >
-            Contact Engineering
-          </Link>
+    <section className="py-20 bg-white">
+      <div className="container-custom relative z-10">
+        <div className="bg-[#0A1120] relative overflow-hidden shadow-sm border border-slate-800">
+          {/* Subtle architectural lines */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/blueprint.png')]" />
+
+          <div className="relative p-12 md:p-20 flex flex-col lg:flex-row lg:items-center justify-between gap-12 border-l-[6px] border-[#06999b]">
+            <div className="max-w-2xl relative z-10">
+              <div className="text-[10px] font-bold text-[#06999b] uppercase tracking-widest mb-4">
+                Enterprise Infrastructure
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+                Request a Technical Consultation
+              </h2>
+              <p className="text-sm text-slate-400 leading-relaxed font-medium max-w-xl">
+                Engage with our engineering team to assess your requirements and
+                propose a tailored, high-efficiency RO infrastructure solution designed for scale and reliability.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10 shrink-0">
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#06999b] hover:bg-[#057a7c] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+              >
+                Submit RFP <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white/20 hover:border-white/40 text-white text-xs font-bold uppercase tracking-wider transition-colors"
+              >
+                Contact Engineering
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -20,7 +20,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const formData = new FormData(e.target as HTMLFormElement);
     const data = {
       fullName: formData.get("fullName"),
@@ -60,75 +60,78 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid sm:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Full Name</label>
+    <form onSubmit={handleSubmit} className="space-y-8 mt-4">
+      <div className="grid sm:grid-cols-2 gap-8">
+        <div className="relative group">
           <input
             name="fullName"
             required
             type="text"
-            placeholder="John Doe"
-            className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+            placeholder="Full Name *"
+            className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#06999b] focus:ring-0 outline-none transition-all text-sm font-semibold"
           />
+          <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#06999b] transition-all duration-300 group-focus-within:w-full"></div>
         </div>
-        <div>
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Phone</label>
+        <div className="relative group">
           <input
             name="phone"
             required
             type="tel"
-            placeholder="e.g. 6383450508"
-            className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+            placeholder="Phone Number *"
+            className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#06999b] focus:ring-0 outline-none transition-all text-sm font-semibold"
           />
+          <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#06999b] transition-all duration-300 group-focus-within:w-full"></div>
         </div>
       </div>
 
-      <div>
-        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Email Address</label>
+      <div className="relative group">
         <input
           name="email"
           required
           type="email"
-          placeholder="your@email.com"
-          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+          placeholder="Email Address *"
+          className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#06999b] focus:ring-0 outline-none transition-all text-sm font-semibold"
         />
+        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#06999b] transition-all duration-300 group-focus-within:w-full"></div>
       </div>
 
-      <div>
-        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">How can we help?</label>
+      <div className="relative group">
         <select
           name="requirement"
           required
-          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all appearance-none pr-10 text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+          defaultValue=""
+          className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-slate-200 text-slate-900 focus:border-[#06999b] focus:ring-0 outline-none transition-all appearance-none text-sm font-semibold cursor-pointer"
         >
-          <option value="">Select a requirement</option>
+          <option value="" disabled className="text-slate-400">Select a Requirement *</option>
           {requirements.map((r) => (
-            <option key={r} value={r}>{r}</option>
+            <option key={r} value={r} className="text-slate-900">{r}</option>
           ))}
         </select>
+        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#06999b] transition-all duration-300 group-focus-within:w-full"></div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
       </div>
 
-      <div>
-        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Message</label>
+      <div className="relative group">
         <textarea
           name="message"
           required
-          rows={4}
-          placeholder="Describe your water purification needs..."
-          className="w-full px-5 py-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-[#06999b] focus:outline-none focus:ring-4 focus:ring-[#06999b]/10 transition-all resize-none text-sm font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+          rows={3}
+          placeholder="Describe your project or requirement... *"
+          className="w-full px-0 py-3 bg-transparent border-0 border-b-2 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-[#06999b] focus:ring-0 outline-none transition-all resize-none text-sm font-semibold"
         />
+        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#06999b] transition-all duration-300 group-focus-within:w-full"></div>
       </div>
 
       <button
         disabled={isSubmitting}
         type="submit"
-        className="group relative w-full py-4 bg-[#06999b] text-white font-bold rounded-xl hover:bg-[#057a7c] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-60 text-sm overflow-hidden shadow-[0_8px_20px_-6px_rgba(6,153,155,0.4)] hover:shadow-[0_12px_25px_-6px_rgba(6,153,155,0.5)] hover:-translate-y-0.5"
+        className="group relative w-full py-4 mt-6 bg-gradient-to-r from-[#0f3a61] to-[#06999b] text-white font-bold rounded-sm hover:opacity-95 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-60 text-sm uppercase tracking-widest shadow-md hover:shadow-lg"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
         {isSubmitting ? "Sending..." : (
           <>
-            <span className="relative z-10">Send Message</span>
+            <span className="relative z-10">Submit Inquiry</span>
             <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </>
         )}
