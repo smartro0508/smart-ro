@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Droplets } from "lucide-react";
 import { API_BASE_URL } from "@/config";
 import { constructMetadata } from "@/seo.config";
 import type { Metadata } from "next";
@@ -45,24 +45,24 @@ export default async function GalleryPage() {
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-700">
       {/* ── CORPORATE HERO CARD ── */}
-      <section className="relative pt-24 pb-8 bg-slate-50">
-        <div className="container-custom">
-          <div className="relative bg-white rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#06999b]/5 to-transparent pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#0f3a61]/5 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute top-1/2 right-20 -translate-y-1/2 w-48 h-48 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none hidden md:block" />
-            
-            <div className="relative z-10 p-6 md:p-10 lg:p-12">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-[#0f3a61]/5 text-xs font-bold text-[#0f3a61] uppercase tracking-widest mb-4 border border-[#0f3a61]/10">Project Gallery</span>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                Installations & <br className="hidden md:block" />
-                Operational Facilities
-              </h1>
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl border-l-4 border-[#06999b] pl-5 font-medium">
-                View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.
-              </p>
-            </div>
+      <section className="relative pt-28 pb-12 bg-slate-50 overflow-hidden">
+        {/* Soft background accents */}
+        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-[#f0f9ff] to-transparent pointer-events-none" />
+        <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#06999b]/10 to-[#4ea8de]/5 rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="container-custom relative z-10">
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white text-xs font-bold text-[#06999b] uppercase tracking-widest mb-6 shadow-sm border border-slate-100">
+              <Droplets className="w-3.5 h-3.5" />
+              Project Gallery
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
+              Installations & <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#06999b] to-[#4ea8de]">Operational Facilities</span>
+            </h1>
+            <p className="text-base md:text-lg text-slate-600 leading-relaxed font-medium px-4">
+              View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.
+            </p>
           </div>
         </div>
       </section>

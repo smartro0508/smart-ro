@@ -153,12 +153,6 @@ export default async function ProductDetailPage({
 
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-100">
-                  <div className="bg-amber-500/10 px-2.5 py-1 rounded-lg flex items-center gap-1.5 border border-amber-500/20">
-                    <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                    <span className="text-xs font-bold text-amber-700">4.8</span>
-                  </div>
-                  <span className="text-xs text-slate-500 font-medium">120+ Verified Reviews</span>
-                  <div className="w-1 h-1 rounded-full bg-slate-300" />
                   <span className="text-xs font-bold text-emerald-600 flex items-center gap-1.5 bg-emerald-50 px-2 py-1 rounded-md border border-emerald-100">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -177,13 +171,13 @@ export default async function ProductDetailPage({
               </div>
 
               {/* Premium Price Card */}
-              <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-[#0f3a61] to-[#0A1120] p-1 mb-8 shadow-2xl shadow-[#0f3a61]/20 group">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#06999b] rounded-full mix-blend-screen filter blur-[80px] opacity-40 animate-pulse" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#4ea8de] rounded-full mix-blend-screen filter blur-[80px] opacity-30" />
+              <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#06999b] to-[#4ea8de] p-1 mb-8 shadow-2xl shadow-[#06999b]/20 group">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-[80px] opacity-40 animate-pulse" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-white rounded-full mix-blend-overlay filter blur-[80px] opacity-30" />
                 
-                <div className="relative bg-slate-900/40 backdrop-blur-xl rounded-[1.8rem] p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-white/10 group-hover:bg-slate-900/30 transition-colors duration-500">
+                <div className="relative bg-white/10 backdrop-blur-xl rounded-[1.8rem] p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-white/20 group-hover:bg-white/20 transition-colors duration-500">
                   <div>
-                    <div className="text-xs font-bold text-[#4ea8de] uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <div className="text-xs font-bold text-white/90 uppercase tracking-widest mb-2 flex items-center gap-2">
                       Special Launch Price
                     </div>
                     <div className="flex items-baseline gap-3 mb-1">
@@ -191,18 +185,18 @@ export default async function ProductDetailPage({
                         ₹{Number(product.price).toLocaleString("en-IN")}
                       </span>
                       {product.originalPrice && (
-                        <span className="text-xl text-slate-400 line-through font-bold decoration-slate-500/50 decoration-2">
+                        <span className="text-xl text-white/70 line-through font-bold decoration-white/50 decoration-2">
                           ₹{Number(product.originalPrice).toLocaleString("en-IN")}
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-slate-400 font-medium tracking-wide">
+                    <div className="text-xs text-white/80 font-medium tracking-wide">
                       Inclusive of all taxes & free standard installation
                     </div>
                   </div>
                   {product.originalPrice && (
-                    <div className="relative shrink-0 flex flex-col items-center justify-center bg-gradient-to-br from-[#06999b] to-[#057a7c] text-white px-6 py-4 rounded-2xl shadow-lg border border-white/10 group-hover:scale-105 transition-transform duration-300">
-                      <span className="text-[10px] uppercase tracking-widest font-bold opacity-80 mb-1">You Save</span>
+                    <div className="relative shrink-0 flex flex-col items-center justify-center bg-white text-[#06999b] px-6 py-4 rounded-2xl shadow-lg border border-white/50 group-hover:scale-105 transition-transform duration-300">
+                      <span className="text-[10px] uppercase tracking-widest font-bold opacity-70 mb-1 text-slate-500">You Save</span>
                       <span className="text-2xl font-black">
                         ₹{(Number(product.originalPrice) - Number(product.price)).toLocaleString("en-IN")}
                       </span>
@@ -243,7 +237,7 @@ export default async function ProductDetailPage({
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <a
                   href="tel:+916383450508"
-                  className="flex-1 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-[#06999b] py-4 md:py-5 text-white font-bold text-lg shadow-[0_8px_25px_rgba(6,153,155,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(6,153,155,0.4)] border border-[#06999b]"
+                  className="flex-1 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#06999b] to-[#4ea8de] py-4 md:py-5 text-white font-bold text-lg shadow-[0_8px_25px_rgba(6,153,155,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(6,153,155,0.4)]"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                   <Phone className="w-5 h-5 relative z-10 animate-bounce" />
@@ -251,7 +245,7 @@ export default async function ProductDetailPage({
                 </a>
                 <Link
                   href="/contact"
-                  className="sm:w-auto px-8 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-slate-900 text-white font-bold text-base transition-all duration-300 hover:bg-slate-800 hover:-translate-y-1 shadow-lg border border-slate-700"
+                  className="sm:w-auto px-8 group relative flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-white text-[#06999b] font-bold text-base transition-all duration-300 hover:bg-slate-50 hover:-translate-y-1 shadow-md hover:shadow-lg border border-[#06999b]/20 hover:border-[#06999b]/40"
                 >
                   <FileText className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   <span>Request Quote</span>
