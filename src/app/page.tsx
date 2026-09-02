@@ -93,33 +93,43 @@ function Hero() {
       <div className="container-custom relative z-10 grid lg:grid-cols-2 gap-16 items-center pt-28 pb-20 md:pt-36 md:pb-28">
         {/* Left */}
         <div>
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest border border-white/20 bg-white/5 px-4 py-2 mb-8 rounded-sm">
-            Corporate Infrastructure
+          {/* Enhanced Tag */}
+          <div className="inline-flex items-center gap-2.5 text-xs font-bold text-[#4ea8de] uppercase tracking-widest border border-[#4ea8de]/30 bg-[#4ea8de]/10 backdrop-blur-sm px-5 py-2.5 mb-8 rounded-full shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ea8de] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ea8de]"></span>
+            </span>
+            Special Offer
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-            Engineered For <br />
-            <span className="text-[#4ea8de]">Pure Performance.</span>
+          {/* Enhanced Heading */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight mb-6 drop-shadow-lg">
+            Get a FREE  <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4ea8de] to-[#06999b]">RO Demo! 💧</span>
           </h1>
 
-          <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-lg border-l-2 border-[#4ea8de] pl-5">
-            Enterprise-grade water purification solutions designed to deliver
-            reliable, compliant, and scalable water treatment for industries and
-            commercial facilities.
-          </p>
+          {/* Enhanced Subtext */}
+          <div className="relative mb-10 max-w-lg">
+            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#4ea8de] to-[#06999b] rounded-full" />
+            <p className="text-xl md:text-2xl text-white/90 font-medium leading-relaxed pl-6 drop-shadow-md">
+              First Service <span className="text-white font-black tracking-wide">FREE</span> — Call Now!
+            </p>
+          </div>
 
+          {/* Enhanced Buttons */}
           <div className="flex flex-wrap gap-4 mb-10">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center px-8 py-4 bg-[#06999b] text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#057a7c] transition-colors duration-300"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#06999b] to-[#4ea8de] text-white text-sm font-bold tracking-wide rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(6,153,155,0.4)] border border-white/10"
             >
-              System Specifications
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              <span className="relative z-10">Explore Products</span>
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-white/20 transition-colors duration-300"
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold tracking-wide rounded-2xl hover:bg-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              Consult Engineering
+              <span className="relative z-10">Contact us</span>
             </Link>
           </div>
 
@@ -545,30 +555,30 @@ async function FeaturedProducts() {
             <Link
               href={`/products/${p.id}`}
               key={p.id || i}
-              className="group relative bg-gradient-to-b from-white to-[#f0f9ff] rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(6,153,155,0.15)] border border-[#06999b]/15 hover:border-[#4ea8de]/50 ring-1 ring-white/80 hover:ring-4 hover:ring-[#4ea8de]/20 overflow-hidden"
+              className="group relative bg-gradient-to-b from-white to-[#f0f9ff] rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 border border-[#06999b]/15 hover:border-[#4ea8de]/50 ring-1 ring-white/80 hover:ring-4 hover:ring-[#4ea8de]/20 overflow-hidden"
             >
               {/* Subtle Hover Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f0f9ff]/50 to-[#06999b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               {/* Image & Badges */}
-              <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 overflow-hidden transition-all duration-500">
+              <div className="relative h-72 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-4 overflow-hidden transition-all duration-500">
                 {/* Soft background glow on hover */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#06999b]/5 rounded-full blur-3xl group-hover:bg-[#06999b]/10 transition-colors duration-700"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#06999b]/5 rounded-full blur-3xl group-hover:bg-[#06999b]/12 transition-colors duration-700"></div>
 
                 {p.isFeatured && (
-                  <div className="absolute z-10 top-4 left-4 bg-white/90 backdrop-blur-md text-[#06999b] text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm border border-slate-100 flex items-center gap-1.5">
+                  <div className="absolute z-20 top-4 left-4 bg-white/90 backdrop-blur-md text-[#06999b] text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm border border-slate-100 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#06999b]"></span>
-                    Flagship
+                    Featured
                   </div>
                 )}
-                <button className="absolute z-10 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
+                <button className="absolute z-20 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
                   <Heart className="w-4 h-4" />
                 </button>
                 <div className="relative w-full h-full z-10 flex items-center justify-center">
                   <img
                     src={p.mainImage ? `${API_BASE_URL}/uploads/images/${p.mainImage}` : "/placeholder.png"}
                     alt={p.name}
-                    className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110"
                   />
                 </div>
               </div>
@@ -578,7 +588,7 @@ async function FeaturedProducts() {
                 <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#06999b] transition-colors line-clamp-1">
                   {p.name}
                 </h3>
-                
+
                 <p className="text-sm text-slate-500 mb-6 line-clamp-2 min-h-[40px] leading-relaxed">
                   {p.shortDescription || "Premium Reverse Osmosis Water Purifier"}
                 </p>
@@ -604,9 +614,9 @@ async function FeaturedProducts() {
                   <button className="w-full h-12 bg-gradient-to-r from-[#06999b] to-[#4ea8de] text-white rounded-xl font-bold text-sm tracking-wide flex items-center justify-between px-5 transition-all duration-300 shadow-md group-hover:shadow-lg group-hover:shadow-[#06999b]/20 pointer-events-none group/btn border border-white/10 relative overflow-hidden">
                     {/* Shine animation effect on hover */}
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-                    
+
                     <span className="relative z-10">View Details</span>
-                    
+
                     <div className="relative z-10 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white group-hover/btn:bg-white group-hover/btn:text-[#06999b] transition-all duration-300">
                       <ArrowRight className="w-3.5 h-3.5 -rotate-45 group-hover/btn:rotate-0 transition-transform duration-300" />
                     </div>

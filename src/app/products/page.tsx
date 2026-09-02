@@ -68,30 +68,30 @@ export default async function ProductsPage() {
               <Link
                 href={`/products/${product.id}`}
                 key={product.id}
-                className="group relative bg-gradient-to-b from-white to-[#f0f9ff] rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(6,153,155,0.15)] border border-[#06999b]/15 hover:border-[#4ea8de]/50 ring-1 ring-white/80 hover:ring-4 hover:ring-[#4ea8de]/20 overflow-hidden"
+                className="group relative bg-gradient-to-b from-white to-[#f0f9ff] rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 border border-[#06999b]/15 hover:border-[#4ea8de]/50 ring-1 ring-white/80 hover:ring-4 hover:ring-[#4ea8de]/20 overflow-hidden"
               >
                 {/* Subtle Hover Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f0f9ff]/30 to-[#06999b]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Image & Badges */}
-                <div className="relative h-64 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 overflow-hidden transition-all duration-500">
+                <div className="relative h-72 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-4 overflow-hidden transition-all duration-500">
                   {/* Soft background glow on hover */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#06999b]/5 rounded-full blur-3xl group-hover:bg-[#06999b]/10 transition-colors duration-700"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#06999b]/5 rounded-full blur-3xl group-hover:bg-[#06999b]/12 transition-colors duration-700"></div>
 
                   {product.isFeatured && (
-                    <div className="absolute z-10 top-4 left-4 bg-white/90 backdrop-blur-md text-[#06999b] text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm border border-slate-100 flex items-center gap-1.5">
+                    <div className="absolute z-20 top-4 left-4 bg-white/90 backdrop-blur-md text-[#06999b] text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full shadow-sm border border-slate-100 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#06999b]"></span>
                       Featured
                     </div>
                   )}
-                  <button className="absolute z-10 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
+                  <button className="absolute z-20 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
                     <Heart className="w-4 h-4" />
                   </button>
                   <div className="relative w-full h-full z-10 flex items-center justify-center">
                     <img
                       src={product.mainImage ? `${API_BASE_URL}/uploads/images/${product.mainImage}` : "/placeholder.png"}
                       alt={product.name}
-                      className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110"
                     />
                   </div>
                 </div>
