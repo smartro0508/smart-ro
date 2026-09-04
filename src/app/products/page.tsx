@@ -71,7 +71,7 @@ export default async function ProductsPage() {
                 className="group relative bg-gradient-to-b from-white to-[#f0f9ff] rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-500 hover:-translate-y-1 border border-[#06999b]/15 hover:border-[#4ea8de]/50 ring-1 ring-white/80 hover:ring-4 hover:ring-[#4ea8de]/20 overflow-hidden"
               >
                 {/* Subtle Hover Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f0f9ff]/30 to-[#06999b]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f0f9ff]/50 to-[#06999b]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Image & Badges */}
                 <div className="relative h-72 w-full mb-6 bg-slate-50/50 rounded-2xl flex items-center justify-center p-4 overflow-hidden transition-all duration-500">
@@ -84,9 +84,7 @@ export default async function ProductsPage() {
                       Featured
                     </div>
                   )}
-                  <button className="absolute z-20 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
-                    <Heart className="w-4 h-4" />
-                  </button>
+
                   <div className="relative w-full h-full z-10 flex items-center justify-center">
                     <img
                       src={product.mainImage ? `${API_BASE_URL}/uploads/images/${product.mainImage}` : "/placeholder.png"}

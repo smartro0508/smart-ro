@@ -18,15 +18,15 @@ export function ProductImageGallery({ images, productName, isFeatured }: { image
 
   return (
     <>
-      <div className="flex gap-4 flex-col sm:flex-row">
+      <div className="flex gap-4 flex-col-reverse sm:flex-row">
         {/* Thumbnails */}
         {allImages.length > 1 && (
-          <div className="flex sm:flex-col gap-4 sm:w-20 shrink-0 overflow-x-auto sm:overflow-x-visible">
+          <div className="flex sm:flex-col gap-4 sm:w-20 shrink-0 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
             {allImages.map((img: string, i: number) => (
               <div
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`w-16 sm:w-full aspect-square shrink-0 rounded-xl border-2 flex items-center justify-center p-2 cursor-pointer transition-colors ${i === activeIndex ? "border-[#06999b]" : "border-slate-100 hover:border-slate-300"}`}
+                className={`w-16 h-16 sm:w-full sm:h-auto aspect-square shrink-0 rounded-xl border-2 flex items-center justify-center p-2 cursor-pointer transition-colors ${i === activeIndex ? "border-[#06999b]" : "border-slate-100 hover:border-slate-300"}`}
               >
                 <div className="relative w-full h-full">
                   <img

@@ -571,9 +571,7 @@ async function FeaturedProducts() {
                     Featured
                   </div>
                 )}
-                <button className="absolute z-20 top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all shadow-sm border border-slate-100 hover:scale-105 active:scale-95">
-                  <Heart className="w-4 h-4" />
-                </button>
+
                 <div className="relative w-full h-full z-10 flex items-center justify-center">
                   <img
                     src={p.mainImage ? `${API_BASE_URL}/uploads/images/${p.mainImage}` : "/placeholder.png"}
@@ -984,24 +982,41 @@ async function Testimonials() {
             {reviews.slice(0, 3).map((r: any, i: number) => (
               <div
                 key={r.id || i}
-                className="bg-slate-50 border border-slate-200 p-8 flex flex-col"
+                className="group relative bg-white rounded-2xl p-8 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:border-[#06999b]/30 hover:shadow-[0_8px_30px_rgb(6,153,155,0.08)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
-                <Quote className="w-6 h-6 text-[#06999b] mb-6 opacity-40" />
-                <div className="flex text-[#06999b] mb-4">
-                  {[...Array(Number(r.rating) || 5)].map((_, idx) => (
-                    <svg key={idx} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                  ))}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-8 flex-grow">
-                  "{r.message}"
-                </p>
-                <div className="border-t border-slate-200 pt-6">
-                  <p className="text-sm font-bold text-slate-900">{r.fullName}</p>
-                  {r.company && (
-                    <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">
-                      {r.company}
-                    </p>
-                  )}
+                {/* Decorative Top Line */}
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#0f3a61] to-[#06999b] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+
+                {/* Subtle Background Icon */}
+                <Quote className="absolute -bottom-4 -right-4 w-32 h-32 text-slate-50/50 group-hover:text-[#06999b]/[0.03] transition-colors duration-500 rotate-12" />
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex text-[#FFB800] gap-1">
+                      {[...Array(Number(r.rating) || 5)].map((_, idx) => (
+                        <svg key={idx} className="w-4 h-4 fill-current drop-shadow-sm" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                      ))}
+                    </div>
+                    <Quote className="w-8 h-8 text-[#0f3a61]/10 group-hover:text-[#06999b]/20 transition-colors duration-300" />
+                  </div>
+
+                  <p className="text-[15px] text-slate-600 leading-relaxed mb-8 flex-grow font-medium">
+                    "{r.message}"
+                  </p>
+
+                  <div className="flex items-center gap-4 pt-6 border-t border-slate-100 group-hover:border-slate-200 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0f3a61] to-[#06999b] flex items-center justify-center text-white font-bold text-sm shadow-inner shrink-0">
+                      {r.fullName.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-slate-900 group-hover:text-[#0f3a61] transition-colors">{r.fullName}</p>
+                      {r.company && (
+                        <p className="text-[10px] text-[#06999b] font-bold uppercase tracking-widest mt-0.5">
+                          {r.company}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
