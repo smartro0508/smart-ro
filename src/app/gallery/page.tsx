@@ -3,12 +3,20 @@ import { ArrowRight, Camera, Images } from "lucide-react";
 import { API_BASE_URL } from "@/config";
 import { constructMetadata } from "@/seo.config";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Installation Gallery | Smart RO Projects",
+  title: "Installation Gallery & Industrial Project Portfolio",
   description:
-    "View our extensive portfolio of residential, commercial, and industrial water purification setups, showcasing our commitment to quality and scale.",
+    "Explore our real-world installation portfolio featuring commercial RO plants, industrial water treatment setups, and residential purifiers across Tamil Nadu.",
   canonicalUrl: "/gallery",
+  keywords: [
+    "RO Installation Gallery",
+    "Commercial RO Plant Projects",
+    "Industrial Water Treatment Photos",
+    "Water Purifier Installation Coimbatore",
+    "Smart RO Project Portfolio",
+  ],
 });
 
 export const dynamic = "force-dynamic";
@@ -44,6 +52,12 @@ export default async function GalleryPage() {
 
   return (
     <div className="bg-white min-h-screen font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Gallery", url: "/gallery" },
+        ]}
+      />
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="relative bg-[#0b2d4e] pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
         {/* grid overlay */}

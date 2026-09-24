@@ -8,15 +8,27 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { constructMetadata, SEO_CONFIG } from "@/seo.config";
 import GlobalAnalytics from "@/components/GlobalAnalytics";
+import { RootJsonLd } from "@/components/seo/JsonLd";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = constructMetadata();
+const baseMetadata = constructMetadata();
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  title: {
+    default: "Smart RO | Premium RO Water Purifiers & Commercial RO Plants in Tamil Nadu",
+    template: "%s | Smart RO Water Purifiers",
+  },
+};
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: "#0f3a61",
 };
 
@@ -25,21 +37,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SEO_CONFIG.siteName,
-    url: SEO_CONFIG.siteUrl,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SEO_CONFIG.siteUrl}/products?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
-  };
-
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} antialiased scroll-smooth`}>
+    <html lang="en-IN" className={`${spaceGrotesk.variable} antialiased scroll-smooth`}>
       <head>
+        <meta name="geo.region" content="IN-TN" />
+        <meta name="geo.placename" content="Coimbatore, Tamil Nadu, India" />
+        <meta name="geo.position" content={`${SEO_CONFIG.geo.latitude};${SEO_CONFIG.geo.longitude}`} />
+        <meta name="ICBM" content={`${SEO_CONFIG.geo.latitude}, ${SEO_CONFIG.geo.longitude}`} />
+        <meta name="format-detection" content="telephone=no" />
+        
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${SEO_CONFIG.googleAnalyticsId}`}
           strategy="afterInteractive"
@@ -54,10 +60,7 @@ export default function RootLayout({
             });
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <RootJsonLd />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-background text-text-primary">
         <Suspense fallback={null}>

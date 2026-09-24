@@ -1,4 +1,12 @@
 import { ShieldCheck } from "lucide-react";
+import { constructMetadata } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Privacy Policy",
+  description: "Read the Privacy Policy for Smart RO to understand how we collect, use, and protect your personal information when using our website and services.",
+  canonicalUrl: "/privacy-policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

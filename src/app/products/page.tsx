@@ -11,13 +11,24 @@ import {
   Home
 } from "lucide-react";
 import { API_BASE_URL } from "@/config";
-import { constructMetadata } from "@/seo.config";
+import { constructMetadata, SEO_CONFIG } from "@/seo.config";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = constructMetadata({
-  title: "RO Water Purifiers | Domestic & Commercial Systems",
-  description: "Explore our comprehensive range of high-performance water purification solutions engineered for rigorous operational environments.",
+  title: "Domestic & Commercial RO Water Purifiers",
+  description: "Explore our premium lineup of domestic RO water purifiers, commercial RO plants, and water softeners. Multi-stage RO+UV+UF filtration for borewell and municipal water at direct prices.",
   canonicalUrl: "/products",
+  keywords: [
+    "RO Water Purifiers",
+    "Commercial RO Plants Coimbatore",
+    "Domestic RO Water Purifier",
+    "Aqua Era RO Water Purifier",
+    "Borewell Water Purifier",
+    "Water Softeners",
+    "Industrial RO Purifier",
+    "RO Water Purifier Price",
+  ],
 });
 
 export const dynamic = 'force-dynamic';
@@ -39,8 +50,29 @@ async function getProducts() {
 export default async function ProductsPage() {
   const products = await getProducts();
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((prod: any, idx: number) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SEO_CONFIG.siteUrl}/products/${prod.id}`,
+      name: prod.name,
+    })),
+  };
+
   return (
     <div className="bg-white min-h-screen font-sans pt-[72px] lg:pt-[88px]">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Products", url: "/products" },
+        ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       {/* Top Hero Banner */}
       <section className="relative bg-gradient-to-b from-slate-50 to-white pt-12 pb-16 lg:pt-10 lg:pb-20 border-b border-slate-200 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] pointer-events-none"></div>

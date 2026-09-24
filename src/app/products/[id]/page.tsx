@@ -10,6 +10,7 @@ import { ProductImageGallery } from "@/components/products/ProductImageGallery";
 import { API_BASE_URL } from "@/config";
 import { constructMetadata, SEO_CONFIG } from "@/seo.config";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const dynamic = "force-dynamic";
 
@@ -21,15 +22,28 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const json = await res.json();
     const product = json.data;
     if (product) {
+      const cleanPrice = product.price ? `₹${Number(product.price).toLocaleString("en-IN")}` : "";
+      const metaDescription = product.shortDescription
+        ? `${product.shortDescription} ${cleanPrice ? `Price: ${cleanPrice}.` : ""} Direct sales & service by Smart RO.`
+        : product.description || "High-performance RO water purifier from Smart RO.";
+
       return constructMetadata({
-        title: `${product.name} | Smart RO`,
-        description: product.shortDescription || product.description,
+        title: product.name,
+        description: metaDescription,
         canonicalUrl: `/products/${resolvedParams.id}`,
-        image: product.mainImage ? `${API_BASE_URL}/uploads/images/${product.mainImage}` : undefined,
+        image: product.mainImage ? `${API_BASE_URL}/uploads/images/${product.mainImage}` : "/app-logo.png",
+        keywords: [
+          product.name,
+          `${product.name} price`,
+          `${product.name} specifications`,
+          "Smart RO Water Purifier",
+          "RO Water Purifier Coimbatore",
+          "Buy RO Purifier Tamil Nadu",
+        ],
       });
     }
   } catch (e) {}
-  return constructMetadata({ title: "Product Not Found" });
+  return constructMetadata({ title: "Product Details" });
 }
 
 export default async function ProductDetailPage({
@@ -103,27 +117,40 @@ export default async function ProductDetailPage({
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    image: allImages.map(img => `${API_BASE_URL}/uploads/images/${img}`),
-    description: product.shortDescription || product.description,
+    image: allImages.length > 0
+      ? allImages.map(img => (img.startsWith("http") ? img : `${API_BASE_URL}/uploads/images/${img}`))
+      : [`${SEO_CONFIG.siteUrl}/app-logo.png`],
+    description: product.shortDescription || product.description || product.name,
+    sku: product.id,
+    mpn: product.id,
     brand: {
       "@type": "Brand",
-      name: "Smart RO"
+      name: (product.specifications && typeof product.specifications === "object" && product.specifications.Brand) || "Smart RO",
     },
     offers: {
       "@type": "Offer",
       url: `${SEO_CONFIG.siteUrl}/products/${resolvedParams.id}`,
       priceCurrency: "INR",
-      price: product.price,
+      price: product.price ? String(product.price).replace(/[^0-9.]/g, "") : "9999",
+      priceValidUntil: "2027-12-31",
+      itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
       seller: {
         "@type": "Organization",
-        name: "Smart RO"
-      }
-    }
+        name: SEO_CONFIG.siteName,
+      },
+    },
   };
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-900 pt-24">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Products", url: "/products" },
+          { name: product.name, url: `/products/${resolvedParams.id}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

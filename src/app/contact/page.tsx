@@ -2,18 +2,59 @@ import ContactHero from "@/components/contact/ContactHero";
 import ContactInfo from "@/components/contact/ContactInfo";
 import ContactForm from "@/components/contact/ContactForm";
 import LocationSection from "@/components/contact/LocationSection";
-import { constructMetadata } from "@/seo.config";
+import { constructMetadata, SEO_CONFIG } from "@/seo.config";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Contact Smart RO | Expert Water Purification Consultants",
-  description: "Get in touch with Smart RO's water purification experts for tailored solutions, commercial plant installations, and repair services.",
+  title: "Contact Sales & Service in Coimbatore",
+  description: "Contact Smart RO for product inquiries, commercial RO plant consultation, water testing, and door-step RO repair services in Coimbatore & Tamil Nadu.",
   canonicalUrl: "/contact",
+  keywords: [
+    "Contact Smart RO",
+    "Water Purifier Service Coimbatore Number",
+    "Smart RO Customer Care",
+    "RO Installation Inquiry",
+    "Commercial RO Plant Contact",
+    "RO Service Phone Number",
+  ],
 });
 
 export default function ContactPage() {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Smart RO Water Purifiers",
+    url: `${SEO_CONFIG.siteUrl}/contact`,
+    mainEntity: {
+      "@type": "HomeAndConstructionBusiness",
+      "@id": `${SEO_CONFIG.siteUrl}/#localbusiness`,
+      name: SEO_CONFIG.siteName,
+      telephone: SEO_CONFIG.contact.phone,
+      email: SEO_CONFIG.contact.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: SEO_CONFIG.address.streetAddress,
+        addressLocality: SEO_CONFIG.address.addressLocality,
+        addressRegion: SEO_CONFIG.address.addressRegion,
+        postalCode: SEO_CONFIG.address.postalCode,
+        addressCountry: SEO_CONFIG.address.addressCountry,
+      },
+    },
+  };
+
   return (
     <div className="bg-white min-h-screen font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <ContactHero />
 
       {/* Main Contact Section */}

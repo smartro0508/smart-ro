@@ -20,12 +20,20 @@ import { TestimonialFormSection } from "@/components/about/TestimonialFormSectio
 import { API_BASE_URL } from "@/config";
 import { constructMetadata } from "@/seo.config";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = constructMetadata({
-  title: "About Smart RO | Our Mission & Vision",
+  title: "About Us | Leading Water Purification Company in Tamil Nadu",
   description:
-    "Learn about Smart RO's commitment to industrial excellence and delivering robust water purification infrastructure.",
+    "Learn about Smart RO's 10+ years journey delivering cutting-edge domestic, commercial, and industrial water filtration solutions with certified technicians and rigorous quality standards.",
   canonicalUrl: "/about",
+  keywords: [
+    "About Smart RO",
+    "Water Purifier Company Coimbatore",
+    "RO Plant Manufacturer Tamil Nadu",
+    "Water Treatment Experts",
+    "Smart RO Mission and Values",
+  ],
 });
 
 export const dynamic = "force-dynamic";
@@ -33,6 +41,12 @@ export const dynamic = "force-dynamic";
 export default function AboutPage() {
   return (
     <div className="bg-white min-h-screen font-sans">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About Us", url: "/about" },
+        ]}
+      />
       <HeroSection />
       <OurStorySection />
       <MissionVisionSection />

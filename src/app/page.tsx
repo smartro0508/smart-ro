@@ -16,15 +16,51 @@ import {
   Quote,
   Star,
 } from "lucide-react";
-import { constructMetadata, SEO_CONFIG } from "@/seo.config";
+import { constructMetadata } from "@/seo.config";
 import type { Metadata } from "next";
 import { API_BASE_URL } from "@/config";
+import { FaqJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = constructMetadata({
+  title: "Best RO Water Purifier & Service in Coimbatore, Tamil Nadu | Smart RO",
+  description: "Smart RO provides high-performance domestic RO water purifiers, commercial RO plants, water softeners, and certified repair & AMC maintenance services across Coimbatore and Tamil Nadu.",
   canonicalUrl: "/",
+  keywords: [
+    "RO Water Purifier Coimbatore",
+    "Best RO Purifier Tamil Nadu",
+    "Commercial RO Plant Coimbatore",
+    "Water Purifier Service Coimbatore",
+    "RO Repair Service Near Me",
+    "Domestic RO Water Purifier",
+    "Industrial RO Water Plant",
+    "Smart RO Systems",
+  ],
 });
 
 export const dynamic = 'force-dynamic';
+
+const HOME_FAQS = [
+  {
+    question: "What is the best RO water purifier for borewell water in Tamil Nadu?",
+    answer: "Smart RO multi-stage water purifiers equipped with RO + UV + UF filtration and TDS controllers are ideal for borewell and hard water, safely handling TDS levels up to 2000+ ppm while preserving essential minerals.",
+  },
+  {
+    question: "Do you provide RO installation and repair services in Coimbatore?",
+    answer: "Yes, Smart RO provides door-step installation, routine servicing, filter replacement, and emergency breakdown repair across Coimbatore, Irugur, and nearby regions in Tamil Nadu.",
+  },
+  {
+    question: "How often should RO water purifier filters be replaced?",
+    answer: "Sediment and carbon pre-filters should generally be serviced or replaced every 6 to 12 months, whereas the RO membrane typically lasts 2 to 3 years based on source water quality and usage volume.",
+  },
+  {
+    question: "Does Smart RO manufacture commercial and industrial RO plants?",
+    answer: "Yes, Smart RO supplies and installs commercial RO plants from 50 LPH to 10,000+ LPH tailored for offices, schools, hospitals, restaurants, and manufacturing industries.",
+  },
+  {
+    question: "What is an RO Annual Maintenance Contract (AMC)?",
+    answer: "A Smart RO AMC ensures hassle-free year-round water purity with scheduled preventative maintenance visits, free membrane flushing, complimentary filter replacements, and priority support without surprise service costs.",
+  },
+];
 
 async function getProducts() {
   try {
@@ -74,33 +110,10 @@ export default async function Home() {
   const products = await getProducts();
   const services = await getServices();
   const testimonials = await getActiveTestimonials();
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SEO_CONFIG.siteName,
-    url: SEO_CONFIG.siteUrl,
-    logo: `${SEO_CONFIG.siteUrl}/app-logo.png`,
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: SEO_CONFIG.contact.phone,
-      contactType: "customer service",
-      areaServed: "IN",
-      availableLanguage: "en",
-    },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Chennai",
-      addressRegion: "Tamil Nadu",
-      addressCountry: "IN",
-    }
-  };
 
   return (
     <main className="bg-white font-sans pt-[72px]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <FaqJsonLd faqs={HOME_FAQS} />
       <Hero />
       <TrustBadges />
       <HomeProducts products={products} />

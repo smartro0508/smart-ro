@@ -1,4 +1,12 @@
 import { FileText } from "lucide-react";
+import { constructMetadata } from "@/seo.config";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Terms of Service",
+  description: "Read the Terms of Service for Smart RO governing the purchase, installation, and maintenance of our water purification systems.",
+  canonicalUrl: "/terms-of-service",
+});
 
 export default function TermsOfServicePage() {
   return (
