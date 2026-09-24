@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Suspense } from "react";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { constructMetadata, SEO_CONFIG } from "@/seo.config";
 import GlobalAnalytics from "@/components/GlobalAnalytics";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
 });
@@ -37,7 +38,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} antialiased scroll-smooth`}>
+    <html lang="en" className={`${spaceGrotesk.variable} antialiased scroll-smooth`}>
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${SEO_CONFIG.googleAnalyticsId}`}
@@ -65,6 +66,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
