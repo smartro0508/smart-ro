@@ -28,7 +28,7 @@ export default function Navbar() {
   return (
     <>
       {/* ── TOP ANNOUNCEMENT BAR ─────────────────────────────────────────── */}
-      <div className="w-full bg-[#0b2d4e] text-white py-2.5 z-[60] relative hidden md:block border-b border-white/[0.06]">
+      <div className="w-full bg-gradient-to-r from-[#0b2d4e] to-[#06999b] text-white py-2.5 z-[60] relative hidden md:block border-b border-white/[0.06]">
         {/* subtle grid */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.06]"

@@ -226,7 +226,7 @@ export default async function ProductsPage() {
                         <span className="text-[14px] text-slate-400 line-through">₹{Number(originalPrice).toLocaleString('en-IN')}</span>
                         <span className="text-[10px] font-bold text-[#059669] bg-[#d1fae5] border border-[#a7f3d0] px-2 py-1 rounded ml-auto uppercase">{discount}% OFF</span>
                       </div>
-                      <Link href={`/products/${product.id}`} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#0b2d4e] to-[#0284c7] hover:from-[#0f3a61] hover:to-[#0369a1] text-white text-[14px] font-bold rounded-xl transition-all shadow-lg shadow-[#0b2d4e]/20 hover:-translate-y-0.5">
+                      <Link href={`/products/${product.id}`} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#0b2d4e] to-[#06999b] hover:from-[#082136] hover:to-[#057a7c] text-white text-[14px] font-bold rounded-xl transition-all shadow-lg shadow-[#0b2d4e]/20 hover:-translate-y-0.5 tracking-wide">
                         <ShoppingCart className="w-4 h-4" /> View Details
                       </Link>
                     </div>

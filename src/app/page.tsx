@@ -122,7 +122,7 @@ export default async function Home() {
       <HealthBenefits />
       <WhyChooseUs />
       <HomeTestimonials testimonials={testimonials} />
-      <CTASection />
+
     </main>
   );
 }
@@ -152,16 +152,16 @@ function Hero() {
 
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-5">
-            <span className="h-[2px] w-10 bg-[#0284c7]" />
-            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#0284c7]">
+            <span className="h-[2px] w-10 bg-gradient-to-r from-[#0b2d4e] to-[#06999b]" />
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-[#0b2d4e] to-[#06999b]">
               Pure Water. Healthy Life.
             </span>
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-bold leading-[1.1] tracking-tight text-[#0f3a61]">
+          <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-bold leading-[1.1] tracking-tight text-[#0b2d4e]">
             Advanced RO Purification
-            <span className="block text-[#0284c7]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#0b2d4e] to-[#06999b]">
               For a Healthier Life
             </span>
           </h1>
@@ -177,7 +177,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center rounded-full bg-[#0284c7] px-7 py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-200/50 transition-all duration-300 hover:bg-[#0369a1] hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[#0b2d4e] to-[#06999b] hover:from-[#082136] hover:to-[#057a7c] px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-lg shadow-[#0b2d4e]/20 hover:shadow-xl tracking-wide transition-all duration-300 hover:-translate-y-0.5"
             >
               Explore Products
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -248,7 +248,7 @@ function TrustBadges() {
 function HomeProducts({ products }: { products: any[] }) {
   if (!products || products.length === 0) return null;
   return (
-    <section className="py-24 lg:py-32 bg-[#f8fafc] border-b border-slate-100">
+    <section className="py-12 lg:py-16 bg-[#f8fafc] border-b border-slate-100">
       <div className="container-custom">
         {/* header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
@@ -325,7 +325,7 @@ function HomeProducts({ products }: { products: any[] }) {
                       <span className="text-[14px] text-slate-400 line-through">₹{Number(originalPrice).toLocaleString('en-IN')}</span>
                       <span className="text-[10px] font-bold text-[#059669] bg-[#d1fae5] border border-[#a7f3d0] px-2 py-1 rounded ml-auto uppercase">{discount}% OFF</span>
                     </div>
-                    <Link href={`/products/${product.id}`} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#0b2d4e] to-[#0284c7] hover:from-[#0f3a61] hover:to-[#0369a1] text-white text-[14px] font-bold rounded-xl transition-all shadow-lg shadow-[#0b2d4e]/20 hover:-translate-y-0.5">
+                    <Link href={`/products/${product.id}`} className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#0b2d4e] to-[#06999b] hover:from-[#082136] hover:to-[#057a7c] text-white text-[14px] font-bold rounded-xl transition-all shadow-lg shadow-[#0b2d4e]/20 hover:-translate-y-0.5 tracking-wide">
                       <ShoppingCart className="w-4 h-4" /> View Details
                     </Link>
                   </div>
@@ -348,7 +348,7 @@ function HomeProducts({ products }: { products: any[] }) {
 /* ─── ADVANCED FILTRATION ────────────────────────────────────────────────── */
 function AdvancedFiltration() {
   return (
-    <section className="bg-white py-24 lg:py-36 border-b border-slate-100 overflow-hidden">
+    <section className="bg-white py-12 lg:py-16 border-b border-slate-100 overflow-hidden">
       <div className="container-custom">
         {/* header */}
         <div className="text-center max-w-2xl mx-auto mb-16 lg:mb-20">
@@ -424,7 +424,7 @@ function AdvancedFiltration() {
 function HomeServices({ services }: { services: any[] }) {
   if (!services || services.length === 0) return null;
   return (
-    <section className="py-24 lg:py-32 bg-[#f8fafc] border-b border-slate-100">
+    <section className="py-12 lg:py-16 bg-[#f8fafc] border-b border-slate-100">
       <div className="container-custom">
         {/* header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
@@ -480,7 +480,7 @@ function HealthBenefits() {
   ];
 
   return (
-    <section className="bg-white py-24 lg:py-32 border-b border-slate-100">
+    <section className="bg-white py-12 lg:py-16 border-b border-slate-100">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* image */}
@@ -535,7 +535,7 @@ function WhyChooseUs() {
   ];
 
   return (
-    <section className="relative bg-[#f8fafc] py-24 lg:py-32 border-b border-slate-100 overflow-hidden">
+    <section className="relative bg-[#f8fafc] py-12 lg:py-16 border-b border-slate-100 overflow-hidden">
       <div className="container-custom relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -577,7 +577,7 @@ function WhyChooseUs() {
 function HomeTestimonials({ testimonials }: { testimonials: any[] }) {
   if (!testimonials || testimonials.length === 0) return null;
   return (
-    <section className="py-24 lg:py-32 bg-white border-b border-slate-100">
+    <section className="py-12 lg:py-16 bg-white border-b border-slate-100">
       <div className="container-custom">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -626,42 +626,3 @@ function HomeTestimonials({ testimonials }: { testimonials: any[] }) {
   );
 }
 
-/* ─── CTA SECTION ────────────────────────────────────────────────────────── */
-function CTASection() {
-  return (
-    <section className="py-24 lg:py-32 bg-[#f8fafc]">
-      <div className="container-custom">
-        <div className="relative rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.18)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0b2d4e] via-[#0d3560] to-[#082136]" />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#0284c7] blur-[120px] rounded-full opacity-20 pointer-events-none translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#06999b] blur-[100px] rounded-full opacity-15 pointer-events-none -translate-x-1/2 translate-y-1/2" />
-
-          <div className="relative z-10 p-10 md:p-16 lg:p-24 flex flex-col md:flex-row md:items-center justify-between gap-10">
-            <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-3">
-                Clean Water. A Healthier You.
-              </h2>
-              <p className="text-white/60 text-[17px] leading-relaxed">
-                Upgrade to a smarter way of living with our RO purifier.
-              </p>
-            </div>
-            <Link
-              href="/products"
-              className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white hover:bg-slate-50 text-[#0b2d4e] text-[15px] font-black rounded-xl transition-all duration-300 shadow-2xl hover:-translate-y-1 shrink-0 uppercase tracking-[0.1em]"
-            >
-              Shop Now <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
