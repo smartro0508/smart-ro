@@ -102,9 +102,9 @@ export default function ServicesPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10">
                 {[
                   { Icon: Activity, label: "Reliability" },
-                  { Icon: Wrench,   label: "Fast Repair" },
+                  { Icon: Wrench, label: "Fast Repair" },
                   { Icon: Settings, label: "Maintenance" },
-                  { Icon: Shield,   label: "Compliance" },
+                  { Icon: Shield, label: "Compliance" },
                 ].map(({ Icon, label }, i) => (
                   <div key={i} className="group bg-white/[0.05] hover:bg-white/10 transition-colors duration-300 px-4 py-6 flex flex-col items-center text-center">
                     <div className="w-11 h-11 rounded-xl bg-white/[0.07] border border-white/[0.1] flex items-center justify-center mb-3 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] transition-all duration-300">
