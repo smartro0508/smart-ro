@@ -70,7 +70,7 @@ export const SEO_CONFIG = {
   author: "Smart RO",
   publisher: "Smart RO Water Purifiers",
   twitterHandle: "@smartro",
-  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX",
+  googleAnalyticsId: "G-9Q9F37Z6ER",
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
     bing: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "",
@@ -197,27 +197,27 @@ export function constructMetadata({
     },
     robots: noIndex
       ? {
-          index: false,
-          follow: false,
-        }
+        index: false,
+        follow: false,
+      }
       : {
+        index: true,
+        follow: true,
+        googleBot: {
           index: true,
           follow: true,
-          googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large" as const,
-            "max-snippet": -1,
-          },
+          "max-video-preview": -1,
+          "max-image-preview": "large" as const,
+          "max-snippet": -1,
         },
+      },
     ...(SEO_CONFIG.verification.google || SEO_CONFIG.verification.bing
       ? {
-          verification: {
-            ...(SEO_CONFIG.verification.google ? { google: SEO_CONFIG.verification.google } : {}),
-            ...(SEO_CONFIG.verification.bing ? { bing: SEO_CONFIG.verification.bing } : {}),
-          },
-        }
+        verification: {
+          ...(SEO_CONFIG.verification.google ? { google: SEO_CONFIG.verification.google } : {}),
+          ...(SEO_CONFIG.verification.bing ? { bing: SEO_CONFIG.verification.bing } : {}),
+        },
+      }
       : {}),
   };
 }

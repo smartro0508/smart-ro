@@ -45,7 +45,7 @@ export default function RootLayout({
         <meta name="geo.position" content={`${SEO_CONFIG.geo.latitude};${SEO_CONFIG.geo.longitude}`} />
         <meta name="ICBM" content={`${SEO_CONFIG.geo.latitude}, ${SEO_CONFIG.geo.longitude}`} />
         <meta name="format-detection" content="telephone=no" />
-        
+
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${SEO_CONFIG.googleAnalyticsId}`}
           strategy="afterInteractive"
