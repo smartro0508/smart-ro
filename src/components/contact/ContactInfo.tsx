@@ -2,11 +2,11 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function ContactInfo() {
   return (
-    <div className="bg-gradient-to-br from-[#0f3a61] via-[#12426e] to-[#0a2744] p-8 md:p-10 rounded-2xl shadow-2xl flex flex-col h-full justify-between relative overflow-hidden border border-[#1a5082]">
+    <div className="bg-gradient-to-br from-[#0b2d4e] via-[#06999b] to-[#057a7c] p-8 md:p-10 rounded-2xl shadow-2xl flex flex-col h-full justify-between relative overflow-hidden border border-[#06999b]/50">
 
       {/* Decorative Glow */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#0284c7] blur-[80px] rounded-full opacity-20 pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#0284c7] blur-[80px] rounded-full opacity-20 pointer-events-none transform -translate-x-1/2 translate-y-1/2"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white blur-[80px] rounded-full opacity-10 pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white blur-[80px] rounded-full opacity-10 pointer-events-none transform -translate-x-1/2 translate-y-1/2"></div>
 
       <div className="relative z-10 space-y-10">
         <div>
@@ -20,7 +20,7 @@ export default function ContactInfo() {
         <div className="space-y-8">
           {/* Our Office */}
           <div className="flex gap-5 items-start group">
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
+            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#00FFFF] group-hover:border-[#00FFFF] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
               <MapPin className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -35,19 +35,19 @@ export default function ContactInfo() {
 
           {/* Call Us */}
           <div className="flex gap-5 items-start group">
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
+            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#00FFFF] group-hover:border-[#00FFFF] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
               <Phone className="w-5 h-5 text-white" />
             </div>
             <div>
               <h4 className="text-sm font-bold text-white mb-1.5 uppercase tracking-wide">Call Us</h4>
               <p className="text-sm text-slate-300 mb-1 group-hover:text-white transition-colors duration-300 font-medium">+91 63834 50508</p>
-              <p className="text-sm text-slate-300 group-hover:text-white transition-colors duration-300 font-medium">+91 93843 70508</p>
+              <p className="text-sm text-slate-300 group-hover:text-white transition-colors duration-300 font-medium">+91 93844 50508</p>
             </div>
           </div>
 
           {/* Email Us */}
           <div className="flex gap-5 items-start group">
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
+            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#00FFFF] group-hover:border-[#00FFFF] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
               <Mail className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -58,7 +58,7 @@ export default function ContactInfo() {
 
           {/* Working Hours */}
           <div className="flex gap-5 items-start group">
-            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
+            <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-[#00FFFF] group-hover:border-[#00FFFF] group-hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm shadow-lg">
               <Clock className="w-5 h-5 text-white" />
             </div>
             <div>

@@ -5,27 +5,27 @@ import { MapPin, Phone, Mail, ArrowRight, ChevronUp } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const COMPANY_LINKS = [
-  { name: "About Us",     path: "/about" },
+  { name: "About Us", path: "/about" },
   { name: "Our Products", path: "/products" },
-  { name: "Gallery",      path: "/gallery" },
-  { name: "Services",     path: "/services" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "Services", path: "/services" },
 ];
 
 const POLICY_LINKS = [
-  { name: "Privacy Policy",    path: "/privacy-policy" },
-  { name: "Terms of Service",  path: "/terms-of-service" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Terms of Service", path: "/terms-of-service" },
 ];
 
 const SOCIAL = [
   {
     icon: "https://cdn-icons-png.flaticon.com/128/145/145802.png",
-    url:  "https://www.facebook.com/profile.php?id=100090036542933",
-    alt:  "Facebook",
+    url: "https://www.facebook.com/profile.php?id=100090036542933",
+    alt: "Facebook",
   },
   {
     icon: "https://cdn-icons-png.flaticon.com/128/3955/3955024.png",
-    url:  "https://www.instagram.com/smartro321/",
-    alt:  "Instagram",
+    url: "https://www.instagram.com/smartro321/",
+    alt: "Instagram",
   },
 ];
 
@@ -41,23 +41,23 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="relative bg-[#060f1e] text-white overflow-hidden">
+    <footer className="relative text-white overflow-hidden" style={{ background: 'radial-gradient(circle at 50% 0%, #0a192f 0%, #060f1e 100%)' }}>
       {/* ── subtle grid overlay ─────────────────────────────────────────── */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px)",
-          backgroundSize: "52px 52px",
+            "linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
         }}
       />
 
       {/* ── ambient glows ───────────────────────────────────────────────── */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0284c7]/15 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-[500px] h-[400px] bg-[#06999b]/8 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0284c7]/20 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[400px] bg-[#06999b]/15 blur-[140px] rounded-full pointer-events-none" />
 
       {/* ── top border ──────────────────────────────────────────────────── */}
-      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#0284c7]/60 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#06999b]/80 to-transparent shadow-[0_0_15px_rgba(6,153,155,0.6)]" />
 
       {/* ── MAIN CONTENT ────────────────────────────────────────────────── */}
       <div className="container-custom relative z-10 pt-20 pb-10">
@@ -68,14 +68,18 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-4 lg:pr-10">
             <Link href="/" className="inline-flex relative group mb-7 block">
+              <div className="absolute inset-0 bg-white/20 backdrop-blur-md border border-white/40 rounded-2xl group-hover:bg-white/30 transition duration-500 shadow-xl" />
               <div className="absolute -inset-2 bg-[#06999b]/15 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500" />
-              <img
-                src="app-logo.png"
-                alt="Smart RO"
-                height={100}
-                width={190}
-                className="relative object-contain group-hover:scale-[1.03] transition-transform duration-300"
-              />
+              <div className="relative p-4 inline-block">
+                <img
+                  src="app-logo.png"
+                  alt="Smart RO"
+                  height={100}
+                  width={190}
+                  className="relative object-contain group-hover:scale-[1.03] transition-transform duration-300"
+                />
+                <span className="absolute top-2 right-1 text-[10px] font-bold text-white">TM</span>
+              </div>
             </Link>
             <p className="text-[14px] text-slate-400 leading-[1.8] mb-8 max-w-sm">
               Pioneering advanced RO purification technology engineered to
@@ -83,16 +87,16 @@ export default function Footer() {
               compromise.
             </p>
             {/* socials */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3.5">
               {SOCIAL.map((s) => (
                 <a
                   key={s.url}
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center hover:bg-white/[0.12] hover:-translate-y-1 transition-all duration-300"
+                  className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center hover:bg-white/[0.15] hover:border-white/[0.2] hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:-translate-y-1 transition-all duration-300 group"
                 >
-                  <img src={s.icon} alt={s.alt} className="w-5 h-5 object-contain" />
+                  <img src={s.icon} alt={s.alt} className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
                 </a>
               ))}
             </div>
@@ -102,7 +106,7 @@ export default function Footer() {
           <div className="lg:col-span-2 lg:col-start-6">
             <h4 className="text-[11px] font-black text-white uppercase tracking-[0.18em] mb-6 relative inline-block">
               Company
-              <span className="absolute -bottom-2.5 left-0 w-6 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full" />
+              <span className="absolute -bottom-2.5 left-0 w-8 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full shadow-[0_0_8px_rgba(6,153,155,0.8)]" />
             </h4>
             <ul className="space-y-3.5">
               {COMPANY_LINKS.map((link) => (
@@ -123,7 +127,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="text-[11px] font-black text-white uppercase tracking-[0.18em] mb-6 relative inline-block">
               Policies
-              <span className="absolute -bottom-2.5 left-0 w-6 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full" />
+              <span className="absolute -bottom-2.5 left-0 w-8 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full shadow-[0_0_8px_rgba(6,153,155,0.8)]" />
             </h4>
             <ul className="space-y-3.5">
               {POLICY_LINKS.map((link) => (
@@ -144,7 +148,7 @@ export default function Footer() {
           <div className="lg:col-span-3">
             <h4 className="text-[11px] font-black text-white uppercase tracking-[0.18em] mb-6 relative inline-block">
               Contact Us
-              <span className="absolute -bottom-2.5 left-0 w-6 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full" />
+              <span className="absolute -bottom-2.5 left-0 w-8 h-[2.5px] bg-gradient-to-r from-[#0284c7] to-[#06999b] rounded-full shadow-[0_0_8px_rgba(6,153,155,0.8)]" />
             </h4>
             <ul className="space-y-5">
               {/* address */}
@@ -154,21 +158,30 @@ export default function Footer() {
                 </div>
                 <span className="text-[13px] leading-[1.75] text-slate-400 group-hover:text-slate-300 transition-colors duration-200 mt-1 font-medium">
                   Smart RO<br />
-                  9/1, sri nagar, deepam nagar 9th Street,<br />
-                  irugur, 641103
+                  No.1/756, Adheeshwarar Nagar
+                  3rd Street, Adhiyur, Kunnathur,
+                  Tiruppur - 638103
                 </span>
               </li>
               {/* phone */}
-              <li className="group flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.07] flex items-center justify-center shrink-0 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:shadow-lg group-hover:shadow-[#0284c7]/25 transition-all duration-300">
+              <li className="group flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.07] flex items-center justify-center shrink-0 group-hover:bg-[#0284c7] group-hover:border-[#0284c7] group-hover:shadow-lg group-hover:shadow-[#0284c7]/25 transition-all duration-300 mt-1">
                   <Phone className="w-4 h-4 text-[#06999b] group-hover:text-white transition-colors duration-300" />
                 </div>
-                <a
-                  href="tel:+916383450508"
-                  className="text-[14px] font-medium text-slate-400 group-hover:text-white transition-colors duration-200"
-                >
-                  6383450508, 9384370508
-                </a>
+                <div className="flex flex-col gap-1.5 pt-1">
+                  <a
+                    href="tel:+916383450508"
+                    className="text-[14px] font-medium text-slate-400 group-hover:text-white transition-colors duration-200"
+                  >
+                    +91-63834 50508
+                  </a>
+                  <a
+                    href="tel:+919384450508"
+                    className="text-[14px] font-medium text-slate-400 group-hover:text-white transition-colors duration-200"
+                  >
+                    +91-93844 50508
+                  </a>
+                </div>
               </li>
               {/* email */}
               <li className="group flex items-center gap-3.5">
@@ -188,20 +201,19 @@ export default function Footer() {
 
         {/* ── BOTTOM BAR ──────────────────────────────────────────────────── */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 relative">
-          <p className="text-[13px] text-slate-600 font-medium text-center sm:text-left">
+          <p className="text-[13px] text-slate-400 font-medium text-center sm:text-left">
             © {new Date().getFullYear()} Smart RO. All Rights Reserved.
           </p>
 
-          <p className="text-[12px] text-slate-700 font-medium hidden sm:block">
+          <p className="text-[12px] text-slate-500 font-medium hidden sm:block">
             Engineered for purity. Built for performance.
           </p>
 
           {/* back to top */}
           <button
             onClick={scrollToTop}
-            className={`absolute right-0 w-11 h-11 rounded-xl bg-white/[0.05] border border-white/[0.10] flex items-center justify-center text-[#06999b] hover:bg-gradient-to-br hover:from-[#0284c7] hover:to-[#06999b] hover:text-white hover:border-transparent transition-all duration-400 shadow-sm hover:shadow-lg hover:shadow-[#06999b]/30 group ${
-              isVisible ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
+            className={`absolute right-0 w-11 h-11 rounded-xl bg-white/[0.05] border border-white/[0.10] flex items-center justify-center text-[#06999b] hover:bg-gradient-to-br hover:from-[#0284c7] hover:to-[#06999b] hover:text-white hover:border-transparent transition-all duration-400 shadow-sm hover:shadow-lg hover:shadow-[#06999b]/30 group ${isVisible ? "opacity-100 visible" : "opacity-0 invisible"
+              }`}
             aria-label="Back to top"
           >
             <ChevronUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-300" />

@@ -61,7 +61,7 @@ export default function ContactForm() {
 
   return (
     <div className="bg-white p-8 md:p-10 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/40 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0f3a61] to-[#0284c7]"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0b2d4e] to-[#06999b]"></div>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-6">
           {/* Name Input */}
@@ -148,7 +148,7 @@ export default function ContactForm() {
         <button
           disabled={isSubmitting}
           type="submit"
-          className="w-full py-4 mt-2 bg-gradient-to-r from-[#0f3a61] to-[#0a2744] hover:from-[#154675] hover:to-[#0f3a61] text-white font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 text-sm shadow-lg shadow-[#0f3a61]/20 transform hover:-translate-y-1"
+          className="w-full py-4 mt-2 bg-gradient-to-r from-[#0b2d4e] to-[#06999b] hover:from-[#082136] hover:to-[#057a7c] text-white font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 text-sm shadow-lg shadow-[#0b2d4e]/20 transform hover:-translate-y-1"
         >
           {isSubmitting ? "Processing..." : (
             <>

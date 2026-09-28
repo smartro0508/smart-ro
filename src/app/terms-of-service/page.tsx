@@ -84,7 +84,7 @@ export default function TermsOfServicePage() {
                 <p className="font-bold text-slate-800 text-base mb-2">Smart RO</p>
                 <p>9/1, sri nagar, deepam nagar 9th Street,</p>
                 <p>irugur, 641103</p>
-                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9384370508</p>
+                <p className="mt-2"><strong className="text-slate-800">Phone:</strong> 6383450508, 9384450508</p>
                 <p><strong className="text-slate-800">Email:</strong> smartro0508@gmail.com</p>
               </div>
             </div>

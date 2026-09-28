@@ -65,13 +65,16 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center shrink-0 w-[150px] group">
-              <img
-                src="/app-logo.png"
-                alt="Smart RO Logo"
-                height={40}
-                width={140}
-                className="object-contain group-hover:opacity-90 transition-opacity duration-200"
-              />
+              <div className="relative inline-block">
+                <img
+                  src="/app-logo.png"
+                  alt="Smart RO Logo"
+                  height={40}
+                  width={140}
+                  className="object-contain group-hover:opacity-90 transition-opacity duration-200"
+                />
+                <span className="absolute -top-1 -right-2 text-[10px] font-bold text-[#0b2d4e]">TM</span>
+              </div>
             </Link>
 
             {/* Desktop Nav */}
